@@ -18,6 +18,7 @@ function login($user_profile) {
 	while($row=mysql_fetch_array($res)) {
 		$bool = true;
 		$_SESSION['auth_token'] = $row['auth_token'];
+		$_SESSION['user_id'] = $row['fb_id'];
 	}
 	if($bool == false) {
 		$auth_token = md5($id."str480GUS");
@@ -52,8 +53,18 @@ function get_friends($friends) {
 	if(!empty($result)) return $result;
 	else return array();
 }
+function me() {
+	global $con, $facebook;
+	return $facebook->api('/me');
+}
+function get_friend_by_id($friends,$id) {
+	$f=false;
+	foreach($friends as $f) {
+		if($f['id']==$id) {
+			$friend = $f;
+		}
+	}
+	if($id==$_SESSION['user_id']) $friend = me();
+	return $friend;
+}
 ?>
-
-
-
-

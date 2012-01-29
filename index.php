@@ -1,8 +1,8 @@
 <?php
-if ($_SERVER['HTTPS']!="on") {
-  header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
-  exit();
-}
+//if ($_SERVER['HTTPS']!="on") {
+//  header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
+//  exit();
+//}
 require('app/library.php');
 
 
@@ -10,6 +10,8 @@ require('app/library.php');
 if ($user) {
 	if(!isset($_SESSION['auth_token'])) {
 		login($user_profile);
+		$user_info = pullUser($user_profile['id']);
+		require_once('app/views/home.php');
 	} else {
 		$logoutUrl = $facebook->getLogoutUrl();
 		$user_info = pullUser($user_profile['id']);
@@ -21,4 +23,3 @@ if ($user) {
 
 }
 ?>
-

@@ -10,7 +10,7 @@ function get_track($id) { // Param Track ID
 	$query = "SELECT * FROM track WHERE id='$id'";
 	$res=mysql_query($query,$con);
 	$result=array();
-	while($row=mysql_fetch_row($res)) {
+	while($row=mysql_fetch_array($res)) {
 		$result=$row;
 	}
 	return $result;
@@ -20,30 +20,49 @@ function get_user_videos($id) { // Param User ID
 	$query = "SELECT * FROM track WHERE user_id='$id'";
 	$res=mysql_query($query,$con);
 	$result=array();
-	while($row=mysql_fetch_row($res)) {
-		$result=get_track($row['id']);
+	while($row=mysql_fetch_array($res)) {
+		$result[]=$row;
 	}
 	return $result;
 }
-function get_friends_videos($id) { // Param Main User ID
+function get_friends_videos($friends) { // Param Main User ID
 	global $con;
-	$query = "SELECT * FROM track WHERE user_id='$id'";
+	$result = array();
+	foreach($friends as $f) {
+		$query = "SELECT * FROM track WHERE user_id='".$f['id']."'";
+		$res=mysql_query($query,$con);
+		while($row=mysql_fetch_array($res)) {
+			$result[]=$row;
+		}
+	}
+	return $result;
+}
+function get_track_by_name($filename) {
+	global $con;
+	$query = "SELECT * FROM track WHERE filename='$filename'";
 	$res=mysql_query($query,$con);
 	$result=array();
-	while($row=mysql_fetch_row($res)) {
-		$result=get_user_videos($row['fb_id']);
+	while($row=mysql_fetch_array($res)) {
+		$result=$row;
 	}
 	return $result;
 }
 
-
-
-
-
-
+function get_recent_videos($friends) {
+	$time = time();
+	$starttime = $time-(60*60*24*7);
+	global $con;
+	$query = "SELECT * FROM track WHERE date_uploaded BETWEEN '$starttime' AND '$time' AND (";
+	foreach($friends as $f) {
+		$query .= "user_id='".$f['id']."' OR ";
+	}	
+	$query .= " user_id='".$_SESSION['user_id']."')"; 
+	$result = array();
+	$res=mysql_query($query,$con) or die($query." failed because ".mysql_error());
+	while($row=mysql_fetch_array($res)) {
+		$result[]=$row;
+	}
+	return $result;
+}
 
 ?>
-
-
-
-

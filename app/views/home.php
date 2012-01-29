@@ -1,5 +1,7 @@
 <?php 
-
+	if($user) {
+		$recent_videos = get_recent_videos($user_ramble_friends);
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
@@ -14,7 +16,7 @@
 
     <meta property="og:title" content="Ramble"/>
     <meta property="og:type" content="Application"/>
-    <meta property="og:url" content=""/>
+    <meta property="og:url" content="https://ramble.strabogis.com"/>
     <meta property="og:image" content=""/>
     <meta property="og:site_name" content="Ramble"/>
     <meta property="og:locality" content="Middlebury"/>
@@ -24,6 +26,7 @@
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
 
+	<script type="text/javascript" src="js/richmarker-compiled.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script>
 	<script type="text/javascript" src="js/ramble.js"></script>
 
@@ -36,15 +39,26 @@
 		</div>
 		<div id="map_container">
 			<div id="video_container">
+				<div id="video-top-bar">
+					<div id="close-vid"></div>
+					<div id="video-title"></div>
+				</div>
 				<video id="video"></video>
-				<div id="video-title"></div>
 				<div id="video-controls">
 					<div id="play-pause"></div>
 					<div id="volume"></div>
 					<div id="scrub-bar"></div>
 				</div>
 			</div>
+			<div id="map_loading"></div>
 			<div id="map"></div>
 		</div>
+		<?php if($user) { ?>
+			<script>
+			
+			</script>
+		<?php } else { ?>
+		
+		<?php } ?> 
   </body>
 </html>
