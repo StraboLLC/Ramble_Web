@@ -10,8 +10,14 @@
 
     <!-- We get the name of the app out of the information fetched -->
     <title><?php echo $siteTitle; ?></title>
+	<link href='//fonts.googleapis.com/css?family=Telex' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/jquery-ui-1.8.17.custom.css" type="text/css" />
+	<?php if($user) { ?>
 	<link rel="stylesheet" href="css/global.css" type="text/css" />
+	<?php } else { ?>
+	<link rel="stylesheet" href="css/login.css" type="text/css" />
+	<?php } ?>
+
     <!-- <link rel="stylesheet" href="stylesheets/screen.css" media="screen"> -->
 
     <meta property="og:title" content="Ramble"/>
@@ -26,9 +32,12 @@
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
 
-	<script type="text/javascript" src="js/richmarker-compiled.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script>
+	<?php if($user) { ?>
 	<script type="text/javascript" src="js/ramble.js"></script>
+	<?php } else { ?>
+	<script type="text/javascript" src="js/init.js"></script>
+	<?php } ?>
 
   </head>
   <body>
@@ -38,6 +47,7 @@
 					else require('sidebars/login_SB.php'); ?>
 		</div>
 		<div id="map_container">
+			<?php if($user) { ?>
 			<div id="video_container">
 				<div id="video-top-bar">
 					<div id="close-vid"></div>
@@ -51,6 +61,7 @@
 				</div>
 			</div>
 			<div id="map_loading"></div>
+			<?php } ?>
 			<div id="map"></div>
 		</div>
 		<?php if($user) { ?>

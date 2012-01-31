@@ -12,7 +12,7 @@ input {
 
 /* Structure */
 html,body {
-	font-family: "Open Sans", "Gill Sans MT",sans-serif;
+	font-family: 'Telex', sans-serif;
 	font-weight: lighter;
 	height: 100%;
 	width: 100%;
@@ -32,6 +32,12 @@ html,body {
 	height: 100%;
 	background: gray;
 	position: absolute;
+}
+#sidebar {
+	float: left;
+	width: 250px;
+	height: 100%;
+	background: url('/images/sidebar_bg.png') repeat-y;
 }
 #map_loading {
 	position: absolute;
@@ -67,9 +73,22 @@ html,body {
 }
 #close-vid {
 	float: right;
-	width: 20px;
-	height: 20px;
-	background: yellow;
+	width: 19px;
+	height: 19px;
+	background: url('/images/close.png');
+	background-size: 19px 19px;
+	cursor: pointer;
+}
+#close-vid:hover {
+	opacity: .75;
+	border-radius: 4px;
+	-webkit-transform:translate(1px,1px);
+	-moz-transform:translate(1px,1px);
+	-o-transform:translate(1px,1px);
+	-ms-transform:translate(1px,1px);
+	transform:translate(1px,1px);
+	
+	filter:alpha(opacity=75);
 }
 #video-controls {
 	height: 0;
@@ -112,13 +131,9 @@ html,body {
 	z-index: 12;
 	height:inherit;
 	width: 100%;
+	border-radius: 7px;
 }
-#sidebar {
-	float: left;
-	width: 250px;
-	height: 100%;
-	background: url('/images/sidebar_bg.png') repeat-y;
-}
+
 
 
 /* Sidebar */
@@ -130,6 +145,18 @@ html,body {
 	height: 40px;
 	margin: 5px;
 	z-index: 20;	
+}
+#ramble-logo-button:hover,
+#ramble-home-button:hover,
+#ramble-user-button:hover,
+#ramble-prefs-button:hover {
+	opacity: .8;
+}
+#ramble-logo-button:active,
+#ramble-home-button:active,
+#ramble-user-button:active,
+#ramble-prefs-button:active {
+	opacity: .7;
 }
 #ramble-logo-button {
 	display: inline-block;
@@ -176,16 +203,18 @@ html,body {
 	-webkit-box-shadow: 0 0 8px rgba(0,0,0,.75);
 	-moz-box-shadow: 0 0 8px rgba(0,0,0,.75);
 	box-shadow: 0 0 8px rgba(0,0,0,.75);
-	background: #f5ddc4;
 	margin: 10px;
 	position: absolute;
 	top:40px;
 	bottom:41px;
 	left:0;
 	right: 0;
+	background: url('/images/noise.png'),#f5ddc4;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 #search {
-	position: relative;
+	position: fixed;
 	display: block;
 	-webkit-box-shadow: 0 0 2px rgba(0,0,0,.75);
 	-moz-box-shadow: 0 0 2px rgba(0,0,0,.75);
@@ -193,15 +222,17 @@ html,body {
 	background: url('/images/magnifyingglass.png') no-repeat right center #e7e1dd;
 	width: 201px;
 	border: 0;
-	font-size: 20px;
+	font-size: 15px;
 	padding: 10px 25px 10px 4px;
 	margin: 0;
 	z-index: 15;
 }
+#sidebar-videos {
+	margin-top: 50px;
+}
 #videos-section {
 	border-top:1pt solid #aaa;
 	margin: 0 0px;
-	overflow-y: scroll;
 }
 #sidebar-videos.loading {
 	height: 300px;
@@ -211,31 +242,45 @@ html,body {
 .sub-heading {
 	font-weight: bold;
 	font-size: 18px;
-	padding:0 5px;
+	padding:10px; 5px;
 }
-.track {
+.list-item {
 	cursor: pointer;
 	display: block;
 	vertical-align: middle;
 	margin: 0;
 	padding: 15px 5px;
 	border-bottom: 1pt solid #aaa;
+	-webkit-transition: box-shadow, padding .1s ease-in-out;
+	-moz-transition: box-shadow, padding .1s ease-in-out;
+	-o-transition: box-shadow, padding .1s ease-in-out;
+	-ms-transition: box-shadow, padding .1s ease-in-out;
+	transition: box-shadow, padding .1s ease-in-out;
 }
-.track:nth-child(odd) {
-	background: #f5ddc4;
+.list-item:nth-child(odd) {
+	background: url('/images/noise.png') #f5ddc4;
 }
-.track:nth-child(even) {
-	background:#e7e1dd;
+.list-item:nth-child(even) {
+	background: url('/images/noise.png') #e7e1dd;
 }
-.track:hover {
-	background:white;
+.list-item:hover {
+	box-shadow: inset 0 0 8px rgba(50,50,50,0.50);
 }
-.track-name {
+.list-item:active {
+	box-shadow: inset 0 0 18px rgba(50,50,50,0.50);
+}
+.track-name, .user-name {
 	font-weight: normal;
 }
 .track-author {
 	font-size: 14px;
 	
+}
+.user-name {
+
+}
+.user-image {
+	float: right;
 }
 #vermont-logo {
 	position: absolute;

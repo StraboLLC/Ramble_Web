@@ -12,21 +12,20 @@ if($u!=false && $_POST['filetype']=="video") {
 
 	$json = isset($_FILES['JSONfile']) ? $_FILES['JSONfile'] : null;
 	$video = isset($_FILES['videofile']) ? $_FILES['videofile'] : null;
+	$imagefile = isset($_FILES['imagefile']) ? $_FILES['imagefile'] : null;
 	
-	if($json==null||$video==null) echo '{"errors":["true","JSON or Video is not included!"]}';
+	if($json==null||$video==null||$imagefile==null) echo '{"errors":["true","JSON or Video or Image is not included!"]}';
 	
 	$addtoalbum = isset($_POST['addtoalbum']) ? $_POST['addtoalbum'] : null;
-	$imagefile = isset($_FILES['imagefile']) ? $_FILES['imagefile'] : null;
 	$filename = isset($_POST['filename']) ? $_POST['filename'] : null;
 	$makepublic = isset($_POST['makepublic']) ? $_POST['makepublic'] : 0;
 	$file_data = json_decode(file_get_contents($json['tmp_name']));
 	
-	if($video!=null&&$json!=null&&$filename!=null) {
-		if($imagefile!=null) $s3->putObject($image['tmp_name'], $bucketName, $filename.'/'.$filename.'.png', S3::ACL_PUBLIC_READ);
-
+	if($video!=null&&$json!=null&&$filename!=null&&$imagefile!=null) {
 
 		if(	$s3->putObject($s3->inputFile($video['tmp_name']), $bucketName, $filename.'/'.$filename.'.mov', S3::ACL_PUBLIC_READ)&&
-			$s3->putObject($s3->inputFile($json['tmp_name']), $bucketName, $filename.'/'.$filename.'.json', S3::ACL_PUBLIC_READ)) {
+			$s3->putObject($s3->inputFile($json['tmp_name']), $bucketName, $filename.'/'.$filename.'.json', S3::ACL_PUBLIC_READ)&&
+			$s3->putObject($s3->inputFile($imagefile['tmp_name']), $bucketName, $filename.'/'.$filename.'.png', S3::ACL_PUBLIC_READ)) {
 			try {
 				$zencoder = new Services_Zencoder($apikey);
 				$encoding_job = $zencoder->jobs->create('
@@ -46,6 +45,11 @@ if($u!=false && $_POST['filetype']=="video") {
 						  "autolevel": 1,
 						  "deblock": 1,
 						  "public": 1
+						  "notifications": [
+							{
+								"url": "https://ramble.strabogis.com/api/zencoder.php",
+								"format": "json"
+							}]
 						},
 						{
 						  "url": "s3://'.$bucketName.'/'.$filename.'/'.$filename.'.webm",
@@ -57,14 +61,19 @@ if($u!=false && $_POST['filetype']=="video") {
 						  "speed": 3,
 						  "autolevel": 1,
 						  "deblock": 1,
-						  "public": 1				
+						  "public": 1	
+						  "notifications": [
+							{
+								"url": "https://ramble.strabogis.com/api/zencoder.php",
+								"format": "json"
+							}]			
 						}
 				    ]
 				  }
 				');	
 				// Parse the JSON File to fill out the database
 				$name = ($file_data->track->title!="") ? $file_data->track->title : date('M j, Y');
-				$date_taken = $file_data->track->date;
+				$date_taken = $file_data->track->captureDate;
 				$date_uploaded = time();
 				$permissions = 0;
 				$starting_lat = $file_data->track->points[0]->latitude;

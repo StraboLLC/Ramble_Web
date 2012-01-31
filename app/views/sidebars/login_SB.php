@@ -1,4 +1,8 @@
-<div id="login-button"><fb:login-button></fb:login-button></div>
+<div id="ramble-logo"></div>
+<div id="login-button">
+<div id="tagline"></div>
+<div id="fb-login" class="fb-login-button"></div>
+</div>
 
 <div id="fb-root"></div>
 <script>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+function drawCanvas(deg) {
+	deg = deg * Math.PI / 180;
+	console.log(deg);
+	var canvas, context, image;
+	canvas = document.getElementById('canvas');
+	canvas.width = 20;
+	canvas.height = 20;
+
+	context = canvas.getContext("2d");
+	context.fillStyle = "rgb(200,0,0)";
+	context.translate(10,10);	
+	context.scale(1,-1);  
+	context.rotate(deg);
+	var x1=0,y1=10,x2=7,y2=-10,x3=0,y3=-5,x4=-7,y4=-10;
+	/*x1 = (Math.cos(deg)*x1) - Math.sin(deg)*y1;
+	y1 = (Math.sin(deg)*x1) + Math.cos(deg)*y1;
+	x2 = (Math.cos(deg)*x2) - Math.sin(deg)*y2;
+	y2 = (Math.sin(deg)*x2) + Math.cos(deg)*y2;
+	x3 = (Math.cos(deg)*x3) - Math.sin(deg)*y3;
+	y3 = (Math.sin(deg)*x3) + Math.cos(deg)*y3;
+	x4 = (Math.cos(deg)*x4) - Math.sin(deg)*y4;
+	y4 = (Math.sin(deg)*x4) + Math.cos(deg)*y4;*/
+	console.log(x1+","+y1);
+	console.log(x2+","+y2);
+	console.log(x3+","+y3);
+	console.log(x4+","+y4);
+	context.beginPath();
+	context.moveTo(x1,y1);
+	context.lineTo(x2,y2);
+	context.lineTo(x3,y3);
+	context.lineTo(x4,y4);
+	context.lineTo(x1,y1);
+	context.fill();
+	
+	return canvas.toDataURL();
+}
+		</script>
+		<style>
+		canvas {
+			border:1pt solid red;
+		}
+		</style>
+	</head>
+	<body onload="drawCanvas(0)">
+		<canvas height="30" width="30" id="canvas"></canvas>
+	
+	
+	</body>
+</html>

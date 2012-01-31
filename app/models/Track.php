@@ -7,7 +7,7 @@
 
 function get_track($id) { // Param Track ID
 	global $con;
-	$query = "SELECT * FROM track WHERE id='$id'";
+	$query = "SELECT * FROM track WHERE id='$id' AND finished='1'";
 	$res=mysql_query($query,$con);
 	$result=array();
 	while($row=mysql_fetch_array($res)) {
@@ -17,7 +17,7 @@ function get_track($id) { // Param Track ID
 }
 function get_user_videos($id) { // Param User ID
 	global $con;
-	$query = "SELECT * FROM track WHERE user_id='$id'";
+	$query = "SELECT * FROM track WHERE user_id='$id' AND finished='1'";
 	$res=mysql_query($query,$con);
 	$result=array();
 	while($row=mysql_fetch_array($res)) {
@@ -29,7 +29,7 @@ function get_friends_videos($friends) { // Param Main User ID
 	global $con;
 	$result = array();
 	foreach($friends as $f) {
-		$query = "SELECT * FROM track WHERE user_id='".$f['id']."'";
+		$query = "SELECT * FROM track WHERE user_id='".$f['id']."' AND finished='1'";
 		$res=mysql_query($query,$con);
 		while($row=mysql_fetch_array($res)) {
 			$result[]=$row;
@@ -39,7 +39,7 @@ function get_friends_videos($friends) { // Param Main User ID
 }
 function get_track_by_name($filename) {
 	global $con;
-	$query = "SELECT * FROM track WHERE filename='$filename'";
+	$query = "SELECT * FROM track WHERE filename='$filename' AND finished='1'";
 	$res=mysql_query($query,$con);
 	$result=array();
 	while($row=mysql_fetch_array($res)) {
@@ -52,7 +52,7 @@ function get_recent_videos($friends) {
 	$time = time();
 	$starttime = $time-(60*60*24*7);
 	global $con;
-	$query = "SELECT * FROM track WHERE date_uploaded BETWEEN '$starttime' AND '$time' AND (";
+	$query = "SELECT * FROM track WHERE date_uploaded BETWEEN '$starttime' AND '$time' AND finished='1' AND (";
 	foreach($friends as $f) {
 		$query .= "user_id='".$f['id']."' OR ";
 	}	
@@ -63,6 +63,12 @@ function get_recent_videos($friends) {
 		$result[]=$row;
 	}
 	return $result;
+}
+function toggle_job_state($num,$jobid) {
+	global $con;
+	$query = "UPDATE track SET finished='$num' WHERE jobid='$jobid'";
+	$res=mysql_query($query,$con) or die($query." failed because ".mysql_error());
+	return $res;	
 }
 
 ?>

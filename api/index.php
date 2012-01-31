@@ -71,6 +71,12 @@ if(isset($_GET['track_points'])&&isset($_SESSION['auth_token'])) {
 	header("Content-type: application/json; charset=UTF-8");
 	$ch = curl_init('http://https://maps.googleapis.com/maps/api/place/search/json?location=$location&radius=$radius&types=$types&name=$name&key=$key');
 	$output = curl_exec($ch);
+	
+	
+	
+	
+	
+	
 } else if(isset($_GET['user_sidebar'])) {
 	if(isset($_GET['id'])) { 
 	$u = $facebook->api('/'.$_GET['id']); ?>
@@ -79,7 +85,7 @@ if(isset($_GET['track_points'])&&isset($_SESSION['auth_token'])) {
 			
 			<?php $user_videos = get_user_videos($_GET['id']); 
 				foreach( $user_videos as $v) { ?>
-			<div class="track" data-name="<?php echo $v['filename'] ?>">
+			<div class="list-item track" data-name="<?php echo $v['filename'] ?>">
 				<div class="track-name"><?php echo $v['name'] ?></div>
 			</div>
 			<?php } ?>
@@ -88,5 +94,49 @@ if(isset($_GET['track_points'])&&isset($_SESSION['auth_token'])) {
 	
 	<?php
 	}
+} else if(isset($_GET['search_query'])) {
+	if(isset($_GET['q'])) {
+		$q = $_GET['q'];
+		$user_friends = $facebook->api('/me/friends');
+		$user_ramble_friends = get_friends($user_friends);
+		$results=array();
+		foreach($user_ramble_friends as $f) {
+			if(stripos($f['rInfo']['first_name'],$q)!==false) $results[] = $f;
+			else if(stripos($f['rInfo']['last_name'],$q)!==false) $results[] = $f;
+			else if(stripos($f['name'],$q)!==false) $results[] = $f;
+		} ?>
+		<div class="sub-heading">Search Results</div>
+		<div id="videos-section">
+
+		<?php foreach($results as $r) { ?>
+			<div class="list-item user" style="background:url('//graph.facebook.com/<?php echo $r['rInfo']['fb_id'] ?>/picture') center right no-repeat;" onclick="pullUserSidebar(<?php echo $r['rInfo']['fb_id'] ?>)" data-name="<?php echo $r['rInfo']['fb_id'] ?>">
+				<div class="user-name"  ><?php echo $r['name'] ?></div>
+			</div>
+		<?php } ?>
+		</div>		
+<?php	
+	}
+} else if(isset($_GET['go_home'])) {
+
+		$user_friends = $facebook->api('/me/friends');
+		$user_ramble_friends = get_friends($user_friends);
+		$recent_videos = get_recent_videos($user_ramble_friends);
+
+?>
+	<h3 class="sub-heading">Recent Videos</h3>
+	<div id="videos-section">
+			<?php $i=0;
+			 foreach( $recent_videos as $v) { ?>
+			<div class="list-item track" data-name="<?php echo $v['filename'] ?>" data-index="<?php echo $i; ?>">
+				<div class="track-name"><?php echo $v['name'] ?></div>
+				<div class="track-author user" data-user-id="<?php echo $v['user_id']; ?>"><?php $a=get_friend_by_id($user_ramble_friends,$v['user_id']); echo $a['name'];?></div>
+			</div>
+			<?php 
+				$i++;
+			} ?>
+	
+	</div>
+<?php
 }
+
 ?>
