@@ -32,6 +32,7 @@
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
 
+	<script type="text/javascript" src="js/richmarker-compiled.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script>
 	<?php if($user) { ?>
 	<script type="text/javascript" src="js/ramble.js"></script>
@@ -41,7 +42,10 @@
 
   </head>
   <body>
-
+		<div id="popup">
+			<div id="popup-close"></div>
+			<div id="popup-content"></div>
+		</div>
 		<div id="sidebar">
 			<?php 	if($user) require('sidebars/home_SB.php'); 
 					else require('sidebars/login_SB.php'); ?>

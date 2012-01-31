@@ -11,8 +11,10 @@ $notification = $zencoder->notifications->parseIncoming();
 // Check output/job state
 if($notification->output->state == "finished") {
 	if($notification->job->state == "finished") {
-		toggle_job_state(1,$notification->job->id)
+		toggle_job_state(1,$notification->job->id);
+		echo "{state:'success'}";
 	}
+	
 } elseif ($notification->output->state == "cancelled") {
 	echo "{state:'cancelled'}";
 } else {

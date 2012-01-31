@@ -56,7 +56,7 @@ function get_recent_videos($friends) {
 	foreach($friends as $f) {
 		$query .= "user_id='".$f['id']."' OR ";
 	}	
-	$query .= " user_id='".$_SESSION['user_id']."')"; 
+	$query .= " user_id='".$_SESSION['user_id']."') ORDER BY date_uploaded DESC"; 
 	$result = array();
 	$res=mysql_query($query,$con) or die($query." failed because ".mysql_error());
 	while($row=mysql_fetch_array($res)) {
@@ -70,5 +70,10 @@ function toggle_job_state($num,$jobid) {
 	$res=mysql_query($query,$con) or die($query." failed because ".mysql_error());
 	return $res;	
 }
-
+function change_track_name($filename,$name) {
+	global $con;
+	$query = "UPDATE track SET name='$name' WHERE filename='$filename'";
+	$res=mysql_query($query,$con) or die($query." failed because ".mysql_error());
+	return $res;	
+}
 ?>

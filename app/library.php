@@ -18,6 +18,7 @@ require_once('functions/database.php');
 
 require_once('models/User.php');
 require_once('models/Track.php');
+require_once('models/Album.php');
 
 require_once('init.php');
 

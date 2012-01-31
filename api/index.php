@@ -25,33 +25,6 @@ if(isset($_GET['track_points'])&&isset($_SESSION['auth_token'])) {
 	}
 
 /*
- * Get KML track
- */
-} else if(isset($_GET['kml_track'])) {
-	if(isset($_GET['name'])&&$_GET['name']!=null) {
-		$name = $_GET['name'];
-		$th = get_track_by_name($_GET['name']);
-		$ch = curl_init("http://s3.amazonaws.com/ramble/".$th['filename']."/".$th['filename'].".json");
-		curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
-		$track = json_decode(curl_exec($ch));
-		header("Content-type: application/vnd.google-earth.kml+xml");
-		$output = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><kml xmlns=\"http://www.opengis.net/kml/2.2\"><Document><name><?php echo $name; ?></name><description></description><Style id=\"track\"><LineStyle><color>7f00ffff</color><width>20</width></LineStyle><PolyStyle><color>7f00ff00</color></PolyStyle></Style><Placemark>
-		      <name>$name</name><description></description><styleUrl>#track</styleUrl>
-		      <LineString><extrude>1</extrude><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode>
-		        <coordinates>";
-				foreach($track->track->points as $p) {
-					$output .= $p->longitude.",".$p->latitude.",17\n";
-				}
-		      	
-		        $output .= "</coordinates></LineString></Placemark></Document></kml>";
-		        echo $output;
-		
-	} else {
-		header("Content-type: application/json; charset=UTF-8");
-		echo '{error:[true,"You must submit a track name!"]}';
-	}
-
-/*
  * Get your friends tracks.
  */
 } else if(isset($_GET['friends_tracks'])) {
@@ -81,17 +54,30 @@ if(isset($_GET['track_points'])&&isset($_SESSION['auth_token'])) {
 	if(isset($_GET['id'])) { 
 	$u = $facebook->api('/'.$_GET['id']); ?>
 	<div class="sub-heading"><?php echo $u['name']; ?><img class="right" src="//graph.facebook.com/<?php echo $u['id']; ?>/picture" alt="<?php echo $u['name']; ?>" title="<?php echo $u['name']; ?>" /><div class="clear"></div></div>
-	<div id="videos-section">
+	<div id="videos-section" class="section">
 			
-			<?php $user_videos = get_user_videos($_GET['id']); 
-				foreach( $user_videos as $v) { ?>
-			<div class="list-item track" data-name="<?php echo $v['filename'] ?>">
-				<div class="track-name"><?php echo $v['name'] ?></div>
-			</div>
-			<?php } ?>
-	
+		<?php $user_videos = get_user_videos($_GET['id']); 
+			foreach( $user_videos as $v) { ?>
+		<div class="list-item track" data-name="<?php echo $v['filename'] ?>">
+			<div class="track-picture"><img src="//s3.amazonaws.com/ramble/<?php echo $v['filename'] ?>/<?php echo $v['filename'] ?>.png" height="40"/></div>
+			<div class="track-name name"><?php echo $v['name'] ?></div>
+		</div>
+		<?php } ?>
 	</div>
+	<div class="sub-heading">Albums</div>
+	<?php $albums = get_user_albums($_GET['id']); ?>
+	<?php if(!empty($albums)) {
+			foreach($albums as $a) { ?> 
+		<div class="list-item album" data-id="<?php echo $a['id'] ?>">
+			<div class="album-name name"><?php echo $a['name'] ?></div>
+		</div>	
 	
+	<?php } 
+	} else {?> 
+				<div class="list-item create-album">
+					<div class="name">Create an Album</div>
+				</div>
+	<?php } ?> 
 	<?php
 	}
 } else if(isset($_GET['search_query'])) {
@@ -106,11 +92,11 @@ if(isset($_GET['track_points'])&&isset($_SESSION['auth_token'])) {
 			else if(stripos($f['name'],$q)!==false) $results[] = $f;
 		} ?>
 		<div class="sub-heading">Search Results</div>
-		<div id="videos-section">
+		<div id="videos-section" class="section">
 
 		<?php foreach($results as $r) { ?>
 			<div class="list-item user" style="background:url('//graph.facebook.com/<?php echo $r['rInfo']['fb_id'] ?>/picture') center right no-repeat;" onclick="pullUserSidebar(<?php echo $r['rInfo']['fb_id'] ?>)" data-name="<?php echo $r['rInfo']['fb_id'] ?>">
-				<div class="user-name"  ><?php echo $r['name'] ?></div>
+				<div class="user-name name"  ><?php echo $r['name'] ?></div>
 			</div>
 		<?php } ?>
 		</div>		
@@ -124,11 +110,12 @@ if(isset($_GET['track_points'])&&isset($_SESSION['auth_token'])) {
 
 ?>
 	<h3 class="sub-heading">Recent Videos</h3>
-	<div id="videos-section">
+	<div id="videos-section" class="section">
 			<?php $i=0;
 			 foreach( $recent_videos as $v) { ?>
 			<div class="list-item track" data-name="<?php echo $v['filename'] ?>" data-index="<?php echo $i; ?>">
-				<div class="track-name"><?php echo $v['name'] ?></div>
+				<div class="track-picture"><img src="//s3.amazonaws.com/ramble/<?php echo $v['filename'] ?>/<?php echo $v['filename'] ?>.png" height="40"/></div>
+				<div class="track-name name"><?php echo $v['name'] ?></div>
 				<div class="track-author user" data-user-id="<?php echo $v['user_id']; ?>"><?php $a=get_friend_by_id($user_ramble_friends,$v['user_id']); echo $a['name'];?></div>
 			</div>
 			<?php 

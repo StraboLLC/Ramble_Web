@@ -44,7 +44,7 @@ if($u!=false && $_POST['filetype']=="video") {
 						  "speed": 3,
 						  "autolevel": 1,
 						  "deblock": 1,
-						  "public": 1
+						  "public": 1,
 						  "notifications": [
 							{
 								"url": "https://ramble.strabogis.com/api/zencoder.php",
@@ -61,7 +61,7 @@ if($u!=false && $_POST['filetype']=="video") {
 						  "speed": 3,
 						  "autolevel": 1,
 						  "deblock": 1,
-						  "public": 1	
+						  "public": 1,	
 						  "notifications": [
 							{
 								"url": "https://ramble.strabogis.com/api/zencoder.php",
