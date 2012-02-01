@@ -13,7 +13,7 @@ $dbPass = "w310v32R4MBL3";
 $fbAppID = '303445329701888';
 $fbAppSecret = 'f9dd17c271e73e9dca046170edbf08bd';
 
-
+$salt = "str480GUS";
 
 $siteTitle = "Ramble | by Strabo";
 

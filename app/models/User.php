@@ -6,13 +6,14 @@
  */
  
 function login($user_profile) {
+	global $salt;
 	$bool = false;
 	global $con;
 	$id = $user_profile['id'];
 	$email = isset($user_profile['email']) ? $user_profile['email'] : null;
-	$firstname = $user_profile['first_name'];
-	$lastname = $user_profile['last_name']; 
-	$username=$user_profile['username'];
+	$firstname = isset($user_profile['first_name']) ? $user_profile['first_name'] : null;
+	$lastname = isset($user_profile['last_name']) ? $user_profile['last_name'] : null; 
+	$username = isset($user_profile['username']) ? $user_profile['username'] : null;
 	$query = "SELECT * FROM user WHERE fb_id = '$id'";
 	$res = mysql_query($query,$con);
 	while($row=mysql_fetch_array($res)) {
@@ -21,14 +22,18 @@ function login($user_profile) {
 		$_SESSION['user_id'] = $row['fb_id'];
 	}
 	if($bool == false) {
-		$auth_token = md5($id."str480GUS");
-		$query = "INSERT INTO user (fb_id, fb_user, fb_username, auth_token, email, first_name, last_name) VALUES ('$id','1','$username','$auth_token','$email','$firstname','$lastname'";
+		$auth_token = md5($id.$salt);
+		$query = "INSERT INTO user (fb_id, fb_user, fb_username, auth_token, email, first_name, last_name) VALUES ('$id','1','$username','$auth_token','$email','$firstname','$lastname')";
 		mysql_query($query,$con) or die("Query ".$query."Failed because: ".mysql_error());
+		$_SESSION['auth_token'] = $row['auth_token'];
+		$_SESSION['user_id'] = $row['fb_id'];
+
 	}
 }
 function verifyID($id,$auth_token) {
+	global $salt;
 	$return = false;
-	$auth_token = md5($id."str480GUS");
+	$auth_token = md5($id.$salt);
 	global $con;
 	$query = "SELECT * FROM user WHERE fb_id='$id' AND auth_token = '$auth_token'";
 	$res = mysql_query($query,$con);

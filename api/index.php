@@ -58,10 +58,10 @@ if(isset($_GET['track_points'])&&isset($_SESSION['auth_token'])) {
 			
 		<?php $user_videos = get_user_videos($_GET['id']); 
 			foreach( $user_videos as $v) { ?>
-		<div class="list-item track" data-name="<?php echo $v['filename'] ?>">
-			<div class="track-picture"><img src="//s3.amazonaws.com/ramble/<?php echo $v['filename'] ?>/<?php echo $v['filename'] ?>.png" height="40"/></div>
-			<div class="track-name name"><?php echo $v['name'] ?></div>
-		</div>
+			<div class="list-item track" data-name="<?php echo $v['filename'] ?>" data-index="<?php echo $i; ?>">
+				<div class="track-picture image"><img src="//s3.amazonaws.com/ramble/<?php echo $v['filename'] ?>/<?php echo $v['filename'] ?>.png" height="43"/></div>
+				<div class="track-name name"><?php echo $v['name'] ?></div>
+			</div>
 		<?php } ?>
 	</div>
 	<div class="sub-heading">Albums</div>

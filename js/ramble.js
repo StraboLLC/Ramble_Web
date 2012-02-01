@@ -22,6 +22,7 @@ var latLngBounds;
 var friends;
 
 var cameras;
+
 // OnLoad Stuff
 $(document).ready(function() {
 	/*cameras=[];
@@ -56,7 +57,11 @@ $(document).ready(function() {
 		cT = this.getAttribute('data-index');
 		initViewer(tracks[cT].filename);
 		//pullUserSidebar(tracks[cT].user_id);
-		map.panTo(new google.maps.LatLng(tracks[cT].points[0].latitude,tracks[cT].points[0].longitude));
+		var llb = new google.maps.LatLngBounds();
+		for(var x in tracks[cT].points) {
+			llb.extend(new google.maps.LatLng(tracks[cT].points[x].latitude,tracks[cT].points[x].longitude));
+		}
+		map.fitBounds(llb);
 	});
 	$('#popup-close').click(function() {
 		$('#popup').css('display','none');
@@ -119,32 +124,58 @@ function plotTrack(idx) {
 		flat: true,
 		position: new google.maps.LatLng(tracks[idx].points[0].latitude,tracks[idx].points[0].longitude),
 		anchor: RichMarkerPosition.MIDDLE,
-		content: '<div id="'+idx+'-marker" class="video-camera-marker" style="transform:rotate('+deg+'deg);-moz-transform:rotate('+deg+'deg);-webkit-transform:rotate('+deg+'deg);-o-transform:rotate('+deg+'deg);-ms-transform:rotate('+deg+'deg);" ><img src="/images/videocamera.png" alt="" /></div>'
+		content: '<div class="marker"><div id="'+idx+'-marker" class="video-camera-marker" style="transform:rotate('+deg+'deg);-moz-transform:rotate('+deg+'deg);-webkit-transform:rotate('+deg+'deg);-o-transform:rotate('+deg+'deg);-ms-transform:rotate('+deg+'deg);" ><img src="/images/videocamera.png" alt="" /></div><div class="tooltip"><img src="//graph.facebook.com/'+tracks[idx].user_id+'/picture" alt="" title="'+tracks[idx].name+'"/></div></div>'
 	});
 	tracks[idx].richMarker.setMap(map);
 	google.maps.event.addListener(tracks[idx].richMarker, 'click', function() {
 		cT = idx;
 		initViewer(tracks[idx].filename);
+		var llb = new google.maps.LatLngBounds();
+		for(var x in tracks[idx].points) {
+			llb.extend(new google.maps.LatLng(tracks[idx].points[x].latitude,tracks[idx].points[x].longitude));
+		}
+		map.fitBounds(llb);
 	});
 		
 }
-function sidebarListeners() {
-	
-}
 function getTrack(videoName) {
 	vidName = videoName;
-
+	document.getElementById('video_container').style.width="250px";
 	if(video.canPlayType("video/webm")) video.src="http://s3.amazonaws.com/ramble/"+videoName+"/"+videoName+".webm";
 	else if(video.canPlayType("video/mp4")) video.src="http://s3.amazonaws.com/ramble/"+videoName+"/"+videoName+".mp4";
 	else video.innerHTML = "Sorry, your browser does not support HTML5 Video. Please try using a compatible browser. We recommend <a href=\"http://chrome.google.com\">Google Chrome</a>.";
 	document.getElementById('video-title').innerHTML = tracks[cT].name;
+	//video.currentTime=0;
 	document.getElementById('play-pause').onclick = function() {
 		if(video.paused===true) {
 			play();
+			this.style.background = "url('/images/pause.png') center center no-repeat";
 		} else {
 			pause();
+			this.style.background = "url('/images/play.png') center center no-repeat";
 		}
 	};
+	$('#scrub-bar').click(function(event) {
+		var pos = findPos(this);
+		var a = (event.pageX-pos.x);
+		document.getElementById('played').style.width=a+"px";
+
+		var percentDone = a/(convertCssPxToInt(document.getElementById('video_container').style.width)-60);
+
+		video.currentTime=percentDone*video.duration;
+
+		var accuratePoint=0;
+		var a=10,l=10;
+		for(x in tracks[cT].points) {
+
+			a=Math.abs(tracks[cT].points[x].timestamp-(percentDone*video.duration));
+			//console.log(a);
+			if(a<l){l=a;accuratePoint=x}
+		}
+
+		tracks[cT].richMarker.setPosition(new google.maps.LatLng(tracks[cT].points[accuratePoint].latitude,tracks[cT].points[accuratePoint].longitude));
+		currentPoint=accuratePoint;
+	});
 	document.getElementById('video_container').style.display="block";
 
 
@@ -153,17 +184,20 @@ function getTrack(videoName) {
 
 function play() {
 	video.play();
-	currentTime=0;
 	playInt = window.setInterval(followRoute,10);
 }
 function followRoute() {
 	var percentDone;
-	currentTime = video.currentTime;
+	currentTime=video.currentTime;
 	if(currentTime>=video.duration) { // If video is done.
 		currentPoint=0;
-		console.log("Video Done");
 		playInt = window.clearInterval(playInt);
+		//var scrubBarWidth=(convertCssPxToInt(document.getElementById('video_container').style.width)-60);
+		var scrubBarWidth=(convertCssPxToInt(document.getElementById('video_container').style.width)-40);
+		document.getElementById('played').style.width=scrubBarWidth+"px";
+		document.getElementById('play-pause').style.background = "url('/images/play.png') center center no-repeat";
 		video.pause();
+		
 	} else {		
 		percentDone=currentTime/video.duration;
 		if(currentPoint>=tracks[cT].points.length)currentPoint=tracks[cT].points.length-1;
@@ -193,7 +227,7 @@ function followRoute() {
 		if(document.getElementById('video_container').style.width=="")document.getElementById('video_container').style.width="250px";
 		var scrubBarWidth=(convertCssPxToInt(document.getElementById('video_container').style.width)-60)*percentDone;
 		document.getElementById('played').style.width=scrubBarWidth+"px";
-		console.log(currentTime+" "+video.duration);
+		//console.log(scrubBarWidth+" "+video.currentTime+" "+video.duration);
 	}
 }
 function resetTrack(aTrack) {
@@ -334,4 +368,15 @@ function convertCssPxToInt(cssPxValueText) {
     }
 
     return convertedValue;
+}
+function findPos(obj) {
+	var curleft = curtop = 0;
+	if (obj.offsetParent) {
+		do {
+			curleft += obj.offsetLeft;
+			curtop += obj.offsetTop;
+		} while (obj = obj.offsetParent);
+	}
+	var a={x:curleft,y:curtop};
+	return a;
 }
