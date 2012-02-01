@@ -60,8 +60,11 @@
 				<video id="video"></video>
 				<div id="video-controls">
 					<div id="play-pause"></div>
-					<div id="volume"></div>
-					<div id="scrub-bar"></div>
+					<!-- <div id="volume"></div> -->
+					<div id="scrub-bar">
+						<div id="loaded"></div>
+						<div id="played"></div>
+					</div>
 				</div>
 			</div>
 			<div id="map_loading"></div>

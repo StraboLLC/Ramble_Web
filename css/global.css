@@ -55,6 +55,9 @@ html,body {
 	background: gray;
 	position: absolute;
 }
+.video-camera-marker {
+
+}
 #sidebar {
 	float: left;
 	width: 250px;
@@ -129,13 +132,14 @@ html,body {
 
 }
 #video_container:hover #video-controls {
-	height: 40px;
+	height: 30px;
 }
 #play-pause {
 	height: 100%;
-	width: 40px;
+	width: 30px;
 	float: left;
 	background:red; 
+	position: relative;
 }
 #volume {
 	height: 100%;
@@ -144,9 +148,26 @@ html,body {
 	background:blue;
 }
 #scrub-bar {
-	height: 100%;
+	height: 20px;
+	margin: 5px 5px 0 35px;
+	border-radius: 5px;
 	width: auto;
-	background: green;
+	background: rgb(178,178,178);
+	box-shadow: 0px 4px 4px #555 inset,
+				0px -4px 4px #ccc inset; 
+}
+#played {
+	position: absolute;
+	left:35px;
+	border-radius: 5px;
+	width: 0;
+	background: orange;
+	height: 20px;
+	z-index: 20;
+}
+#loaded {
+	position: absolute;
+	z-index: 19;
 }
 #video {
 	position: relative;
@@ -254,7 +275,6 @@ html,body {
 	margin-top: 50px;
 }
 .section {
-	border-top:1pt solid #aaa;
 	margin: 0 0px;
 }
 #sidebar-videos.loading {
@@ -265,21 +285,24 @@ html,body {
 .sub-heading {
 	font-weight: bold;
 	font-size: 18px;
-	padding:10px; 5px;
+	padding:10px 5px;
 }
 .list-item {
 	cursor: pointer;
 	display: block;
 	vertical-align: middle;
 	margin: 0;
-	min-height: 40px;
-	padding: 5px 5px;
+	min-height: 43px;
+	padding: 0 0 0 5px;
 	border-bottom: 1pt solid #aaa;
 	-webkit-transition: box-shadow, padding .1s ease-in-out;
 	-moz-transition: box-shadow, padding .1s ease-in-out;
 	-o-transition: box-shadow, padding .1s ease-in-out;
 	-ms-transition: box-shadow, padding .1s ease-in-out;
 	transition: box-shadow, padding .1s ease-in-out;
+}
+.list-item:first-child {
+	border-top: 1pt solid #aaa;
 }
 .list-item:nth-child(odd) {
 	background: url('/images/noise.png') #f5ddc4;
@@ -293,20 +316,18 @@ html,body {
 .list-item:active {
 	box-shadow: inset 0 0 18px rgba(50,50,50,0.50);
 }
-.track-picture {
+.image {
 	float: right;
+	padding-left: 10px;
 }
 .name {
-	margin: 10px 0 5px 0;
+	padding: 10px 0 0 0;
 	font-weight: normal;
 	font-size: 14px;
 }
 .track-author {
 	font-size: 12px;
-	
-}
-.user-name {
-
+	padding: 0 0 5px 0;
 }
 .user-image {
 	float: right;
@@ -319,4 +340,18 @@ html,body {
 	height: 21px;
 	background: url("/images/handmadeinvermont.png") center center no-repeat;
 	margin: 10px;
+}
+.context-menu {
+	position: absolute;
+	z-index: 50;
+	background: white;
+	width: 200px;
+	height: auto;
+}
+.context-menu-choice {
+	display: block;
+	padding: 5px;
+}
+.context-menu-choice:hover {
+	background: #aaa;
 }
