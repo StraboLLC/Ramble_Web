@@ -124,6 +124,34 @@ if(isset($_GET['track_points'])&&isset($_SESSION['auth_token'])) {
 	
 	</div>
 <?php
+} else if(isset($_GET['going_home'])) { 
+	header("Content-type: application/javascript;");
+	$user_friends = $facebook->api('/me/friends');
+	$user_ramble_friends = get_friends($user_friends);
+	$recent_videos = get_recent_videos($user_ramble_friends);
+
+	foreach( $recent_videos as $v) { 
+		$t = get_track_by_name($v['filename']);
+		$ch = curl_init("http://s3.amazonaws.com/ramble/".$v['filename']."/".$v['filename'].".json");
+		curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+		$output = json_decode(curl_exec($ch));
+		$output->track->title = $t['name'];
+		$output->track->uploadDate = $t['date_uploaded'];		
+?>
+<?php 	echo json_encode($output);			?>
+{filename:"<?php echo $v['filename'] ?>",name:"<?php echo $v['name'] ?>",user_id:"<?php echo $v['user_id'] ?>",track:a}
+<?php } 
+
+	foreach( $user_ramble_friends as $u) { ?>
+		{id:"<?php echo $u['rInfo']['fb_id'] ?>",name:"<?php echo $u['name'] ?>",first_name:"<?php echo $u['rInfo']['first_name'] ?>",last_name:"<?php echo $u['rInfo']['last_name'] ?>",tracks:[
+		<?php $user_videos = get_user_videos($u['rInfo']['fb_id']); 
+				foreach( $user_videos as $v) { ?>
+				{filename:"<?php echo $v['filename'] ?>",name:"<?php echo $v['name'] ?>",user_id:"<?php echo $v['user_id'] ?>"},
+				<?php } ?>
+		]}
+	<?php } ?>
+
+<?php
 }
 
 ?>

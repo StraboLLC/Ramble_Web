@@ -1,5 +1,5 @@
 <?php 
-	if($user) {
+	if($ramble_user==true) {
 		$recent_videos = get_recent_videos($user_ramble_friends);
 	}
 ?>
@@ -12,14 +12,14 @@
     <title><?php echo $siteTitle; ?></title>
 	<link href='//fonts.googleapis.com/css?family=Telex' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/jquery-ui-1.8.17.custom.css" type="text/css" />
-	<?php if($user) { ?>
+	<?php if($ramble_user) { ?>
 	<link rel="stylesheet" href="css/global.css" type="text/css" />
 	<?php } else { ?>
 	<link rel="stylesheet" href="css/login.css" type="text/css" />
 	<?php } ?>
 
     <!-- <link rel="stylesheet" href="stylesheets/screen.css" media="screen"> -->
-
+	<meta name="author" content="Strabo"/>
     <meta property="og:title" content="Ramble"/>
     <meta property="og:type" content="Application"/>
     <meta property="og:url" content="https://ramble.strabogis.com"/>
@@ -29,12 +29,12 @@
     <meta property="og:email" content="support@strabogis.com"/>
     <meta property="og:region" content="VT"/>
 
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
 
 	<script type="text/javascript" src="js/richmarker-compiled.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script>
-	<?php if($user) { ?>
+	<?php if($ramble_user) { ?>
 	<script type="text/javascript" src="js/ramble.js"></script>
 	<?php } else { ?>
 	<script type="text/javascript" src="js/init.js"></script>
@@ -47,11 +47,11 @@
 			<div id="popup-content"></div>
 		</div>
 		<div id="sidebar">
-			<?php 	if($user) require('sidebars/home_SB.php'); 
+			<?php 	if($ramble_user==true) require('sidebars/home_SB.php'); 
 					else require('sidebars/login_SB.php'); ?>
 		</div>
 		<div id="map_container">
-			<?php if($user) { ?>
+			<?php if($ramble_user==true) { ?>
 			<div id="video_container">
 				<div id="video-top-bar">
 					<div id="close-vid"></div>
@@ -71,7 +71,7 @@
 			<?php } ?>
 			<div id="map"></div>
 		</div>
-		<?php if($user) { ?>
+		<?php if($ramble_user==true) { ?>
 			<script>
 			
 			</script>

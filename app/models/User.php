@@ -4,7 +4,6 @@
  *	Description: Outlines the functionality for a user.
  *	
  */
- 
 function login($user_profile) {
 	global $salt;
 	$bool = false;

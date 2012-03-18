@@ -50,7 +50,7 @@ function get_track_by_name($filename) {
 
 function get_recent_videos($friends) {
 	$time = time();
-	$starttime = $time-(60*60*24*7);
+	$starttime = $time-(60*60*24*14);
 	global $con;
 	$query = "SELECT * FROM track WHERE date_uploaded BETWEEN '$starttime' AND '$time' AND finished='1' AND (";
 	foreach($friends as $f) {

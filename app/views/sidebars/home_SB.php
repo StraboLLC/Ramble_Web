@@ -11,6 +11,7 @@
 
 
 <div id="sidebar-videos">
+	<div id="current-track-display"></div>
 	<h3 class="sub-heading">Recent Videos</h3>
 	<div id="videos-section" class="section">
 			<?php $i=0;

@@ -344,6 +344,10 @@ function goHome() {
 	};  
 	oXHR.send(null);  	
 }
+function setEventListeners() {
+
+}
+// Generic Functions
 function convertCssPxToInt(cssPxValueText) {
 
     // Set valid characters for numeric number.
