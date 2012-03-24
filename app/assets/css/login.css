@@ -25,7 +25,7 @@ html,body {
 	float: left;
 	width: 250px;
 	height: 100%;
-	background: url('/images/sidebar_bg.png') repeat-y;
+	background: url('/app/assets/images/sidebar_bg.png') repeat-y;
 }
 #login-button {
 	text-align: center;
@@ -34,14 +34,14 @@ html,body {
 	margin: 20px;
 }
 #tagline {
-	background: url('/images/facebooklogin2.png') center center no-repeat;
+	background: url('/app/assets/images/facebooklogin2.png') center center no-repeat;
 	height: 69px;
 	margin: 20px;
 }
 #ramble-logo {
 	height: 97px;
 	margin: 30px 0;
-	background: url('/images/ramble.png') center center no-repeat;
+	background: url('/app/assets/images/ramble.png') center center no-repeat;
 }
 #fb-login {
 

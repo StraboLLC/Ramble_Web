@@ -1,5 +1,5 @@
 #Ramble by Strabo
-## &copy; 2012, Strabo LLC
+## &copy; 2012, Strabo LLC. All rights reserved.
 
 Code created by Will Potter and Nate Beatty. Lead Developers at Strabo, LLC.
 All Rights Reserved, Strabo, LLC.

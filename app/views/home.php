@@ -11,11 +11,11 @@
     <!-- We get the name of the app out of the information fetched -->
     <title><?php echo $siteTitle; ?></title>
 	<link href='//fonts.googleapis.com/css?family=Telex' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="css/jquery-ui-1.8.17.custom.css" type="text/css" />
+	<link rel="stylesheet" href="app/assets/css/jquery-ui-1.8.17.custom.css" type="text/css" />
 	<?php if($ramble_user) { ?>
-	<link rel="stylesheet" href="css/global.css" type="text/css" />
+	<link rel="stylesheet" href="app/assets/css/global.css" type="text/css" />
 	<?php } else { ?>
-	<link rel="stylesheet" href="css/login.css" type="text/css" />
+	<link rel="stylesheet" href="app/assets/css/login.css" type="text/css" />
 	<?php } ?>
 
     <!-- <link rel="stylesheet" href="stylesheets/screen.css" media="screen"> -->
@@ -29,16 +29,7 @@
     <meta property="og:email" content="support@strabogis.com"/>
     <meta property="og:region" content="VT"/>
 
-	<script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
 
-	<script type="text/javascript" src="js/richmarker-compiled.js"></script>
-	<script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script>
-	<?php if($ramble_user) { ?>
-	<script type="text/javascript" src="js/ramble.js"></script>
-	<?php } else { ?>
-	<script type="text/javascript" src="js/init.js"></script>
-	<?php } ?>
 
   </head>
   <body>
@@ -71,6 +62,17 @@
 			<?php } ?>
 			<div id="map"></div>
 		</div>
+		<!-- Defer Javascript Parsing until after Page Body Loads -->
+		<script type="text/javascript" src="app/assets/js/jquery.js"></script>
+		<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+	
+		<script type="text/javascript" src="app/assets/js/richmarker-compiled.js"></script>
+		<script type="text/javascript" src="app/assets/js/jquery-ui-1.8.17.custom.min.js"></script>
+		<?php if($ramble_user) { ?>
+		<script type="text/javascript" src="app/assets/js/ramble.js"></script>
+		<?php } else { ?>
+		<script type="text/javascript" src="app/assets/js/init.js"></script>
+		<?php } ?>
 		<?php if($ramble_user==true) { ?>
 			<script>
 			

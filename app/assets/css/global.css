@@ -75,14 +75,14 @@ html,body {
 	float: left;
 	width: 250px;
 	height: 100%;
-	background: url('/images/sidebar_bg.png') repeat-y;
+	background: url('/app/assets/images/sidebar_bg.png') repeat-y;
 }
 #map_loading {
 	position: absolute;
 	z-index: 30;
 	height: 100%;
 	width: 100%;
-	background: url('/images/loading.gif') rgba(255,255,255,.2) center center no-repeat;
+	background: url('/app/assets/images/loading.gif') rgba(255,255,255,.2) center center no-repeat;
 	display: none;
 }
 #video_container {
@@ -113,7 +113,7 @@ html,body {
 	float: right;
 	width: 19px;
 	height: 19px;
-	background: url('/images/close.png');
+	background: url('/app/assets/images/close.png');
 	background-size: 19px 19px;
 	cursor: pointer;
 }
@@ -151,7 +151,7 @@ html,body {
 	height: 100%;
 	width: 30px;
 	float: left;
-	background:url('/images/play.png') center center no-repeat; 
+	background:url('/app/assets/images/play.png') center center no-repeat; 
 	position: relative;
 }
 #volume {
@@ -227,19 +227,19 @@ html,body {
 	display: inline-block;
 	height: 36px;
 	width: 107px;
-	background:url("/images/ramblesmall.png");
+	background:url("/app/assets/images/ramblesmall.png");
 }
 #ramble-home-button { 
 	display: inline-block;
 	height: 39px;
 	width: 39px;
-	background:url("/images/home.png");	
+	background:url("/app/assets/images/home.png");	
 }
 #ramble-prefs-button {
 	display: inline-block;
 	height: 39px;
 	width: 41px;
-	background:url("/images/gear.png");	
+	background:url("/app/assets/images/gear.png");	
 }
 #ramble-user-button {
 	display: inline-block;
@@ -274,7 +274,7 @@ html,body {
 	bottom:41px;
 	left:0;
 	right: 0;
-	background: url('/images/noise.png'),#f5ddc4;
+	background:#f5ddc4;
 	overflow-y: auto;
 	overflow-x: hidden;
 }
@@ -284,7 +284,7 @@ html,body {
 	-webkit-box-shadow: 0 0 2px rgba(0,0,0,.75);
 	-moz-box-shadow: 0 0 2px rgba(0,0,0,.75);
 	box-shadow: 0 0 2px rgba(0,0,0,.75);
-	background: url('/images/magnifyingglass.png') no-repeat right center #e7e1dd;
+	background: url('/app/assets/images/magnifyingglass.png') no-repeat right center #e7e1dd;
 	width: 201px;
 	border: 0;
 	font-size: 15px;
@@ -301,7 +301,7 @@ html,body {
 }
 #sidebar-videos.loading {
 	height: 300px;
-	background: url('/images/loading.gif') center center no-repeat;
+	background: url('/app/assets/images/loading.gif') center center no-repeat;
 }
 
 .sub-heading {
@@ -360,7 +360,7 @@ html,body {
 	right: 0;
 	bottom: 0;
 	height: 21px;
-	background: url("/images/handmadeinvermont.png") center center no-repeat;
+	background: url("/app/assets/images/handmadeinvermont.png") center center no-repeat;
 	margin: 10px;
 }
 .context-menu {
