@@ -1,5 +1,5 @@
-AuthUserFile /home/httpd/ramble.strabogis.com/.htpasswd
-AuthName "Not fit for human eyes" 
-AuthType Basic
-require valid-user
+#AuthUserFile /home/httpd/ramble.strabogis.com/.htpasswd
+#AuthName "Not fit for human eyes" 
+#AuthType Basic
+#require valid-user
 

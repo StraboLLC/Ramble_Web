@@ -10,7 +10,7 @@
 
     <!-- We get the name of the app out of the information fetched -->
     <title><?php echo $siteTitle; ?></title>
-	<link href='//fonts.googleapis.com/css?family=Telex' rel='stylesheet' type='text/css'>
+	<link href="//fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="app/assets/css/jquery-ui-1.8.17.custom.css" type="text/css" />
 	<?php if($ramble_user) { ?>
 	<link rel="stylesheet" href="app/assets/css/global.css" type="text/css" />

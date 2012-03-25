@@ -11,27 +11,35 @@
 
 
 <div id="sidebar-videos">
-	<div id="current-track-display"></div>
-	<h3 class="sub-heading">Recent Videos</h3>
+	<!--<h3 class="sub-heading">Recent Videos</h3>
 	<div id="videos-section" class="section">
-			<?php $i=0;
-			 foreach( $recent_videos as $v) { ?>
-			<div class="list-item track" data-name="<?php echo $v['filename'] ?>" data-index="<?php echo $i; ?>">
-				<div class="track-picture image"><img src="//s3.amazonaws.com/ramble/<?php echo $v['filename'] ?>/<?php echo $v['filename'] ?>.png" height="43"/></div>
-				<div class="track-name name"><?php echo $v['name'] ?></div>
-				<div class="track-author user" data-user-id="<?php echo $v['user_id']; ?>"><?php $a=get_friend_by_id($user_ramble_friends,$v['user_id']); echo $a['name'];?></div>
-			</div>
-			<?php 
-				$i++;
-			} ?>
+		<?php/* $i=0;
+		 foreach( $recent_videos as $v) { ?>
+		<div class="list-item track" data-name="<?php echo $v['filename'] ?>" data-index="<?php echo $i; ?>">
+			<div class="track-picture image"><img src="//s3.amazonaws.com/ramble/<?php echo $v['filename'] ?>/<?php echo $v['filename'] ?>.png" height="43" width="33"/></div>
+			<div class="track-name name"><?php echo $v['name'] ?></div>
+			<div class="track-author user" data-user-id="<?php echo $v['user_id']; ?>"><?php $a=get_friend_by_id($user_ramble_friends,$v['user_id']); echo $a['name'];?></div>
+		</div>
+		<?php 
+			$i++;
+		} */?>
 	
-	</div>
+	</div>-->
 </div>
 </div>
 <div id="vermont-logo"></div>
 <script>
 	var a;
 	tracks = [];
+	
+	var heading = document.createElement("h3");
+	heading.setAttribute('class','sub-heading');
+	heading.innerHTML= 'Recent Videos';
+	var videoSection = document.createElement('div');
+	videoSection.setAttribute('videos-section');
+	videoSection.setAttribute('section');
+	var v, img, tname, user;
+	<?php $i=0; ?>
 	<?php foreach( $recent_videos as $v) { 
 		$t = get_track_by_name($v['filename']);
 		$ch = curl_init("http://s3.amazonaws.com/ramble/".$v['filename']."/".$v['filename'].".json");
@@ -39,11 +47,37 @@
 		$output = json_decode(curl_exec($ch));
 		$output->track->title = $t['name'];
 		$output->track->uploadDate = $t['date_uploaded'];	
-	
+		
 	?>
+		
 		a = JSON.parse('<?php echo json_encode($output);?>');
 		tracks.push({filename:"<?php echo $v['filename'] ?>",name:"<?php echo $v['name'] ?>",user_id:"<?php echo $v['user_id'] ?>",track:a});
+		
+		v = document.createElement('div');
+		v.setAttribute('class', 'list-item track');
+		v.setAttribute('data-name', '<?php echo $v['filename'] ?>');
+		v.setAttribute('data-index', '<?php echo $i ?>');
+		img = document.createElement('div');
+		img.setAttribute('class', 'track-picture image');
+		img.innerHTML='<img src="//s3.amazonaws.com/ramble/<?php echo $v['filename'] ?>/<?php echo $v['filename'] ?>.png" height="43" width="33"/>';
+		v.appendChild(img);
+		tname = document.createElement('div');
+		tname.setAttribute('class', 'track-name name');
+		tname.innerHTML="<?php echo $v['name'] ?>";
+		v.appendChild(tname);
+		user = document.createElement('div');
+		user.setAttribute('class', 'track-author user');
+		user.setAttribute('data-user-id', "<?php echo $v['user_id']; ?>");
+		user.innerHTML="<?php $a=get_friend_by_id($user_ramble_friends,$v['user_id']); echo $a['name'];?>";
+		v.appendChild(user);
+		videoSection.appendChild(v);
+		<?php $i++; ?>
 	<?php } ?>
+	document.getElementById('sidebar-videos').appendChild(heading);
+	document.getElementById('sidebar-videos').appendChild(videoSection);
+	
+	// Add Friends
+	
 	friends = [];
 	<?php foreach( $user_ramble_friends as $u) { ?>
 		friends.push({id:"<?php echo $u['rInfo']['fb_id'] ?>",name:"<?php echo $u['name'] ?>",first_name:"<?php echo $u['rInfo']['first_name'] ?>",last_name:"<?php echo $u['rInfo']['last_name'] ?>",tracks:[

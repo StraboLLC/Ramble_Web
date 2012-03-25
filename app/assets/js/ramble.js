@@ -53,25 +53,11 @@ $(document).ready(function() {
 			pause();
 		}
 	});
-	$('.track').click(function(){
-		cT = this.getAttribute('data-index');
-		initViewer(tracks[cT].filename);
-		//pullUserSidebar(tracks[cT].user_id);
-		var llb = new google.maps.LatLngBounds();
-		for(var x in tracks[cT].points) {
-			llb.extend(new google.maps.LatLng(tracks[cT].points[x].latitude,tracks[cT].points[x].longitude));
-		}
-		map.fitBounds(llb);
-	});
 	$('#popup-close').click(function() {
 		$('#popup').css('display','none');
 	});
   	$('#close-vid').click(function() {
 		closeViewer();
-	});
-	$('.create-album').click(function() {
-		$('#popup-content').html();
-		$('#popup').css('display','block');
 	});
 	$('#search').keypress(function(event) {
 		if ( event.which == 13 ) {
@@ -89,6 +75,18 @@ function closeViewer() {
 	video.pause();
 	$('.track').removeClass('selected');
 	document.getElementById('video_container').style.display="none";
+}
+function initSidebar() {
+	$('.track').click(function(){
+		cT = this.getAttribute('data-index');
+		initViewer(tracks[cT].filename);
+		//pullUserSidebar(tracks[cT].user_id);
+		var llb = new google.maps.LatLngBounds();
+		for(var x in tracks[cT].points) {
+			llb.extend(new google.maps.LatLng(tracks[cT].points[x].latitude,tracks[cT].points[x].longitude));
+		}
+		map.fitBounds(llb);
+	});
 }
 function plotTrack(idx) {
 	// Set Points Array
@@ -280,16 +278,21 @@ function pullUserSidebar(id) {
 			if (oXHR.status === 200) {  
 				document.getElementById('sidebar-videos').innerHTML = oXHR.responseText;
 				$("#sidebar-videos").removeClass('loading');
-				$('.track').click(function(){
-					initViewer(this.getAttribute('data-name'));
-					//if(!$(this).hasClass('selected')) $(this).addClass('selected');
-				});
+				initSidebar();
+				loadScripts(document.getElementById('sidebar-videos'));
 			} else {  
 				console.log("Error", oXHR.statusText);  
 			}  
 		}  
 	};  
 	oXHR.send(null);  
+}
+function loadScripts(elt) {
+	var scripts = elt.getElementsByTagName('script');
+	for(x in scripts) {
+		eval(scripts[x].innerHTML);
+		console.log("Reloaded Tracks array!");
+	}	
 }
 function clearMap() {
 	for(x in tracks) {

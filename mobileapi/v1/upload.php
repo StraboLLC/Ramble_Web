@@ -7,7 +7,6 @@ $auth_token = isset($_POST['auth_token']) ? $_POST['auth_token'] : null;
 $id = isset($_POST['id']) ? $_POST['id'] : "1234440553";
 $u = verifyID($id,$auth_token);
 //$u = true;
-$s3 = new S3(awsAccessKey, awsSecretKey);
 if($u!=false && $_POST['filetype']=="video") {
 
 	$json = isset($_FILES['JSONfile']) ? $_FILES['JSONfile'] : null;

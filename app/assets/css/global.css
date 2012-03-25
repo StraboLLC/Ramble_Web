@@ -314,7 +314,7 @@ html,body {
 	display: block;
 	vertical-align: middle;
 	margin: 0;
-	min-height: 45px;
+	min-height: 48px;
 	padding: 0 0 0 5px;
 	border-bottom: 1pt solid #aaa;
 	-webkit-transition: box-shadow, padding .1s ease-in-out;
@@ -327,10 +327,10 @@ html,body {
 	border-top: 1pt solid #aaa;
 }
 .list-item:nth-child(odd) {
-	/*background: url('/images/noise.png') #f5ddc4;*/
+
 }
 .list-item:nth-child(even) {
-	/*background: url('/images/noise.png') #e7e1dd;*/
+
 }
 .list-item:hover {
 	box-shadow: inset 0 0 3px rgba(50,50,50,0.50);
@@ -340,6 +340,7 @@ html,body {
 }
 .image {
 	float: right;
+	padding-top: 2px;
 	padding-left: 10px;
 }
 .name {

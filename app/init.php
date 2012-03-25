@@ -16,6 +16,7 @@ if ($user) {
 		$user = null;
 	}
 }
+$s3 = new S3(awsAccessKey, awsSecretKey);
 
 
 

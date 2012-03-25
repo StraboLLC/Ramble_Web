@@ -6,11 +6,15 @@
  */ 
 require_once('../app/library.php');
 
+// ************************************************************************************
 // Variables
+// ************************************************************************************
 $googlePlacesApiKey ="AIzaSyAiAbzDbciUezEApEJ4L-vYHIAzwwgR28Q";
-/*
- *	Pull track points
- */
+
+
+// ************************************************************************************
+//	Pull track points
+// ************************************************************************************
 if(isset($_GET['track_points'])&&isset($_SESSION['auth_token'])) {
 	if(isset($_GET['name'])) {
 		header("Content-type: application/json; charset=UTF-8");
@@ -23,19 +27,19 @@ if(isset($_GET['track_points'])&&isset($_SESSION['auth_token'])) {
 		$output->track->uploadDate = $t['date_uploaded'];
 		echo json_encode($output);
 	}
-
-/*
- * Get your friends tracks.
- */
-} else if(isset($_GET['friends_tracks'])) {
+}
+// ************************************************************************************
+// Get your friends tracks.
+// ************************************************************************************
+else if(isset($_GET['friends_tracks'])) {
 	
 
 
-
-/*
- *	Pull try and calculate a location points
- */
-} else if(isset($_GET['location'])&&isset($_SESSION['auth_token'])) {
+}
+// ************************************************************************************
+//	Pull try and calculate a location points
+// ************************************************************************************
+else if(isset($_GET['location'])&&isset($_SESSION['auth_token'])) {
 	$location = $_GET['location'];
 	$radius = $_GET['radius'];
 	$types = isset($_GET['types']) ? $_GET['types'] : "false";
@@ -50,7 +54,11 @@ if(isset($_GET['track_points'])&&isset($_SESSION['auth_token'])) {
 	
 	
 	
-} else if(isset($_GET['user_sidebar'])) {
+}
+// ************************************************************************************
+// Show a sidebar that reflects a particular user's videos.
+// ************************************************************************************
+else if(isset($_GET['user_sidebar'])&&isset($_SESSION['auth_token'])) {
 	if(isset($_GET['id'])) { 
 	$u = $facebook->api('/'.$_GET['id']); ?>
 	<div class="sub-heading"><?php echo $u['name']; ?><img class="right" src="//graph.facebook.com/<?php echo $u['id']; ?>/picture" alt="<?php echo $u['name']; ?>" title="<?php echo $u['name']; ?>" /><div class="clear"></div></div>
@@ -59,13 +67,39 @@ if(isset($_GET['track_points'])&&isset($_SESSION['auth_token'])) {
 		<?php $user_videos = get_user_videos($_GET['id']); 
 			foreach( $user_videos as $v) { ?>
 			<div class="list-item track" data-name="<?php echo $v['filename'] ?>" data-index="<?php echo $i; ?>">
-				<div class="track-picture image"><img src="//s3.amazonaws.com/ramble/<?php echo $v['filename'] ?>/<?php echo $v['filename'] ?>.png" height="43"/></div>
+				<div class="track-picture image"><img src="//s3.amazonaws.com/ramble/<?php echo $v['filename'] ?>/<?php echo $v['filename'] ?>.png" height="43" width="33"/></div>
 				<div class="track-name name"><?php echo $v['name'] ?></div>
 			</div>
 		<?php } ?>
 	</div>
-	<div class="sub-heading">Albums</div>
-	<?php $albums = get_user_albums($_GET['id']); ?>
+	<script>
+		var a;
+		tracks = [];
+		<?php foreach( $user_videos as $v) { 
+			$t = get_track_by_name($v['filename']);
+			$ch = curl_init("http://s3.amazonaws.com/ramble/".$v['filename']."/".$v['filename'].".json");
+			curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+			$output = json_decode(curl_exec($ch));
+			$output->track->title = $t['name'];
+			$output->track->uploadDate = $t['date_uploaded'];	
+		
+		?>
+			a = JSON.parse('<?php echo json_encode($output);?>');
+			tracks.push({filename:"<?php echo $v['filename'] ?>",name:"<?php echo $v['name'] ?>",user_id:"<?php echo $v['user_id'] ?>",track:a});
+		<?php } ?>
+		friends = [];
+		<?php foreach( $user_ramble_friends as $u) { ?>
+			friends.push({id:"<?php echo $u['rInfo']['fb_id'] ?>",name:"<?php echo $u['name'] ?>",first_name:"<?php echo $u['rInfo']['first_name'] ?>",last_name:"<?php echo $u['rInfo']['last_name'] ?>",tracks:[
+					<?php $user_videos = get_user_videos($u['rInfo']['fb_id']); 
+					foreach( $user_videos as $v) { ?>
+					{filename:"<?php echo $v['filename'] ?>",name:"<?php echo $v['name'] ?>",user_id:"<?php echo $v['user_id'] ?>"},
+					<?php } ?>
+			]});
+		<?php } ?>
+	
+	</script>
+	<!-- <div class="sub-heading">Albums</div>
+	<?php /* $albums = get_user_albums($_GET['id']); ?>
 	<?php if(!empty($albums)) {
 			foreach($albums as $a) { ?> 
 		<div class="list-item album" data-id="<?php echo $a['id'] ?>">
@@ -77,10 +111,28 @@ if(isset($_GET['track_points'])&&isset($_SESSION['auth_token'])) {
 				<div class="list-item create-album">
 					<div class="name">Create an Album</div>
 				</div>
-	<?php } ?> 
+	<?php }*/ ?> -->
 	<?php
 	}
-} else if(isset($_GET['search_query'])) {
+	
+}
+// ************************************************************************************
+// Delete a Video Track
+// TODO: Add user authentication to confirm the identity and ownership of the video.
+// ************************************************************************************ 
+else if(isset($_GET['delete_video'])&&isset($_SESSION['auth_token'])) {
+	if(isset($_GET['filename'])) { 
+		delete_track($filename);
+		echo "Track Delete Successfully!";
+	}
+	
+	
+	
+}	
+// ************************************************************************************
+//
+// ************************************************************************************
+else if(isset($_GET['search_query'])) {
 	if(isset($_GET['q'])) {
 		$q = $_GET['q'];
 		$user_friends = $facebook->api('/me/friends');
@@ -102,7 +154,11 @@ if(isset($_GET['track_points'])&&isset($_SESSION['auth_token'])) {
 		</div>		
 <?php	
 	}
-} else if(isset($_GET['go_home'])) {
+} 
+// ************************************************************************************
+//
+// ************************************************************************************
+else if(isset($_GET['go_home'])) {
 
 		$user_friends = $facebook->api('/me/friends');
 		$user_ramble_friends = get_friends($user_friends);
@@ -124,7 +180,11 @@ if(isset($_GET['track_points'])&&isset($_SESSION['auth_token'])) {
 	
 	</div>
 <?php
-} else if(isset($_GET['going_home'])) { 
+}
+// ************************************************************************************
+//
+// ************************************************************************************
+else if(isset($_GET['going_home'])) { 
 	header("Content-type: application/javascript;");
 	$user_friends = $facebook->api('/me/friends');
 	$user_ramble_friends = get_friends($user_friends);
@@ -149,9 +209,7 @@ if(isset($_GET['track_points'])&&isset($_SESSION['auth_token'])) {
 				{filename:"<?php echo $v['filename'] ?>",name:"<?php echo $v['name'] ?>",user_id:"<?php echo $v['user_id'] ?>"},
 				<?php } ?>
 		]}
-	<?php } ?>
-
-<?php
+<?php 
+	}
 }
-
 ?>

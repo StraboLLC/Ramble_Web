@@ -76,4 +76,10 @@ function change_track_name($filename,$name) {
 	$res=mysql_query($query,$con) or die($query." failed because ".mysql_error());
 	return $res;	
 }
+function delete_track($filename) {
+	global $con, $s3;
+	$query = "DELETE FROM track WHERE filename='$filename'";
+	$res=mysql_query($query,$con) or die($query." failed because ".mysql_error());
+	$s3->putObject("ramble", $filename);
+}
 ?>
