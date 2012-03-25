@@ -75,7 +75,9 @@ html,body {
 	float: left;
 	width: 250px;
 	height: 100%;
-	background: url('/app/assets/images/sidebar_bg.png') repeat-y;
+	background-color: #914a2e;
+	background-image: url('/app/assets/images/sidebar_bg.png');
+	background-repeat: repeat-y;
 }
 #map_loading {
 	position: absolute;
@@ -203,7 +205,6 @@ html,body {
 
 /* Sidebar */
 #sidebar {
-	overflow: hidden;
 	position: relative;
 }
 #sidebar-info {
@@ -275,7 +276,7 @@ html,body {
 	left:0;
 	right: 0;
 	background:#f5ddc4;
-	overflow-y: auto;
+	overflow-y: visible;
 	overflow-x: hidden;
 }
 #search {
@@ -322,6 +323,7 @@ html,body {
 	-o-transition: box-shadow, padding .1s ease-in-out;
 	-ms-transition: box-shadow, padding .1s ease-in-out;
 	transition: box-shadow, padding .1s ease-in-out;
+	overflow: visible;
 }
 .list-item:first-child {
 	border-top: 1pt solid #aaa;
@@ -347,6 +349,17 @@ html,body {
 	padding: 10px 0 0 0;
 	font-weight: normal;
 	font-size: 14px;
+}
+.delete-button {
+	z-index: 99999;
+	position: absolute;
+	display: none;
+	height: 40px;
+	width: 100px;
+	background: #eee;
+}
+.delete-button.showing {
+	display: block;
 }
 .track-author {
 	font-size: 12px;

@@ -69,6 +69,7 @@ $(document).ready(function() {
 
 function initViewer(vidName) {
 	currentPoint=0;
+	document.getElementById('video_container').style.height="368px";
 	document.getElementById('played').style.width="0px";
 	getTrack(vidName);
 }
@@ -76,11 +77,13 @@ function closeViewer() {
 	video.pause();
 	$('.track').removeClass('selected');
 	document.getElementById('video_container').style.display="none";
+	document.getElementById('video_container').style.height="368px";
 }
 function initSidebar() {
 	$('.track').click(function(){
 		cT = this.getAttribute('data-index');
 		initViewer(tracks[cT].filename);
+		console.log(cT);
 		//pullUserSidebar(tracks[cT].user_id);
 		var llb = new google.maps.LatLngBounds();
 		for(var x in tracks[cT].points) {
@@ -107,17 +110,6 @@ function plotTrack(idx) {
 	//		strokeOpacity: .83,
 	tracks[idx].currentRoute.setMap(map);
 	var deg = Math.round(tracks[idx].points[0].heading)-90;
-	/*tracks[idx].markerImage = new google.maps.MarkerImage(
-								rotationArrow(deg),
-								new google.maps.Size(40,40),
-								new google.maps.Point(0,0),
-								new google.maps.Point(20,20));
-	tracks[idx].marker = new google.maps.Marker({
-		icon:tracks[idx].markerImage,
-		position: new google.maps.LatLng(tracks[idx].points[0].latitude,tracks[idx].points[0].longitude),
-		title:tracks[idx].name
-	});
-	tracks[idx].marker.setMap(map);*/
 	tracks[idx].richMarker = new RichMarker({
 		map: map,
 		flat: true,
@@ -204,18 +196,6 @@ function followRoute() {
 		if(currentTime>pointTime) {
 			currentPoint++;
 			var deg = Math.round(tracks[cT].points[currentPoint].heading)-90;
-			/*tracks[cT].markerImage = new google.maps.MarkerImage(
-											rotationArrow(deg),
-											new google.maps.Size(40,40),
-											new google.maps.Point(0,0),
-											new google.maps.Point(20,20));
-			tracks[cT].marker = new google.maps.Marker({
-				icon:tracks[cT].markerImage,
-				position: new google.maps.LatLng(tracks[cT].points[currentPoint].latitude,tracks[cT].points[currentPoint].longitude),
-				title:tracks[cT].name
-			});	
-
-			tracks[cT].marker.setMap(map);*/
 			tracks[cT].richMarker.setPosition(new google.maps.LatLng(tracks[cT].points[currentPoint].latitude,tracks[cT].points[currentPoint].longitude));
 			document.getElementById(cT+'-marker').style.webkitTransform = "rotate("+deg+"deg)";
 			document.getElementById(cT+'-marker').style.MozTransform = "rotate("+deg+"deg)";
@@ -269,25 +249,6 @@ function rotationArrow(deg) {
 
 
 /* Sidebar Stuff */
-function pullUserSidebar(id) {
-	document.getElementById('sidebar-videos').innerHTML = "";
-	$("#sidebar-videos").addClass('loading');
-	var oXHR = new XMLHttpRequest();  
-	oXHR.open("GET", "/api/index.php?user_sidebar&id="+id);  
-	oXHR.onreadystatechange = function (oEvent) {  
-		if (oXHR.readyState === 4) {  
-			if (oXHR.status === 200) {  
-				document.getElementById('sidebar-videos').innerHTML = oXHR.responseText;
-				$("#sidebar-videos").removeClass('loading');
-				initSidebar();
-				loadScripts(document.getElementById('sidebar-videos'));
-			} else {  
-				console.log("Error", oXHR.statusText);  
-			}  
-		}  
-	};  
-	oXHR.send(null);  
-}
 function loadScripts(elt) {
 	var scripts = elt.getElementsByTagName('script');
 	for(x in scripts) {
@@ -297,16 +258,51 @@ function loadScripts(elt) {
 }
 function clearMap() {
 	for(x in tracks) {
-		tracks[x].marker.setMap(null);
+		tracks[x].richMarker.setMap(null);
 		tracks[x].currentRoute.setMap(null);
 	}
 }
 function fillMap() {
+	for(var x in tracks) {
+		plotTrack(x);
+	}
+}
+function reFillMap() {
 	for(x in tracks) {
-		tracks[x].marker.setMap(map);
+		tracks[x].richMarker.setMap(map);
 		tracks[x].currentRoute.setMap(map);
 	}
 }
+
+
+/************************************************************************************************
+
+TRACK MANAGEMENT FUNCTIONS
+
+************************************************************************************************/
+function pullUserSidebar(id) {
+	document.getElementById('sidebar-videos').innerHTML = "";
+	$("#sidebar-videos").addClass('loading');
+	var oXHR = new XMLHttpRequest();  
+	oXHR.open("GET", "/api/index.php?user_sidebar&id="+id);  
+	oXHR.onreadystatechange = function (oEvent) {  
+		if (oXHR.readyState === 4) {  
+			if (oXHR.status === 200) {  
+				document.getElementById('sidebar-videos').innerHTML = oXHR.responseText;
+				console.log(oXHR.responseText);
+				$("#sidebar-videos").removeClass('loading');
+				clearMap();
+				loadScripts(document.getElementById('sidebar-videos'));
+				initSidebar();
+				fillMap();
+			} else {  
+				console.log("Error", oXHR.statusText);  
+			}  
+		}  
+	};  
+	oXHR.send(null);  
+}
+
 function pullSearchQuery(query) {
 	var	results=[];
 	$("#sidebar-videos").html(null);
@@ -329,6 +325,8 @@ function pullSearchQuery(query) {
 	$('#sidebar-videos').html(html);
 	$("#sidebar-videos").removeClass('loading');
 }
+
+
 function goHome() {
 	$("#sidebar-videos").html(null);
 	$("#sidebar-videos").addClass('loading');
@@ -340,7 +338,10 @@ function goHome() {
 				// CODE TO BE EXECUTED ON RESPONSE
 				$('#sidebar-videos').html(oXHR.responseText);
 				$("#sidebar-videos").removeClass('loading');
-
+				clearMap();
+				loadScripts(document.getElementById('sidebar-videos'));
+				initSidebar();
+				fillMap();
 			} else {  
 				console.log("Error", oXHR.statusText);  
 			}  
@@ -348,10 +349,47 @@ function goHome() {
 	};  
 	oXHR.send(null);  	
 }
-function setEventListeners() {
 
+
+function deleteTrack(filename) {
+	$("#sidebar-videos").html(null);
+	$("#sidebar-videos").addClass('loading');
+	clearMap();
+	var fd = new FormData;
+	fd.append('filename',filename);
+	var oXHR = new XMLHttpRequest();  
+	oXHR.open("POST", "/api/index.php?delete_video");  
+	oXHR.onreadystatechange = function (oEvent) {  
+		if (oXHR.readyState === 4) {  
+			if (oXHR.status === 200) {  
+				// CODE TO BE EXECUTED ON RESPONSE
+				$('#sidebar-videos').html(oXHR.responseText);
+				$("#sidebar-videos").removeClass('loading');
+				loadScripts(document.getElementById('sidebar-videos'));
+				initSidebar();
+				fillMap();
+
+			} else {  
+				console.log("Error", oXHR.statusText);  
+			}  
+		}  
+	};  
+	oXHR.send(fd);  	
 }
-// Generic Functions
+
+
+
+/************************************************************************************************
+
+PLAYBACK FUNCTIONS
+
+************************************************************************************************/
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+Supporting Functions
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 function convertCssPxToInt(cssPxValueText) {
 
     // Set valid characters for numeric number.

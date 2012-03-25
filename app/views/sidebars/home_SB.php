@@ -7,25 +7,10 @@
 	<a href="/" id="ramble-prefs-button"></a>
 </div>
 <div id="sidebar_content">
-<input type="text" id="search" class="large-textinput" name="search-bar" placeholder="" />
-
-
-<div id="sidebar-videos">
-	<!--<h3 class="sub-heading">Recent Videos</h3>
-	<div id="videos-section" class="section">
-		<?php/* $i=0;
-		 foreach( $recent_videos as $v) { ?>
-		<div class="list-item track" data-name="<?php echo $v['filename'] ?>" data-index="<?php echo $i; ?>">
-			<div class="track-picture image"><img src="//s3.amazonaws.com/ramble/<?php echo $v['filename'] ?>/<?php echo $v['filename'] ?>.png" height="43" width="33"/></div>
-			<div class="track-name name"><?php echo $v['name'] ?></div>
-			<div class="track-author user" data-user-id="<?php echo $v['user_id']; ?>"><?php $a=get_friend_by_id($user_ramble_friends,$v['user_id']); echo $a['name'];?></div>
-		</div>
-		<?php 
-			$i++;
-		} */?>
+	<input type="text" id="search" class="large-textinput" name="search-bar" placeholder="" />
 	
-	</div>-->
-</div>
+	
+	<div id="sidebar-videos"></div>
 </div>
 <div id="vermont-logo"></div>
 <script>
@@ -36,9 +21,9 @@
 	heading.setAttribute('class','sub-heading');
 	heading.innerHTML= 'Recent Videos';
 	var videoSection = document.createElement('div');
-	videoSection.setAttribute('videos-section');
-	videoSection.setAttribute('section');
-	var v, img, tname, user;
+	videoSection.setAttribute('id','videos-section');
+	videoSection.setAttribute('class','section');
+	var v, img, tname, user, tvid;
 	<?php $i=0; ?>
 	<?php foreach( $recent_videos as $v) { 
 		$t = get_track_by_name($v['filename']);
@@ -57,6 +42,29 @@
 		v.setAttribute('class', 'list-item track');
 		v.setAttribute('data-name', '<?php echo $v['filename'] ?>');
 		v.setAttribute('data-index', '<?php echo $i ?>');
+		if("<?php echo $v['user_id']; ?>"==id) {
+			var del = document.createElement('div');
+			del.setAttribute('class','delete-button');
+			del.innerHTML="Delete Track";
+			v.appendChild(del);
+			v.oncontextmenu=function(e) {
+				console.log("Context Menu");
+				var ab = this.childNodes[0];
+				ab.setAttribute('class','delete-button showing');
+				ab.style.top=e.y-45+"px";
+				ab.style.left=e.x-5+"px";
+				ab.onclick=function() {
+					ab.setAttribute('class','delete-button');
+					deleteTrack(this.parentElement.getAttribute('data-name'));
+					console.log("Deleting "+this.parentElement.getAttribute('data-name'));
+				}
+				console.log(e);
+				ab.onmouseout=function(){
+					ab.setAttribute('class','delete-button');
+				}
+				return false;
+			}
+		}
 		img = document.createElement('div');
 		img.setAttribute('class', 'track-picture image');
 		img.innerHTML='<img src="//s3.amazonaws.com/ramble/<?php echo $v['filename'] ?>/<?php echo $v['filename'] ?>.png" height="43" width="33"/>';

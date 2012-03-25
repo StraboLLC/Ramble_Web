@@ -76,10 +76,17 @@ function change_track_name($filename,$name) {
 	$res=mysql_query($query,$con) or die($query." failed because ".mysql_error());
 	return $res;	
 }
+//2E232F21-833F-4B34-A10B-D9D633D1DB0C-1329014725
 function delete_track($filename) {
 	global $con, $s3;
-	$query = "DELETE FROM track WHERE filename='$filename'";
-	$res=mysql_query($query,$con) or die($query." failed because ".mysql_error());
-	$s3->putObject("ramble", $filename);
+	if($s3->deleteObject("ramble", $filename."/".$filename.".mp4")&&
+	$s3->deleteObject("ramble", $filename."/".$filename.".webm")&&
+	$s3->deleteObject("ramble", $filename."/".$filename.".json")&&
+	$s3->deleteObject("ramble", $filename."/".$filename.".mov")&&
+	$s3->deleteObject("ramble", $filename."/".$filename.".png")) {
+		$query = "DELETE FROM track WHERE filename='$filename'";
+		$res=mysql_query($query,$con) or die($query." failed because ".mysql_error());
+		return true;
+	} else return false;
 }
 ?>

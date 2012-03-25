@@ -60,33 +60,180 @@ else if(isset($_GET['location'])&&isset($_SESSION['auth_token'])) {
 // ************************************************************************************
 else if(isset($_GET['user_sidebar'])&&isset($_SESSION['auth_token'])) {
 	if(isset($_GET['id'])) { 
-	$u = $facebook->api('/'.$_GET['id']); ?>
-	<div class="sub-heading"><?php echo $u['name']; ?><img class="right" src="//graph.facebook.com/<?php echo $u['id']; ?>/picture" alt="<?php echo $u['name']; ?>" title="<?php echo $u['name']; ?>" /><div class="clear"></div></div>
-	<div id="videos-section" class="section">
-			
-		<?php $user_videos = get_user_videos($_GET['id']); 
-			foreach( $user_videos as $v) { ?>
-			<div class="list-item track" data-name="<?php echo $v['filename'] ?>" data-index="<?php echo $i; ?>">
-				<div class="track-picture image"><img src="//s3.amazonaws.com/ramble/<?php echo $v['filename'] ?>/<?php echo $v['filename'] ?>.png" height="43" width="33"/></div>
-				<div class="track-name name"><?php echo $v['name'] ?></div>
-			</div>
-		<?php } ?>
-	</div>
+	$u = $facebook->api('/'.$_GET['id']); 
+	$user_videos = get_user_videos($_GET['id']); 
+?>
 	<script>
+	var a;
+	tracks = [];
+	
+	var heading = document.createElement("h3");
+	heading.setAttribute('class','sub-heading');
+	heading.innerHTML= '<?php echo $u['name']; ?><img class="right" src="//graph.facebook.com/<?php echo $u['id']; ?>/picture" alt="<?php echo $u['name']; ?>" title="<?php echo $u['name']; ?>" /><div class="clear"></div>';
+	var videoSection = document.createElement('div');
+	videoSection.setAttribute('id','videos-section');
+	videoSection.setAttribute('class','section');
+	var v, img, tname, user, tvid;
+	<?php $i=0; ?>
+	<?php foreach( $user_videos as $v) { 
+		$t = get_track_by_name($v['filename']);
+		$ch = curl_init("http://s3.amazonaws.com/ramble/".$v['filename']."/".$v['filename'].".json");
+		curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+		$output = json_decode(curl_exec($ch));
+		$output->track->title = $t['name'];
+		$output->track->uploadDate = $t['date_uploaded'];	
+		
+	?>
+		
+		a = JSON.parse('<?php echo json_encode($output);?>');
+		tracks.push({filename:"<?php echo $v['filename'] ?>",name:"<?php echo $v['name'] ?>",user_id:"<?php echo $v['user_id'] ?>",track:a});
+		
+		v = document.createElement('div');
+		v.setAttribute('class', 'list-item track');
+		v.setAttribute('data-name', '<?php echo $v['filename'] ?>');
+		v.setAttribute('data-index', '<?php echo $i ?>');
+
+		var del = document.createElement('div');
+		del.setAttribute('class','delete-button');
+		del.innerHTML="Delete Track";
+		v.appendChild(del);
+		v.oncontextmenu=function(e) {
+			console.log("Context Menu");
+			var ab = this.childNodes[0];
+			ab.setAttribute('class','delete-button showing');
+			ab.style.top=e.y-45+"px";
+			ab.style.left=e.x-5+"px";
+			ab.onclick=function() {
+				ab.setAttribute('class','delete-button');
+				deleteTrack(this.parentElement.getAttribute('data-name'));
+				console.log("Deleting "+this.parentElement.getAttribute('data-name'));
+			}
+			console.log(e);
+			ab.onmouseout=function(){
+				ab.setAttribute('class','delete-button');
+			}
+			return false;
+		}
+	
+
+		img = document.createElement('div');
+		img.setAttribute('class', 'track-picture image');
+		img.innerHTML='<img src="//s3.amazonaws.com/ramble/<?php echo $v['filename'] ?>/<?php echo $v['filename'] ?>.png" height="43" width="33"/>';
+		v.appendChild(img);
+		tname = document.createElement('div');
+		tname.setAttribute('class', 'track-name name');
+		tname.innerHTML="<?php echo $v['name'] ?>";
+		v.appendChild(tname);
+		user = document.createElement('div');
+		user.setAttribute('class', 'track-author user');
+		user.setAttribute('data-user-id', "<?php echo $v['user_id']; ?>");
+		user.innerHTML="<?php $a=get_friend_by_id($user_ramble_friends,$v['user_id']); echo $a['name'];?>";
+		v.appendChild(user);
+		videoSection.appendChild(v);
+		<?php $i++; ?>
+	<?php } ?>
+	document.getElementById('sidebar-videos').appendChild(heading);
+	document.getElementById('sidebar-videos').appendChild(videoSection);
+	
+
+	friends = [];
+	<?php foreach( $user_ramble_friends as $u) { ?>
+		friends.push({id:"<?php echo $u['rInfo']['fb_id'] ?>",name:"<?php echo $u['name'] ?>",first_name:"<?php echo $u['rInfo']['first_name'] ?>",last_name:"<?php echo $u['rInfo']['last_name'] ?>",tracks:[
+				<?php $user_videos = get_user_videos($u['rInfo']['fb_id']); 
+				foreach( $user_videos as $v) { ?>
+				{filename:"<?php echo $v['filename'] ?>",name:"<?php echo $v['name'] ?>",user_id:"<?php echo $v['user_id'] ?>"},
+				<?php } ?>
+		]});
+	<?php } ?>
+	
+	</script>
+	<?php
+	}
+	
+}
+// ************************************************************************************
+// Delete a Video Track
+// TODO: Add user authentication to confirm the identity and ownership of the video.
+// ************************************************************************************ 
+else if(isset($_GET['delete_video'])&&isset($_SESSION['auth_token'])) {
+	if(isset($_POST['filename'])) {
+		$p = $_POST['filename']; 
+		if(delete_track($p)) { 
+			$recent_videos = get_recent_videos($user_ramble_friends);
+		?>
+		<script>
 		var a;
 		tracks = [];
-		<?php foreach( $user_videos as $v) { 
+		
+		var heading = document.createElement("h3");
+		heading.setAttribute('class','sub-heading');
+		heading.innerHTML= 'Recent Videos';
+		var videoSection = document.createElement('div');
+		videoSection.setAttribute('id','videos-section');
+		videoSection.setAttribute('class','section');
+		var v, img, tname, user, tvid;
+		<?php $i=0; ?>
+		<?php foreach( $recent_videos as $v) { 
 			$t = get_track_by_name($v['filename']);
 			$ch = curl_init("http://s3.amazonaws.com/ramble/".$v['filename']."/".$v['filename'].".json");
 			curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
 			$output = json_decode(curl_exec($ch));
 			$output->track->title = $t['name'];
 			$output->track->uploadDate = $t['date_uploaded'];	
-		
+			
 		?>
+			
 			a = JSON.parse('<?php echo json_encode($output);?>');
 			tracks.push({filename:"<?php echo $v['filename'] ?>",name:"<?php echo $v['name'] ?>",user_id:"<?php echo $v['user_id'] ?>",track:a});
+			
+			v = document.createElement('div');
+			v.setAttribute('class', 'list-item track');
+			v.setAttribute('data-name', '<?php echo $v['filename'] ?>');
+			v.setAttribute('data-index', '<?php echo $i ?>');
+			if("<?php echo $v['user_id']; ?>"==id) {
+				var del = document.createElement('div');
+				del.setAttribute('class','delete-button');
+				del.innerHTML="Delete Track";
+				v.appendChild(del);
+				v.oncontextmenu=function(e) {
+					console.log("Context Menu");
+					var ab = this.childNodes[0];
+					ab.setAttribute('class','delete-button showing');
+					ab.style.top=e.y-45+"px";
+					ab.style.left=e.x-5+"px";
+					ab.onclick=function() {
+						ab.setAttribute('class','delete-button');
+						deleteTrack(this.parentElement.getAttribute('data-name'));
+						console.log("Deleting "+this.parentElement.getAttribute('data-name'));
+					}
+					console.log(e);
+					ab.onmouseout=function(){
+						ab.setAttribute('class','delete-button');
+					}
+					return false;
+				}
+			}
+			img = document.createElement('div');
+			img.setAttribute('class', 'track-picture image');
+			img.innerHTML='<img src="//s3.amazonaws.com/ramble/<?php echo $v['filename'] ?>/<?php echo $v['filename'] ?>.png" height="43" width="33"/>';
+			v.appendChild(img);
+			tname = document.createElement('div');
+			tname.setAttribute('class', 'track-name name');
+			tname.innerHTML="<?php echo $v['name'] ?>";
+			v.appendChild(tname);
+			user = document.createElement('div');
+			user.setAttribute('class', 'track-author user');
+			user.setAttribute('data-user-id', "<?php echo $v['user_id']; ?>");
+			user.innerHTML="<?php $a=get_friend_by_id($user_ramble_friends,$v['user_id']); echo $a['name'];?>";
+			v.appendChild(user);
+			videoSection.appendChild(v);
+			<?php $i++; ?>
 		<?php } ?>
+		document.getElementById('sidebar-videos').appendChild(heading);
+		document.getElementById('sidebar-videos').appendChild(videoSection);
+		
+		// Add Friends
+		
 		friends = [];
 		<?php foreach( $user_ramble_friends as $u) { ?>
 			friends.push({id:"<?php echo $u['rInfo']['fb_id'] ?>",name:"<?php echo $u['name'] ?>",first_name:"<?php echo $u['rInfo']['first_name'] ?>",last_name:"<?php echo $u['rInfo']['last_name'] ?>",tracks:[
@@ -98,32 +245,8 @@ else if(isset($_GET['user_sidebar'])&&isset($_SESSION['auth_token'])) {
 		<?php } ?>
 	
 	</script>
-	<!-- <div class="sub-heading">Albums</div>
-	<?php /* $albums = get_user_albums($_GET['id']); ?>
-	<?php if(!empty($albums)) {
-			foreach($albums as $a) { ?> 
-		<div class="list-item album" data-id="<?php echo $a['id'] ?>">
-			<div class="album-name name"><?php echo $a['name'] ?></div>
-		</div>	
-	
-	<?php } 
-	} else {?> 
-				<div class="list-item create-album">
-					<div class="name">Create an Album</div>
-				</div>
-	<?php }*/ ?> -->
 	<?php
-	}
-	
-}
-// ************************************************************************************
-// Delete a Video Track
-// TODO: Add user authentication to confirm the identity and ownership of the video.
-// ************************************************************************************ 
-else if(isset($_GET['delete_video'])&&isset($_SESSION['auth_token'])) {
-	if(isset($_GET['filename'])) { 
-		delete_track($filename);
-		echo "Track Delete Successfully!";
+		} else echo "Could not delete track!";
 	}
 	
 	

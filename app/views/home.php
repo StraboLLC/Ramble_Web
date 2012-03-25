@@ -28,8 +28,9 @@
     <meta property="og:locality" content="Middlebury"/>
     <meta property="og:email" content="support@strabogis.com"/>
     <meta property="og:region" content="VT"/>
-
-
+	<?php if($ramble_user) { ?>
+	<script type="text/javascript">var id = "<?php echo $user ?>"</script>
+	<?php } ?>
 
   </head>
   <body>
