@@ -15,7 +15,7 @@ $fbAppSecret = 'f9dd17c271e73e9dca046170edbf08bd';
 
 $salt = "str480GUS";
 
-$siteTitle = "Ramble | by Strabo";
+$siteTitle = "ramble | by Strabo";
 
 
 $apikey = "719acb2f56220613571456d9524a1a02";

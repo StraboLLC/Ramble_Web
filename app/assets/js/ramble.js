@@ -53,6 +53,7 @@ $(document).ready(function() {
 			pause();
 		}
 	});
+	initSidebar();
 	$('#popup-close').click(function() {
 		$('#popup').css('display','none');
 	});
