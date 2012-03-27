@@ -1,5 +1,5 @@
 <?php 
-	if($ramble_user==true) {
+	if($ramble_user==true&&isset($_COOKIE['auth_token'])) {
 		$recent_videos = get_recent_videos($user_ramble_friends);
 	}
 ?>
@@ -8,8 +8,11 @@
   <head>
     <meta charset="utf-8">
 
+
     <!-- We get the name of the app out of the information fetched -->
     <title><?php echo $siteTitle; ?></title>
+    
+    <link rel="shortcut icon" href="app/assets/images/favicon.ico">	
 	<link href="//fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="app/assets/css/jquery-ui-1.8.17.custom.css" type="text/css" />
 	<?php if($ramble_user) { ?>

@@ -1,3 +1,53 @@
+/*
+*[data-tooltip]:after {
+	content:"";
+
+	opacity:0;  
+	z-index:999;
+	
+	-moz-transition-property: opacity;
+	-moz-transition-duration: 2s;
+	-moz-transition-delay: 1s;
+	-webkit-transition-property: opacity;
+	-webkit-transition-duration: 2s;
+	-webkit-transition-delay: 1s;
+	-o-transition-property: opacity;
+	-o-transition-duration: 2s;
+	-o-transition-delay: 1s;
+	transition-property: opacity;
+	transition-duration: 2s;
+	transition-delay: 1s;  
+}
+*[data-tooltip]:hover:after,
+*[data-tooltip]:focus:after {
+	z-index: 1000;
+	opacity:0.94;
+	display:block;
+	content:attr(data-tooltip);
+	position:absolute;
+	top:50px;
+	left:50%;
+	margin:0 0 0 -150px;
+	width:200px;
+	padding:5px;
+	line-height:18px;
+	min-height:18px; 
+	color:white;
+	text-align:center;        
+	outline:none;        
+	text-decoration:none !important;                  
+	background:rgba(20,20,20,.5);
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;        
+	-moz-box-shadow:2px 2px 4px #ccc;
+	-webkit-box-shadow:2px 2px 4px #ccc;
+	box-shadow:2px 2px 4px #ccc;        
+	text-shadow:#2187c8 0 1px 0px; 
+} 
+*/
+
+
 /* Global Styles */
 input {
 	outline: none;
@@ -99,6 +149,7 @@ html,body {
 	width: 250px;
 	background: rgba(0,0,0,.7);
 	border-radius: 10px;
+	overflow: hidden;
 }
 #video-top-bar {
 	width: inherit;
@@ -164,7 +215,7 @@ html,body {
 }
 #scrub-bar {
 	height: 16px;
-	margin: 7px 5px 0 35px;
+	margin: 7px 0 0 35px;
 	border-radius: 5px;
 	width: auto;
 	
@@ -215,13 +266,13 @@ html,body {
 #ramble-logo-button:hover,
 #ramble-home-button:hover,
 #ramble-user-button:hover,
-#ramble-prefs-button:hover {
+#ramble-friends-button:hover {
 	opacity: .8;
 }
 #ramble-logo-button:active,
 #ramble-home-button:active,
 #ramble-user-button:active,
-#ramble-prefs-button:active {
+#ramble-friends-button:active {
 	opacity: .7;
 }
 #ramble-logo-button {
@@ -236,11 +287,11 @@ html,body {
 	width: 39px;
 	background:url("/app/assets/images/home.png");	
 }
-#ramble-prefs-button {
+#ramble-friends-button {
 	display: inline-block;
 	height: 39px;
 	width: 41px;
-	background:url("/app/assets/images/gear.png");	
+	background:url("/app/assets/images/friends.png");	
 }
 #ramble-user-button {
 	display: inline-block;
@@ -275,8 +326,8 @@ html,body {
 	bottom:41px;
 	left:0;
 	right: 0;
-	background:#f5ddc4;
-	overflow-y: visible;
+	background: url('/app/assets/images/banjo.png') no-repeat bottom center #f5ddc4;
+	overflow-y: auto;
 	overflow-x: hidden;
 }
 #search {
@@ -351,12 +402,25 @@ html,body {
 	font-size: 14px;
 }
 .delete-button {
-	z-index: 99999;
+	cursor: default;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+	z-index: 999;
 	position: absolute;
 	display: none;
-	height: 40px;
-	width: 100px;
-	background: #eee;
+	width: 200px;
+	padding: 3px 10px;
+	border-radius: 3px;
+	background: rgba(255,255,255,.95);
+	box-shadow: 0px 0px 10px #333;
+	font-family: "Lucida Grande", sans-serif;
+	font-size: 14px;
+}
+.delete-button:hover {
+	background: url('/app/assets/images/hover.png') #eee repeat-x;
+	color: rgb(254,253,252);
+	background-position-y: center;
 }
 .delete-button.showing {
 	display: block;
@@ -391,3 +455,8 @@ html,body {
 .context-menu-choice:hover {
 	background: #aaa;
 }
+/********************************************************************************************************
+
+
+********************************************************************************************************/
+

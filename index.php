@@ -8,7 +8,7 @@ require('app/library.php');
 $ramble_user = false;
 // Determine whether to show app or not.
 if ($user) {
-	if(!isset($_SESSION['auth_token'])) {
+	if(!isset($_COOKIE['auth_token'])) {
 		login($user_profile);
 		$ramble_user = true;
 		$user_info = pullUser($user_profile['id']);

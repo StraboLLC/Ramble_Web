@@ -29,6 +29,7 @@ $(document).ready(function() {
 	for(var i=0;i<361;i++) {
 		cameras[i] = rotationArrow(i);
 	}*/
+	document.oncontextmenu=function(e){return false;}
 	video=document.getElementById('video');
 
 	// Initializing some map stuff
@@ -184,7 +185,7 @@ function followRoute() {
 		currentPoint=0;
 		playInt = window.clearInterval(playInt);
 		//var scrubBarWidth=(convertCssPxToInt(document.getElementById('video_container').style.width)-60);
-		var scrubBarWidth=(convertCssPxToInt(document.getElementById('video_container').style.width)-40);
+		var scrubBarWidth=(convertCssPxToInt(document.getElementById('video_container').style.width)-60);
 		document.getElementById('played').style.width=scrubBarWidth+"px";
 		document.getElementById('play-pause').style.background = "url('/app/assets/images/play.png') center center no-repeat";
 		video.pause();
@@ -280,7 +281,11 @@ function reFillMap() {
 TRACK MANAGEMENT FUNCTIONS
 
 ************************************************************************************************/
+function removeMenus() {
+	$('.delete-button').remove();
+}
 function pullUserSidebar(id) {
+	$('.delete-button').remove();
 	document.getElementById('sidebar-videos').innerHTML = "";
 	$("#sidebar-videos").addClass('loading');
 	var oXHR = new XMLHttpRequest();  
@@ -289,7 +294,7 @@ function pullUserSidebar(id) {
 		if (oXHR.readyState === 4) {  
 			if (oXHR.status === 200) {  
 				document.getElementById('sidebar-videos').innerHTML = oXHR.responseText;
-				console.log(oXHR.responseText);
+				//console.log(oXHR.responseText);
 				$("#sidebar-videos").removeClass('loading');
 				clearMap();
 				loadScripts(document.getElementById('sidebar-videos'));
@@ -304,6 +309,7 @@ function pullUserSidebar(id) {
 }
 
 function pullSearchQuery(query) {
+	$('.delete-button').remove();
 	var	results=[];
 	$("#sidebar-videos").html(null);
 	$("#sidebar-videos").addClass('loading');
@@ -325,9 +331,21 @@ function pullSearchQuery(query) {
 	$('#sidebar-videos').html(html);
 	$("#sidebar-videos").removeClass('loading');
 }
-
+function showFriends() {
+	$('.delete-button').remove();
+	var html = '<div class="sub-heading">Friends List</div><div id="videos-section">';
+	for(x in friends) {
+		
+		html += '<div class="list-item user" onclick="pullUserSidebar('+friends[x].id+')" data-name="'+friends[x].id+'">';
+		html += '<div class="user-image image"><img src="//graph.facebook.com/'+friends[x].id+'/picture" height="43" alt="" title="'+friends[x].name+'"/></div>';
+		html += '<div class="user-name name">'+friends[x].name+'</div></div>';
+	}
+	html += '</div>';
+	$('#sidebar-videos').html(html);
+}
 
 function goHome() {
+	$('.delete-button').remove();
 	$("#sidebar-videos").html(null);
 	$("#sidebar-videos").addClass('loading');
 	var oXHR = new XMLHttpRequest();  
@@ -352,6 +370,7 @@ function goHome() {
 
 
 function deleteTrack(filename) {
+	$('.delete-button').remove();
 	$("#sidebar-videos").html(null);
 	$("#sidebar-videos").addClass('loading');
 	clearMap();

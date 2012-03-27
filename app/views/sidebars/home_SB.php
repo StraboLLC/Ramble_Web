@@ -1,10 +1,10 @@
 <div id="sidebar-info">
 	<a href="/" id="ramble-logo-button"></a>
-	<a href="javascript:goHome()" id="ramble-home-button"></a>
-	<a href="javascript:pullUserSidebar(<?php echo $user_profile['id']; ?>)" id="ramble-user-button">
+	<a href="javascript:goHome()" id="ramble-home-button" data-tooltip="View recent videos by your friends"></a>
+	<a href="javascript:pullUserSidebar(<?php echo $user_profile['id']; ?>)" id="ramble-user-button" data-tooltip="View your profile">
 		<img src="//graph.facebook.com/<?php echo $user_profile['id']; ?>/picture" title="" alt="" height="33" width="33"/>
 	</a>
-	<a href="/" id="ramble-prefs-button"></a>
+	<a href="javascript:showFriends()" id="ramble-friends-button" data-tooltip="View your friends"></a>
 </div>
 <div id="sidebar_content">
 	<input type="text" id="search" class="large-textinput" name="search-bar" placeholder="" />
@@ -46,24 +46,31 @@
 			var del = document.createElement('div');
 			del.setAttribute('class','delete-button');
 			del.innerHTML="Delete Track";
-			v.appendChild(del);
+			del.setAttribute('id','delete-<?php echo $v['filename'] ?>');
+			del.setAttribute('data-delete','<?php echo $v['filename'] ?>');
+			document.body.appendChild(del);
 			v.oncontextmenu=function(e) {
 				console.log("Context Menu");
-				var ab = this.childNodes[0];
+				var ab = document.getElementById('delete-'+this.getAttribute('data-name'));
 				ab.setAttribute('class','delete-button showing');
-				ab.style.top=e.y-45+"px";
-				ab.style.left=e.x-5+"px";
+				ab.style.top=e.y+"px";
+				ab.style.left=e.x+"px";
 				ab.onclick=function() {
 					ab.setAttribute('class','delete-button');
-					deleteTrack(this.parentElement.getAttribute('data-name'));
-					console.log("Deleting "+this.parentElement.getAttribute('data-name'));
+					deleteTrack(ab.getAttribute('data-delete'));
+					console.log("Deleting "+ab.getAttribute('data-delete'));
 				}
-				console.log(e);
-				ab.onmouseout=function(){
-					ab.setAttribute('class','delete-button');
+				document.onclick=function(){
+					buttons = $('.delete-button.showing');
+					for(x in buttons) {
+						buttons[x].setAttribute('class','delete-button');
+					}
+					document.onclick=null;
 				}
 				return false;
 			}
+		} else {
+			v.oncontextmenu=function(e) {return false;}
 		}
 		img = document.createElement('div');
 		img.setAttribute('class', 'track-picture image');

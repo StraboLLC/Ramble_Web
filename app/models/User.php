@@ -17,16 +17,15 @@ function login($user_profile) {
 	$res = mysql_query($query,$con);
 	while($row=mysql_fetch_array($res)) {
 		$bool = true;
-		$_SESSION['auth_token'] = $row['auth_token'];
-		$_SESSION['user_id'] = $row['fb_id'];
+		setcookie("auth_token", $row['auth_token'], time()+(3600*24*31));  /* expire in 1 hour */
+		setcookie("user_id", $row['fb_id'], time()+(3600*24*31));  /* expire in 1 hour */
 	}
 	if($bool == false) {
 		$auth_token = md5($id.$salt);
 		$query = "INSERT INTO user (fb_id, fb_user, fb_username, auth_token, email, first_name, last_name) VALUES ('$id','1','$username','$auth_token','$email','$firstname','$lastname')";
 		mysql_query($query,$con) or die("Query ".$query."Failed because: ".mysql_error());
-		$_SESSION['auth_token'] = $row['auth_token'];
-		$_SESSION['user_id'] = $row['fb_id'];
-
+		setcookie("auth_token", $row['auth_token'], time()+(3600*24*31));  /* expire in 1 hour */
+		setcookie("user_id", $row['fb_id'], time()+(3600*24*31));  /* expire in 1 hour */
 	}
 }
 function verifyID($id,$auth_token) {
@@ -68,7 +67,7 @@ function get_friend_by_id($friends,$id) {
 			$friend = $f;
 		}
 	}
-	if($id==$_SESSION['user_id']) $friend = me();
+	if($id==$_COOKIE['user_id']) $friend = me();
 	return $friend;
 }
 ?>
