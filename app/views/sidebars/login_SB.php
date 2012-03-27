@@ -1,6 +1,5 @@
 <div id="ramble-logo"></div>
 <div id="login-button">
-<div id="tagline"></div>
 <div id="fb-login" class="fb-login-button"></div>
 </div>
 
