@@ -26,4 +26,10 @@ $(document).ready(function() {
 		};
 		map = new google.maps.Map(document.getElementById("map"), myOptions);
 	}
+	document.getElementById('mce-EMAIL').onkeypress=function(e) {
+		var code = e.which;
+		if(code===13) {
+			document.getElementById('mc-embedded-subscribe-form').submit();
+		}
+	}
 });

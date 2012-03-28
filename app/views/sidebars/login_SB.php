@@ -1,27 +1,9 @@
 <div id="ramble-logo"></div>
-<div id="login-button">
-<div id="fb-login" class="fb-login-button"></div>
-</div>
 
-<div id="fb-root"></div>
-<script>
-	window.fbAsyncInit = function() {
-		FB.init({
-			appId: '<?php echo $facebook->getAppID() ?>',
-			cookie: true,
-			xfbml: true,
-			oauth: true
-		});
-		FB.Event.subscribe('auth.login', function(response) {
-			window.location.reload();
-		});
-		FB.Event.subscribe('auth.logout', function(response) {
-			window.location.reload();
-		});
-	};
-	(function() {
-		var e = document.createElement('script'); e.async = true;
-		e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
-		document.getElementById('fb-root').appendChild(e);
-	}());
-</script>
+<a href="<?php echo $loginUrl ?>" class="test-login">Beta Tester Login</a>
+
+<div id="mc_embed_signup">
+<form action="http://strabogis.us4.list-manage.com/subscribe/post?u=948157d7d238043d45e6e6721&amp;id=b5f99ccabf" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Apply to Beta Test" required>
+</form>
+</div>

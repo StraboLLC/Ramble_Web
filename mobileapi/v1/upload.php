@@ -4,7 +4,8 @@
 require_once('../../app/library.php');
 
 $auth_token = isset($_POST['auth_token']) ? $_POST['auth_token'] : null;
-$id = isset($_POST['id']) ? $_POST['id'] : "1234440553";
+$id = isset($_POST['id']) ? $_POST['id'] : null;
+mobile_login($id,$auth_token);
 $u = verifyID($id,$auth_token);
 //$u = true;
 if($u!=false && $_POST['filetype']=="video") {

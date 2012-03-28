@@ -1,6 +1,17 @@
 /* Structure */
+@font-face {
+    font-family: 'JournalRegular';
+    src: url('/app/assets/fonts/journal-webfont.eot');
+    src: url('/app/assets/fonts/journal-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/app/assets/fonts/journal-webfont.woff') format('woff'),
+         url('/app/assets/fonts/journal-webfont.ttf') format('truetype'),
+         url('/app/assets/fonts/journal-webfont.svg#JournalRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
 html,body {
-	font-family: "Open Sans", "Gill Sans MT",sans-serif;
+	font-family: 'Telex', sans-serif;
 	font-weight: lighter;
 	height: 100%;
 	width: 100%;
@@ -38,6 +49,58 @@ html,body {
 	margin: 30px 0;
 	background: url('/app/assets/images/ramble.png') center center no-repeat;
 }
-#fb-login {
+.test-login {
+	color: #333;
+	text-decoration: none;
+	padding: 10px;
+	margin: 10px;
+	display: block;
+	text-align: center;
+	width: 150px;
+	margin:0 auto;
+	border-radius: 4px;
+	box-shadow: 2px 2px 10px #ccc inset,
+				-2px -2px 10px #333 inset;
+}
+.test-login:hover {
+	box-shadow: 2px 2px 10px #333 inset,
+				-2px -2px 10px #ccc inset;
 
+}
+.test-login:active {
+	box-shadow: 2px 2px 15px #333 inset,
+				-2px -2px 15px #ccc inset;
+}
+#content {
+	text-align: center;
+}
+#mc_embed_signup {
+	clear:left; 
+	font-size:30px;
+	text-align: center; 
+	font-weight: bold;
+	color: rgb(21,21,21);
+	font-family: "JournalRegular";
+}
+#mc_embed_signup label {
+	padding: 10px 0;
+}
+input {
+	color: rgb(21,21,21);
+	font-family: "Telex", sans-serif;
+	font-size: 15px;
+	width: 80%;
+	background: #F5DDC4;
+	border-radius: 4px;
+	padding: 6px;
+	margin: 10px;
+}
+input::-webkit-input-placeholder {
+    color:#333;
+}
+input:-moz-placeholder {
+    color:#333;
+}
+.notice {
+	padding: 5px;
 }

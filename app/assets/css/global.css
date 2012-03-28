@@ -160,7 +160,9 @@ html,body {
 	overflow: hidden;
 }
 #video-title {
-
+	overflow: hidden;
+	text-overflow: ellipsis-word;
+	height: 19px;
 }
 #close-vid {
 	float: right;
@@ -173,16 +175,19 @@ html,body {
 #close-vid:hover {
 	opacity: .75;
 	border-radius: 4px;
+	filter:alpha(opacity=75);
+}
+#close-vid:active {
 	-webkit-transform:translate(1px,1px);
 	-moz-transform:translate(1px,1px);
 	-o-transform:translate(1px,1px);
 	-ms-transform:translate(1px,1px);
 	transform:translate(1px,1px);
-	
-	filter:alpha(opacity=75);
 }
 #video-controls {
-	height: 0;
+	height: 30px;
+	opacity: 0;
+	z-index: -10;
 	width: inherit;
 	position: absolute;
 	bottom:15px;
@@ -198,6 +203,8 @@ html,body {
 
 }
 #video_container:hover #video-controls {
+	z-index: 300;
+	opacity: 1;
 	height: 30px;
 }
 #play-pause {
@@ -245,6 +252,7 @@ html,body {
 	z-index: 19;
 }
 #video {
+	margin-top: -3px;
 	position: relative;
 	z-index: 12;
 	height:inherit;
@@ -346,7 +354,7 @@ html,body {
 }
 
 #sidebar-videos {
-	margin-top: 50px;
+	margin-top: 38px;
 }
 .section {
 	margin: 0 0px;
@@ -361,6 +369,14 @@ html,body {
 	font-size: 12px;
 	padding:5px;
 }
+.sub-heading.person-sub-heading {
+	margin: 0;
+	padding:0px;
+}
+.person-name {
+	display: inline-block;
+	padding:15px 5px;
+}
 .list-item {
 	cursor: pointer;
 	display: block;
@@ -374,8 +390,9 @@ html,body {
 	-o-transition: box-shadow, padding .1s ease-in-out;
 	-ms-transition: box-shadow, padding .1s ease-in-out;
 	transition: box-shadow, padding .1s ease-in-out;
-	overflow: visible;
+	overflow: hidden;
 }
+
 .list-item:first-child {
 	border-top: 1pt solid #aaa;
 }
@@ -393,8 +410,12 @@ html,body {
 }
 .image {
 	float: right;
-	padding-top: 2px;
 	padding-left: 10px;
+	height: 48px;
+	overflow: hidden;
+}
+.image img {
+	height:48px;
 }
 .name {
 	padding: 10px 0 0 0;
