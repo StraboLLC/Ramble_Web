@@ -49,8 +49,11 @@ html,body {
 	margin: 30px 0;
 	background: url('/app/assets/images/ramble.png') center center no-repeat;
 }
+#login-container {
+	padding: 15px;
+}
 .test-login {
-	color: #333;
+	color: #000;
 	text-decoration: none;
 	padding: 10px;
 	margin: 10px;
@@ -76,19 +79,20 @@ html,body {
 }
 #mc_embed_signup {
 	clear:left; 
-	font-size:30px;
+	font-size:25px;
 	text-align: center; 
 	font-weight: bold;
 	color: rgb(21,21,21);
 	font-family: "JournalRegular";
 }
 #mc_embed_signup label {
-	padding: 10px 0;
+	padding: 20px 0;
 }
 input {
 	color: rgb(21,21,21);
 	font-family: "Telex", sans-serif;
-	font-size: 15px;
+	text-align: center;
+	font-size: 13px;
 	width: 80%;
 	background: #F5DDC4;
 	border-radius: 4px;

@@ -12,6 +12,9 @@ if(isset($_GET['logout'])) {
 		header("Location:$logoutUrl");
 	} else header("Location:/");
 }
+if($_SERVER["HTTP_HOST"] != "rambl.it") {
+	header("Location: http://rambl.it". $_SERVER["REQUEST_URI"]);
+}
 $ramble_user = false;
 $invite_code = false;
 // Determine whether to show app or not.
