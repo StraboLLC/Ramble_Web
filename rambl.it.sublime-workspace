@@ -1,0 +1,713 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"scrub",
+				"scrubBarWidth"
+			],
+			[
+				"font-",
+				"font-size"
+			],
+			[
+				"inlin",
+				"inline-block"
+			],
+			[
+				"mar",
+				"margin	margin: all"
+			],
+			[
+				"font-st",
+				"font-style"
+			],
+			[
+				"nth",
+				":nth-child(|)"
+			],
+			[
+				"m",
+				"meta"
+			],
+			[
+				"back",
+				"background	background-color: name"
+			],
+			[
+				"h",
+				"h"
+			],
+			[
+				"test",
+				"test_array"
+			],
+			[
+				"int",
+				"invert_sign"
+			],
+			[
+				"ev",
+				"every_other_sum"
+			],
+			[
+				"hash",
+				"hash_value_sum"
+			],
+			[
+				"has",
+				"hash_value_sum"
+			],
+			[
+				"assert",
+				"assert_equal"
+			],
+			[
+				"ass",
+				"assert_nil"
+			],
+			[
+				"index",
+				"index_value"
+			],
+			[
+				"ind",
+				"index_value  (variable)"
+			],
+			[
+				"bac",
+				"background	background-color: name"
+			],
+			[
+				"inver",
+				"invert_sign"
+			],
+			[
+				"length",
+				"length-1"
+			],
+			[
+				"line",
+				"line-height"
+			],
+			[
+				"padd",
+				"padding	padding: all"
+			],
+			[
+				"styl",
+				"stylesheet"
+			],
+			[
+				"style",
+				"style"
+			],
+			[
+				"si",
+				"site_name"
+			],
+			[
+				"root",
+				"root_node"
+			],
+			[
+				"ro",
+				"root_node"
+			],
+			[
+				"print",
+				"print_tree"
+			],
+			[
+				"is",
+				"is_question"
+			],
+			[
+				"new",
+				"new"
+			],
+			[
+				"ul",
+				"ul"
+			],
+			[
+				"p",
+				"<p>${1001:$SELECTION}</p>"
+			],
+			[
+				"pa",
+				"padding	padding: V H"
+			],
+			[
+				"margin",
+				"margin	margin: V H"
+			],
+			[
+				"pr",
+				"price_space"
+			],
+			[
+				"price",
+				"price_bandwidth"
+			],
+			[
+				"backgr",
+				"background	background-color: hex"
+			],
+			[
+				"camera",
+				"a_camera-"
+			],
+			[
+				"ht",
+				"html"
+			],
+			[
+				"he",
+				"head"
+			],
+			[
+				"f",
+				"font: font-family: family"
+			],
+			[
+				"col",
+				"color: color: hex"
+			],
+			[
+				"backg",
+				"background: background-attachment: scroll/fixed"
+			],
+			[
+				"Array",
+				"array"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"pub",
+				"public"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/Ruby/Ruby.sublime-build",
+	"command_palette":
+	{
+		"height": 47.0,
+		"selected_items":
+		[
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"upload fi",
+				"SFTP: Upload File"
+			],
+			[
+				"java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"tag",
+				"Tag: Lint"
+			],
+			[
+				"",
+				"Gist: Create Private Gist"
+			],
+			[
+				"gist",
+				"Gist: Open Gist"
+			],
+			[
+				"gist de",
+				"Gist: Delete Gist"
+			],
+			[
+				"gi",
+				"Gist: Open Gist"
+			],
+			[
+				"gis",
+				"Gist: Open Gist"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"install pack",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Remove Package"
+			],
+			[
+				"install p",
+				"Package Control: Install Package"
+			],
+			[
+				"install pa",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"feth",
+				"Fetch"
+			],
+			[
+				"fet",
+				"Fetch"
+			],
+			[
+				"fetch",
+				"Fetch: Manage remote files"
+			],
+			[
+				"instal ",
+				"Package Control: Install Package"
+			],
+			[
+				"fe",
+				"Fetch"
+			],
+			[
+				"pack in",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"packa in",
+				"Package Control: Install Package"
+			],
+			[
+				"fer",
+				"Fetch: Manage remote files"
+			],
+			[
+				"pack inst",
+				"Package Control: Install Package"
+			],
+			[
+				"pack ina",
+				"Package Control: Install Package"
+			],
+			[
+				"snippet",
+				"Snippet: ul - Placeholder"
+			],
+			[
+				"sni",
+				"Snippet: Lorem ipsum"
+			],
+			[
+				"package instal",
+				"Package Control: Install Package"
+			],
+			[
+				"prefix",
+				"Preferences: Prefixr Key Bindings – Default"
+			],
+			[
+				"set syntax:html",
+				"Set Syntax: HTML"
+			]
+		],
+		"width": 602.0
+	},
+	"console":
+	{
+		"height": 115.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Library/WebServer/Documents/ramble.strabogis.com/app/assets/js/ramble.js",
+		"/Library/WebServer/Documents/ramble.strabogis.com/app/assets/js/ramble-obj.js",
+		"/Library/WebServer/Documents/ramble.strabogis.com/sftp-config.json",
+		"/Library/WebServer/Documents/ramble.strabogis.com/api/code.php",
+		"/Library/WebServer/Documents/ramble.strabogis.com/api/index.php",
+		"/Library/WebServer/Documents/ramble.strabogis.com/api/logout.php",
+		"/Library/WebServer/Documents/ramble.strabogis.com/api/zencoder.php",
+		"/Library/WebServer/Documents/ramble.strabogis.com/db/ramble_db.mwb",
+		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Volumes/wspotter/bin/checkin.sh",
+		"/Users/williampotter/Desktop/CS312quiz.txt",
+		"/Users/williampotter/Desktop/test.sql",
+		"/Users/williampotter/Desktop/test.html",
+		"/Users/williampotter/Desktop/test.rb",
+		"/Users/williampotter/Desktop/CS312quiz 2.txt",
+		"/Users/williampotter/Documents/cs312/hw5/blog/test/fixtures/posts.yml",
+		"/Users/williampotter/Documents/cs312/hw5/blog/test/fixtures/comments.yml",
+		"/Users/williampotter/Documents/cs312/hw5/blog/test/unit/comment_test.rb",
+		"/Users/williampotter/Documents/cs312/hw5/blog/test/unit/post_test.rb",
+		"/Users/williampotter/Documents/cs312/hw5/blog/app/models/comment.rb",
+		"/Users/williampotter/Documents/cs312/hw5/blog/app/models/post.rb",
+		"/Users/williampotter/Documents/cs312/hw5/blog/app/views/posts/index.html.erb",
+		"/Users/williampotter/Documents/cs312/hw5/blog/app/assets/stylesheets/application.css.scss",
+		"/Users/williampotter/Documents/econ150/ps3.lyx",
+		"/Users/williampotter/Documents/cs312/hw5/blog/app/controllers/comments_controller.rb",
+		"/Users/williampotter/Documents/cs312/hw5/blog/config/routes.rb",
+		"/Users/williampotter/Documents/cs312/hw5/blog/app/views/posts/show.html.erb",
+		"/Users/williampotter/Documents/cs312/hw5/blog/hw5.txt",
+		"/Users/williampotter/Documents/cs312/hw5/blog/app/controllers/posts_controller.rb",
+		"/Users/williampotter/Documents/cs312/hw5/blog/app/views/comments/_comment.html.erb",
+		"/Users/williampotter/Documents/cs312/hw5/blog/app/views/comments/_form.html.erb",
+		"/Users/williampotter/Documents/cs312/hw5/blog/app/views/posts/_form.html.erb",
+		"/Users/williampotter/Documents/cs312/hw5/blog/app/views/home/index.html.erb",
+		"/Users/williampotter/Downloads/hw1soln.txt",
+		"/Users/williampotter/Library/Application Support/Google/Chrome/Default/User StyleSheets/Custom.css",
+		"/Users/williampotter/Documents/cs312/hw5/willpots/app/assets/stylesheets/posts.css.scss",
+		"/Users/williampotter/Documents/cs312/hw5/willpots/app/views/posts/show.html.erb",
+		"/Users/williampotter/Documents/cs312/hw5/willpots/app/views/posts/index.html.erb",
+		"/Users/williampotter/Documents/cs312/hw5/willpots/app/assets/stylesheets/application.css",
+		"/Users/williampotter/Documents/cs312/hw5/willpots/app/views/layouts/application.html.erb",
+		"/Users/williampotter/Documents/cs312/hw5/willpots/config/routes.rb",
+		"/Users/williampotter/Documents/cs312/hw5/willpots/app/assets/stylesheets/scaffolds.css.scss",
+		"/Users/williampotter/Documents/cs312/hw5/willpots/app/controllers/application_controller.rb",
+		"/Users/williampotter/Documents/cs312/hw5/willpots/app/views/posts/edit.html.erb",
+		"/Users/williampotter/Documents/cs312/hw5/willpots/app/views/posts/new.html.erb",
+		"/Users/williampotter/Documents/cs312/hw5/blog/app/controllers/home_controller.rb",
+		"/Library/WebServer/Documents/ramble.strabogis.com/Readme.md",
+		"/Users/williampotter/Desktop/sd_feedback.txt",
+		"/Users/williampotter/Desktop/George Strait – Love's Gonna Make It Alright.txt",
+		"/Users/williampotter/.zshrc",
+		"//.zshrc",
+		"/Volumes/wspotter/public_html/cs312/hw4/problem1/url.txt",
+		"/Volumes/wspotter/public_html/cs312-page/ratings.html",
+		"/Volumes/wspotter/public_html/cs312-page/sql_answers.txt",
+		"/Volumes/wspotter/public_html/cs312/hw4/sql_answers.txt",
+		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/Terminal/Terminal.sublime-settings",
+		"/Volumes/wspotter/public_html/cs312-page/course.html",
+		"/Volumes/wspotter/public_html/cs312-page/style.css",
+		"/Volumes/wspotter/public_html/cs312/hw4/ratings.html",
+		"/Volumes/wspotter/public_html/cs312/hw4/ratings1.css",
+		"/Volumes/wspotter/public_html/cs312/hw4/ratings2.css",
+		"/Users/williampotter/Downloads/Cylinder.java",
+		"/Users/williampotter/Downloads/Camera.java",
+		"/Volumes/wspotter/Documents/cs461/index.php",
+		"/Users/williampotter/Downloads/hw2/ray/Scene.java",
+		"/Volumes/wspotter/public_html/cs312-page/index.html",
+		"/Library/WebServer/Documents/solardecathlon/wp-config.php",
+		"/Library/WebServer/Documents/solardecathlon/blog/wp-comments-post.php",
+		"/Library/WebServer/Documents/solardecathlon/blog/wp-config.php",
+		"/Volumes/wspotter/public_html/cs312/style.css",
+		"/Volumes/wspotter/public_html/cs312/index.html",
+		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
+		"/Library/WebServer/Documents/solardecathlon/index.php",
+		"/Library/WebServer/Documents/solardecathlon/Boxfile",
+		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/User/Fetch.sublime-settings",
+		"/Users/williampotter/Desktop/index.html",
+		"/Library/WebServer/Documents/solardecathlon/style.css",
+		"/Library/WebServer/Documents/solardecathlon/index.html",
+		"/Users/williampotter/.ssh/id_rsa.pub",
+		"/Users/williampotter/.ssh/id_rsa.",
+		"/Users/williampotter/.ssh/id_rsa",
+		"/Users/williampotter/.bash_history",
+		"/Users/williampotter/.appletviewer",
+		"/Users/williampotter/.CF89AA64",
+		"/Volumes/wspotter/Documents/cs312/hw2/test/test_blocks101.rb",
+		"/Volumes/wspotter/Documents/cs312/hw2/test/test_blocks201.rb",
+		"/Volumes/wspotter/Documents/cs312/hw2/lib/assign2_2.rb",
+		"/Volumes/wspotter/Documents/cs312/hw2/test/ts_assignment2.rb",
+		"/Volumes/wspotter/Documents/cs312/hw2/test/test_blocks301.rb",
+		"/Volumes/wspotter/Documents/cs312/hw2/lib/linked_list.rb",
+		"/Users/williampotter/Documents/Dropbox/Brogramming/BrianSirkia_test_WillPotter.txt",
+		"/Volumes/wspotter/Documents/cs312/hw2/lib/assign2_1.rb",
+		"/Users/williampotter/Downloads/ray/Camera.java",
+		"/Users/williampotter/Downloads/ray/Parser.java",
+		"/Users/williampotter/Downloads/ray/shader/Lambertian.java",
+		"/Users/williampotter/Downloads/ray/shader/Shader.java",
+		"/Users/williampotter/Downloads/ray/shader/Phong.java",
+		"/Users/williampotter/Downloads/hw2/TEST1/one-sphere.xml",
+		"/Users/williampotter/Downloads/hw2/ray/shader/Shader.java",
+		"/Users/williampotter/Desktop/TEST/test/test_binary_search.rb",
+		"/Users/williampotter/Desktop/TEST/lib/binary_search.rb",
+		"/Users/williampotter/Desktop/TEST/test/test_final_binary_search.rb",
+		"/Users/williampotter/Desktop/TEST/lib/test_binary_search.rb",
+		"/Users/williampotter/Desktop/TEST/binary_search.rb",
+		"/Users/williampotter/Downloads/wpotter.txt",
+		"/Users/williampotter/Downloads/hw2/ray/RayTracer.java",
+		"/Users/williampotter/Desktop/OA plans",
+		"/Users/williampotter/Desktop/doc.tex",
+		"/Users/williampotter/Sites/solardecathlon/humans.txt",
+		"/Users/williampotter/Sites/solardecathlon/robots.txt",
+		"/Users/williampotter/Sites/solardecathlon/index.html",
+		"/Library/Webserver/Documents/solardecathlon/index.html",
+		"/Library/Webserver/Documents/solardecathlon/style.css",
+		"/Users/williampotter/Desktop/test.tex",
+		"/Users/williampotter/www.wpotter.me/solardecathlon",
+		"/Volumes/wspotter/Documents/cs312/hw2/assign2_1.rb",
+		"/Volumes/wspotter/Documents/cs312/hw2/linked_list.rb",
+		"/Volumes/wspotter/Documents/cs312/hw2/assign2_2.rb",
+		"/Users/williampotter/github/willpots.github.com/index.html",
+		"/Users/williampotter/Desktop/output.txt",
+		"/Library/Webserver/Documents/www.wpotter.me/www.omegaalpha.net/index.html",
+		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/Prefixr/Default (OSX).sublime-keymap",
+		"/Users/williampotter/.oh-my-zsh/tools/require_tool.sh",
+		"/Users/williampotter/github/test/rubyfile.rb",
+		"/Users/williampotter/.profile",
+		"/Users/williampotter/.bashrc",
+		"/Users/williampotter/Desktop/main.c"
+	],
+	"find":
+	{
+		"height": 33.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/Library/Webserver/Documents/www.omegaalpha.net/css"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			" ",
+			"\n\n",
+			" ",
+			"11px",
+			"</?t[rd]>",
+			"key",
+			"key?",
+			"</tr>",
+			"</td>",
+			"<td>",
+			"<tr>",
+			"td",
+			" - ",
+			"<tr><td>",
+			"tr >",
+			"<hr>",
+			"<br>",
+			"bgcolor=silver",
+			"<hr>",
+			"</font>",
+			"<font color=\"green\">",
+			"<hr>",
+			"href=[^\"]",
+			"bgcolor=silver",
+			"</font>",
+			"<font color=\"green\">",
+			"<br>",
+			"zen",
+			" >",
+			"bgcolor=[a-z]*",
+			"</font>",
+			"<font color=\"green\">",
+			"cellpadding=[0-9]",
+			"border=[0-9]",
+			"<\\/?b>",
+			"@p_node",
+			"@c_node",
+			"theme",
+			"ls",
+			"url('",
+			"oa",
+			"root",
+			"lowercase",
+			"#wrap",
+			",",
+			"\\n",
+			"<[a-z0-9\\/\\=\\\"\\-]*>",
+			"<[a-z\\/]*>",
+			"<[a-z]*>",
+			"bandwidth<=",
+			"space<=",
+			"space",
+			"0.000000",
+			"match",
+			"recordVideo",
+			"</strong>",
+			"<strong class=\"subheading\">",
+			"<a [A-Za-z0-9\\.\\-\\_\\:\\/\\=\\ \\\"]*>",
+			"<a [A-Za-z0-9\\.\\-\\_\\:\\/\\=\\ ]*>",
+			"<a [A-Za-z0-9\\.\\-\\_\\:\\/\\=]*>",
+			"/<[\\/]*a [A-Za-z0-9\\.\\-\\_\\:\\/\\=]*>/g",
+			"[A-Za-z0-9\\.\\-\\_\\:\\/]+.com[A-Za-z0-9\\/\\_\\.\\-]*",
+			"/[A-Za-z0-9\\.\\-\\_\\:\\/]+.com[A-Za-z0-9\\/\\_\\.\\-]*/",
+			"<t[hd]></t[hd]>",
+			"<th[A-Za-z0-9\\:\\;\\=\\\"\\#\\ \\(\\)\\/]*>[A-Za-z0-9\\:\\;\\=\\\"\\#\\ \\(\\)\\/]*</th>",
+			"<td[A-Za-z0-9\\:\\;\\=\\\"\\#\\ \\(\\)\\/]*>[A-Za-z0-9\\:\\;\\=\\\"\\#\\ \\(\\)\\/]*</td>",
+			"<td[A-Za-z0-9\\:\\;\\=\\\"\\#\\ \\(\\)]*>[A-Za-z0-9\\:\\;\\=\\\"\\#\\ \\(\\)]*</td>",
+			"<td[a-z0-9\\:\\;\\=\\\"\\#\\ ]*>[a-z0-9\\:\\;\\=\\\"\\ \\(\\)]*</td>",
+			"<td[a-z0-9\\:\\;\\=\\\"]*>[a-z0-9\\:\\;\\=\\\"]*</td>",
+			"<td>O\\(n\\)</td>",
+			"<td>O\\(1\\)</td>",
+			" >",
+			"style=\"[a-z0-9\\:\\#\\-\\ \\;]*\"",
+			"<td",
+			"console.log",
+			"post_update_page_contents",
+			"wrapper",
+			" ",
+			"55 89 e5 c7 08 04 84 5c 08 45 c9 e9 ff ff ff 54"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"\n",
+			"_",
+			"",
+			"div",
+			" ",
+			"",
+			"<tr><td  class=\"green\">",
+			"tr>",
+			"<hr />",
+			"<br />",
+			"",
+			"<hr />",
+			"",
+			"<hr />",
+			"",
+			"<br />",
+			">",
+			"",
+			"p_node",
+			"c_node",
+			"url('fonts/",
+			"root_node",
+			"#container",
+			"	",
+			"",
+			"(bandwidth/1024)<=",
+			"(space/1024)<=",
+			"bandwidth",
+			"0.000000",
+			"</h3>",
+			"<h3>",
+			"",
+			"<a href=\"http://$1.com$2\">$1.com$2</a>",
+			"",
+			"$1",
+			"<t$1></t$2>",
+			"<th></th>",
+			"<td></td>",
+			"<td style=\"background:yellow;\">O(n)</td>",
+			"<td style=\"background:green;\">O(1)</td>",
+			">",
+			"",
+			"	<td",
+			"//console.log",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 27.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.sftp":
+	{
+		"height": 94.0
+	},
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/Users/williampotter/Desktop/index.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 166.0,
+	"status_bar_visible": true
+}

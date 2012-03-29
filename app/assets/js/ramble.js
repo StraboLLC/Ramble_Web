@@ -164,7 +164,7 @@ function getTrack(videoName) {
 			if(a<l){l=a;accuratePoint=x;}
 		}
 
-		tracks[cT].richMarker.setPosition(new google.maps.LatLng(tracks[cT].points[accuratePoint].latitude,tracks[cT].points[accuratePoint].longitude));
+		this.currentTrack.richMarker.setPosition(new google.maps.LatLng(tracks[cT].points[accuratePoint].latitude,tracks[cT].points[accuratePoint].longitude));
 		currentPoint=accuratePoint;
 	});
 	document.getElementById('video_container').style.display="block";
