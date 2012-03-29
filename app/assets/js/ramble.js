@@ -26,10 +26,10 @@ var cameras;
 // OnLoad Stuff
 $(document).ready(function() {
 	goHome();
-	document.oncontextmenu=function(e){return false;}
-	document.getElementById("ramble-logo-button").onclick=function() {goHome();}
-	document.getElementById("ramble-user-button").onclick=function() {pullUserSidebar(id);}
-	document.getElementById("ramble-friends-button").onclick=function() {showFriends();}
+	document.oncontextmenu=function(e){return false;};
+	document.getElementById("ramble-logo-button").onclick=function() {goHome();};
+	document.getElementById("ramble-user-button").onclick=function() {pullUserSidebar(id);};
+	document.getElementById("ramble-friends-button").onclick=function() {showFriends();};
 
 	
 	video=document.getElementById('video');
@@ -49,7 +49,7 @@ $(document).ready(function() {
 	}
 	$('#video_container').draggable({containment:"parent"});
 	$('#video_container').resizable({containment:"parent",aspectRatio:true});
-	$('video').dblclick(function() { 
+	$('video').dblclick(function() {
 		if(this.paused===true) {
 			play();
 		} else {
@@ -60,7 +60,7 @@ $(document).ready(function() {
 	$('#popup-close').click(function() {
 		$('#popup').css('display','none');
 	});
-  	$('#close-vid').click(function() {
+	$('#close-vid').click(function() {
 		closeViewer();
 	});
 	$('#search').keypress(function(event) {
@@ -108,7 +108,7 @@ function plotTrack(idx) {
 	tracks[idx].currentRoute = new google.maps.Polyline({
 		path: tracks[idx].routeCoords,
 		strokeColor: "rgb(48,157,230)",
-		strokeOpacity: .73,
+		strokeOpacity: 0.73,
 		strokeWeight: 5
 	});
 	tracks[idx].currentRoute.setMap(map);
@@ -156,12 +156,12 @@ function getTrack(videoName) {
 		var percentDone = a/(convertCssPxToInt(document.getElementById('video_container').style.width)-60);
 		video.currentTime=percentDone*video.duration;
 		var accuratePoint=0;
-		var a=10,l=10;
-		for(x in tracks[cT].points) {
-
+		a=10;
+		var l=10;
+		for(var x in tracks[cT].points) {
 			a=Math.abs(tracks[cT].points[x].timestamp-(percentDone*video.duration));
 			//console.log(a);
-			if(a<l){l=a;accuratePoint=x}
+			if(a<l){l=a;accuratePoint=x;}
 		}
 
 		tracks[cT].richMarker.setPosition(new google.maps.LatLng(tracks[cT].points[accuratePoint].latitude,tracks[cT].points[accuratePoint].longitude));
@@ -179,17 +179,18 @@ function play() {
 }
 function followRoute() {
 	var percentDone;
+	var scrubBarWidth;
 	currentTime=video.currentTime;
 	if(currentTime>=video.duration) { // If video is done.
 		currentPoint=0;
 		playInt = window.clearInterval(playInt);
 		//var scrubBarWidth=(convertCssPxToInt(document.getElementById('video_container').style.width)-60);
-		var scrubBarWidth=(convertCssPxToInt(document.getElementById('video_container').style.width)-60);
+		scrubBarWidth=(convertCssPxToInt(document.getElementById('video_container').style.width)-60);
 		document.getElementById('played').style.width=scrubBarWidth+"px";
 		document.getElementById('play-pause').style.background = "url('/app/assets/images/play.png') center center no-repeat";
 		video.pause();
 		
-	} else {		
+	} else {
 		percentDone=currentTime/video.duration;
 		if(currentPoint>=tracks[cT].points.length)currentPoint=tracks[cT].points.length-1;
 		pointTime = tracks[cT].points[currentPoint].timestamp;
@@ -203,8 +204,8 @@ function followRoute() {
 			document.getElementById(cT+'-marker').style.oTransform = "rotate("+deg+"deg)";
 			document.getElementById(cT+'-marker').style.msTransform = "rotate("+deg+"deg)";
 		}
-		if(document.getElementById('video_container').style.width=="")document.getElementById('video_container').style.width="250px";
-		var scrubBarWidth=(convertCssPxToInt(document.getElementById('video_container').style.width)-60)*percentDone;
+		if(document.getElementById('video_container').style.width==="")document.getElementById('video_container').style.width="250px";
+		scrubBarWidth=(convertCssPxToInt(document.getElementById('video_container').style.width)-60)*percentDone;
 		document.getElementById('played').style.width=scrubBarWidth+"px";
 		//console.log(scrubBarWidth+" "+video.currentTime+" "+video.duration);
 	}
@@ -242,23 +243,23 @@ function pullUserSidebar(id) {
 	clearMap();
 	document.getElementById('sidebar-videos').innerHTML = "";
 	$("#sidebar-videos").addClass('loading');
-	var oXHR = new XMLHttpRequest();  
-	oXHR.open("GET", "/api/index.php?user_sidebar&id="+id);  
-	oXHR.onreadystatechange = function (oEvent) {  
-		if (oXHR.readyState === 4) {  
-			if (oXHR.status === 200) {  
+	var oXHR = new XMLHttpRequest();
+	oXHR.open("GET", "/api/index.php?user_sidebar&id="+id);
+	oXHR.onreadystatechange = function (oEvent) {
+		if (oXHR.readyState === 4) {
+			if (oXHR.status === 200) {
 				document.getElementById('sidebar-videos').innerHTML = oXHR.responseText;
 				//console.log(oXHR.responseText);
 				$("#sidebar-videos").removeClass('loading');
 				loadScripts(document.getElementById('sidebar-videos'));
 				initSidebar();
 				fillMap();
-			} else {  
-				console.log("Error", oXHR.statusText);  
-			}  
-		}  
-	};  
-	oXHR.send(null);  
+			} else {
+				console.log("Error", oXHR.statusText);
+			}
+		}
+	};
+	oXHR.send(null);
 }
 
 function pullSearchQuery(query) {
@@ -268,9 +269,9 @@ function pullSearchQuery(query) {
 	$("#sidebar-videos").addClass('loading');
 	var re = new RegExp("[A-Z\ ]*"+query+"[A-Z\ ]*","gi");
 	for(var x in friends) {
-		if(friends[x].name.match(re)!=null) results.push(friends[x]);
-		else if(friends[x].first_name.match(re)!=null) results.push(friends[x]);
-		else if(friends[x].last_name.match(re)!=null) results.push(friends[x]);
+		if(friends[x].name.match(re)!==null) results.push(friends[x]);
+		else if(friends[x].first_name.match(re)!==null) results.push(friends[x]);
+		else if(friends[x].last_name.match(re)!==null) results.push(friends[x]);
 	}
 	var html = '<div class="sub-heading">Search Results</div><div id="videos-section">';
 	for(x in results) {
@@ -287,7 +288,7 @@ function pullSearchQuery(query) {
 function showFriends() {
 	$('.delete-button').remove();
 	var html = '<div class="sub-heading">Friends List</div><div id="videos-section">';
-	for(x in friends) {
+	for(var x in friends) {
 		
 		html += '<div class="list-item user" onclick="pullUserSidebar('+friends[x].id+')" data-name="'+friends[x].id+'">';
 		html += '<div class="user-image image"><img src="//graph.facebook.com/'+friends[x].id+'/picture" height="43" alt="" title="'+friends[x].name+'"/></div>';
@@ -302,11 +303,11 @@ function goHome() {
 	clearMap();
 	$("#sidebar-videos").html(null);
 	$("#sidebar-videos").addClass('loading');
-	var oXHR = new XMLHttpRequest();  
-	oXHR.open("GET", "/api/index.php?go_home");  
-	oXHR.onreadystatechange = function (oEvent) {  
-		if (oXHR.readyState === 4) {  
-			if (oXHR.status === 200) {  
+	var oXHR = new XMLHttpRequest();
+	oXHR.open("GET", "/api/index.php?go_home");
+	oXHR.onreadystatechange = function (oEvent) {
+		if (oXHR.readyState === 4) {
+			if (oXHR.status === 200) {
 				// CODE TO BE EXECUTED ON RESPONSE
 				$('#sidebar-videos').html(oXHR.responseText);
 				//console.log(oXHR.responseText);
@@ -314,12 +315,12 @@ function goHome() {
 				loadScripts(document.getElementById('sidebar-videos'));
 				initSidebar();
 				fillMap();
-			} else {  
-				console.log("Error", oXHR.statusText);  
-			}  
-		}  
-	};  
-	oXHR.send(null);  	
+			} else {
+				console.log("Error", oXHR.statusText);
+			}
+		}
+	};
+	oXHR.send(null);
 }
 
 
@@ -329,13 +330,13 @@ function deleteTrack(filename) {
 	$("#sidebar-videos").addClass('loading');
 	closeViewer();
 	clearMap();
-	var fd = new FormData;
+	var fd = new FormData();
 	fd.append('filename',filename);
-	var oXHR = new XMLHttpRequest();  
-	oXHR.open("POST", "/api/index.php?delete_video");  
-	oXHR.onreadystatechange = function (oEvent) {  
-		if (oXHR.readyState === 4) {  
-			if (oXHR.status === 200) {  
+	var oXHR = new XMLHttpRequest();
+	oXHR.open("POST", "/api/index.php?delete_video");
+	oXHR.onreadystatechange = function (oEvent) {
+		if (oXHR.readyState === 4) {
+			if (oXHR.status === 200) {
 				// CODE TO BE EXECUTED ON RESPONSE
 				$('#sidebar-videos').html(oXHR.responseText);
 				$("#sidebar-videos").removeClass('loading');
@@ -343,28 +344,28 @@ function deleteTrack(filename) {
 				initSidebar();
 				fillMap();
 
-			} else {  
-				console.log("Error", oXHR.statusText);  
-			}  
-		}  
-	};  
-	oXHR.send(fd);  	
+			} else {
+				console.log("Error", oXHR.statusText);
+			}
+		}
+	};
+	oXHR.send(fd);
 }
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 Supporting Functions
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 function loadScripts(elt) {
 	var scripts = elt.getElementsByTagName('script');
-	for(x in scripts) {
+	for(var x in scripts) {
 		eval(scripts[x].innerHTML);
 		console.log("Reloaded Tracks array!");
-	}	
+	}
 }
 function clearMap() {
 	closeViewer();
-	for(x in tracks) {
+	for(var x in tracks) {
 		tracks[x].richMarker.setMap(null);
 		tracks[x].currentRoute.setMap(null);
 	}
@@ -377,7 +378,7 @@ function fillMap() {
 	}
 }
 function reFillMap() {
-	for(x in tracks) {
+	for(var x in tracks) {
 		tracks[x].richMarker.setMap(map);
 		tracks[x].currentRoute.setMap(map);
 	}
@@ -392,7 +393,7 @@ PLAYBACK FUNCTIONS
 
 
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 Supporting Functions
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 function convertCssPxToInt(cssPxValueText) {
@@ -421,12 +422,12 @@ function convertCssPxToInt(cssPxValueText) {
     return convertedValue;
 }
 function findPos(obj) {
-	var curleft = curtop = 0;
+	var curleft = 0, curtop = 0;
 	if (obj.offsetParent) {
 		do {
 			curleft += obj.offsetLeft;
 			curtop += obj.offsetTop;
-		} while (obj = obj.offsetParent);
+		} while (obj == obj.offsetParent);
 	}
 	var a={x:curleft,y:curtop};
 	return a;

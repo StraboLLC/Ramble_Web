@@ -20,7 +20,8 @@ View site at [ramble.strabogis.com](http://ramble.strabogis.com)
 * `/mobileapi` => Handles all Mobile Application Requests
 * `/tmp` => Temporary Folder to Handle All Uploads. Files are deleted/moved from this folder when they are done with.
 
-
+### TODO
+* Start refining the Javascript files to make it more object oriented.
 
 
 

@@ -29,14 +29,6 @@ if(isset($_GET['track_points'])&&isset($_COOKIE['auth_token'])) {
 	}
 }
 // ************************************************************************************
-// Get your friends tracks.
-// ************************************************************************************
-else if(isset($_GET['friends_tracks'])) {
-	
-
-
-}
-// ************************************************************************************
 //	Pull try and calculate a location points
 // ************************************************************************************
 else if(isset($_GET['location'])&&isset($_COOKIE['auth_token'])) {
@@ -48,12 +40,7 @@ else if(isset($_GET['location'])&&isset($_COOKIE['auth_token'])) {
 	header("Content-type: application/json; charset=UTF-8");
 	$ch = curl_init('http://https://maps.googleapis.com/maps/api/place/search/json?location=$location&radius=$radius&types=$types&name=$name&key=$key');
 	$output = curl_exec($ch);
-	
-	
-	
-	
-	
-	
+
 }
 // ************************************************************************************
 // Show a sidebar that reflects a particular user's videos.

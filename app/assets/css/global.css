@@ -293,7 +293,7 @@ html,body {
 	display: inline-block;
 	height: 39px;
 	width: 39px;
-	background:url("/app/assets/images/home.png");	
+	background:url("/app/assets/images/logout.png");	
 }
 #ramble-friends-button {
 	display: inline-block;
