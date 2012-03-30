@@ -16,7 +16,6 @@ $(document).ready(function() {
 			map = new google.maps.Map(document.getElementById("map"), myOptions2);
 		});
 	} else {
-		// Initializing some map stuff
 		var myOptions = {
 			center: new google.maps.LatLng(lat,lng),
 			zoom: 15,
@@ -31,5 +30,5 @@ $(document).ready(function() {
 		if(code===13) {
 			document.getElementById('mc-embedded-subscribe-form').submit();
 		}
-	}
+	};
 });

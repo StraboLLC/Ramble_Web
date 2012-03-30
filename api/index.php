@@ -29,20 +29,6 @@ if(isset($_GET['track_points'])&&isset($_COOKIE['auth_token'])) {
 	}
 }
 // ************************************************************************************
-//	Pull try and calculate a location points
-// ************************************************************************************
-else if(isset($_GET['location'])&&isset($_COOKIE['auth_token'])) {
-	$location = $_GET['location'];
-	$radius = $_GET['radius'];
-	$types = isset($_GET['types']) ? $_GET['types'] : "false";
-	$name = isset($_GET['name']) ? $_GET['name'] : "false"; 
-	$googlePlacesApiKey = isset($_GET['key']) ? $_GET['key'] : "false";
-	header("Content-type: application/json; charset=UTF-8");
-	$ch = curl_init('http://https://maps.googleapis.com/maps/api/place/search/json?location=$location&radius=$radius&types=$types&name=$name&key=$key');
-	$output = curl_exec($ch);
-
-}
-// ************************************************************************************
 // Show a sidebar that reflects a particular user's videos.
 // ************************************************************************************
 else if((isset($_GET['user_sidebar'])||isset($_GET['go_home']))&&isset($_COOKIE['auth_token'])) {
