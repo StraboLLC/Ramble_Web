@@ -62,17 +62,17 @@ html,body {
 	width: 150px;
 	margin:0 auto;
 	border-radius: 4px;
-	box-shadow: 2px 2px 10px #ccc inset,
-				-2px -2px 10px #333 inset;
+	box-shadow: 2px 2px 15px rgba(255,255,255,0.5) inset,
+				-2px -2px 15px rgba(51,51,51,0.5) inset;
 }
 .test-login:hover {
-	box-shadow: 2px 2px 10px #333 inset,
-				-2px -2px 10px #ccc inset;
+	box-shadow: 2px 2px 15px rgba(51,51,51,0.5) inset,
+				-2px -2px 15px rgba(255,255,255,0.5) inset;
 
 }
 .test-login:active {
-	box-shadow: 2px 2px 15px #333 inset,
-				-2px -2px 15px #ccc inset;
+	box-shadow: 2px 2px 20px rgba(51,51,51,0.5) inset,
+				-2px -2px 20px rgba(255,255,255,0.5) inset;
 }
 #content {
 	text-align: center;

@@ -338,6 +338,17 @@ html,body {
 	overflow-y: auto;
 	overflow-x: hidden;
 }
+#sidebar_content::-webkit-scrollbar {
+    width: 8px;
+}
+
+#sidebar_content::-webkit-scrollbar-track {
+
+}
+
+#sidebar_content::-webkit-scrollbar-thumb {
+    background:rgba(0,0,0,.5);
+}
 #search {
 	position: fixed;
 	display: block;
