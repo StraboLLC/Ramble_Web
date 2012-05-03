@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"Video",
+				"VideoPlayer"
+			],
+			[
+				"LatLng",
+				"LatLngBounds"
+			],
+			[
 				"scrub",
 				"scrubBarWidth"
 			],
@@ -199,9 +207,25 @@
 	"build_system": "Packages/Ruby/Ruby.sublime-build",
 	"command_palette":
 	{
-		"height": 47.0,
+		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"u",
+				"SFTP: Upload File"
+			],
+			[
+				"uplo",
+				"SFTP: Upload File"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
 			[
 				"remove",
 				"Package Control: Remove Package"
@@ -241,10 +265,6 @@
 			[
 				"gis",
 				"Gist: Open Gist"
-			],
-			[
-				"instal",
-				"Package Control: Install Package"
 			],
 			[
 				"install pack",
@@ -335,7 +355,7 @@
 				"Set Syntax: HTML"
 			]
 		],
-		"width": 602.0
+		"width": 620.0
 	},
 	"console":
 	{
@@ -352,6 +372,21 @@
 	},
 	"file_history":
 	[
+		"/Users/williampotter/github/rambl.it/app/assets/js/ramble-obj.js",
+		"/Users/williampotter/github/rambl.it/app/assets/js/mediaelement.txt",
+		"/Users/williampotter/github/rambl.it/app/assets/css/login.css",
+		"/Users/williampotter/github/rambl.it/app/assets/css/global.css",
+		"/Users/williampotter/github/rambl.it/sftp-config.json",
+		"/Users/williampotter/github/rambl.it/app/assets/js/init.js",
+		"/Users/williampotter/github/rambl.it/app/assets/js/richmarker-compiled.js",
+		"/Users/williampotter/github/rambl.it/app/assets/js/jquery.js",
+		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/williampotter/github/rambl.it/api/code.php",
+		"/Users/williampotter/github/rambl.it/api/index.php",
+		"/Users/williampotter/github/rambl.it/app/assets/js/ramble.js",
+		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/williampotter/github/rambl.it/app/assets/js/modernizr.js",
+		"/Users/williampotter/github/rambl.it/rambl.it.sublime-workspace",
 		"/Library/WebServer/Documents/ramble.strabogis.com/app/assets/js/ramble.js",
 		"/Library/WebServer/Documents/ramble.strabogis.com/app/assets/js/ramble-obj.js",
 		"/Library/WebServer/Documents/ramble.strabogis.com/sftp-config.json",
@@ -360,7 +395,6 @@
 		"/Library/WebServer/Documents/ramble.strabogis.com/api/logout.php",
 		"/Library/WebServer/Documents/ramble.strabogis.com/api/zencoder.php",
 		"/Library/WebServer/Documents/ramble.strabogis.com/db/ramble_db.mwb",
-		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/Volumes/wspotter/bin/checkin.sh",
 		"/Users/williampotter/Desktop/CS312quiz.txt",
 		"/Users/williampotter/Desktop/test.sql",
@@ -465,21 +499,7 @@
 		"/Users/williampotter/Sites/solardecathlon/robots.txt",
 		"/Users/williampotter/Sites/solardecathlon/index.html",
 		"/Library/Webserver/Documents/solardecathlon/index.html",
-		"/Library/Webserver/Documents/solardecathlon/style.css",
-		"/Users/williampotter/Desktop/test.tex",
-		"/Users/williampotter/www.wpotter.me/solardecathlon",
-		"/Volumes/wspotter/Documents/cs312/hw2/assign2_1.rb",
-		"/Volumes/wspotter/Documents/cs312/hw2/linked_list.rb",
-		"/Volumes/wspotter/Documents/cs312/hw2/assign2_2.rb",
-		"/Users/williampotter/github/willpots.github.com/index.html",
-		"/Users/williampotter/Desktop/output.txt",
-		"/Library/Webserver/Documents/www.wpotter.me/www.omegaalpha.net/index.html",
-		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/Prefixr/Default (OSX).sublime-keymap",
-		"/Users/williampotter/.oh-my-zsh/tools/require_tool.sh",
-		"/Users/williampotter/github/test/rubyfile.rb",
-		"/Users/williampotter/.profile",
-		"/Users/williampotter/.bashrc",
-		"/Users/williampotter/Desktop/main.c"
+		"/Library/Webserver/Documents/solardecathlon/style.css"
 	],
 	"find":
 	{
@@ -498,6 +518,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"color_",
+			"tracks\\[[A-Za-z]*\\]",
+			"getTrack",
 			" ",
 			"\n\n",
 			" ",
@@ -584,6 +607,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"this",
 			"\n",
 			"_",
 			"",

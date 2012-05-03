@@ -271,6 +271,9 @@ html,body {
 	margin: 5px;
 	z-index: 20;	
 }
+#sidebar-info a {
+	cursor: pointer;
+}
 #ramble-logo-button:hover,
 #ramble-home-button:hover,
 #ramble-user-button:hover,

@@ -52,11 +52,12 @@ function get_recent_videos($friends) {
 	$time = time();
 	$starttime = $time-(60*60*24*14);
 	global $con;
-	$query = "SELECT * FROM track WHERE date_uploaded BETWEEN '$starttime' AND '$time' AND finished='1' AND (";
+	//$query = "SELECT * FROM track WHERE date_uploaded BETWEEN '$starttime' AND '$time' AND finished='1' AND (";
+	$query = "SELECT * FROM track WHERE finished='1' AND (";
 	foreach($friends as $f) {
 		$query .= "user_id='".$f['id']."' OR ";
 	}	
-	$query .= " user_id='".$_COOKIE['user_id']."') ORDER BY date_uploaded DESC"; 
+	$query .= " user_id='".$_COOKIE['user_id']."') ORDER BY date_uploaded DESC LIMIT 15"; 
 	$result = array();
 	$res=mysql_query($query,$con) or die($query." failed because ".mysql_error());
 	while($row=mysql_fetch_array($res)) {

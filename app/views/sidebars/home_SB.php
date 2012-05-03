@@ -1,6 +1,6 @@
 <div id="sidebar-info">
 	<a id="ramble-logo-button"></a>
-	<a href="?logout" id="ramble-home-button" title="View recent videos by your friends"></a>
+	<a href="?logout" id="ramble-home-button" title="Logout"></a>
 	<a id="ramble-user-button" title="View your profile">
 		<img src="//graph.facebook.com/<?php echo $user_profile['id']; ?>/picture" title="" alt="" height="33" width="33"/>
 	</a>

@@ -3,6 +3,7 @@ var video;
 var map;
 var viewer;
 var track;
+var theResponse;
 
 //var vidName;
 var viewerOn;
@@ -27,9 +28,12 @@ var cameras;
 $(document).ready(function() {
 	goHome();
 	document.oncontextmenu=function(e){return false;};
-	document.getElementById("ramble-logo-button").onclick=function() {goHome();};
-	document.getElementById("ramble-user-button").onclick=function() {pullUserSidebar(id);};
-	document.getElementById("ramble-friends-button").onclick=function() {showFriends();};
+	document.getElementById("ramble-logo-button").onclick=function() {goHome();
+	};
+	document.getElementById("ramble-user-button").onclick=function() {pullUserSidebar(id);
+	};
+	document.getElementById("ramble-friends-button").onclick=function() {showFriends();
+	};
 
 	
 	video=document.getElementById('video');
@@ -77,7 +81,7 @@ function initViewer(vidName) {
 	getTrack(vidName);
 }
 function closeViewer() {
-	video.pause();
+	document.getElementById('video').pause();
 	document.getElementById('play-pause').style.background = "url('/app/assets/images/play.png') center center no-repeat";
 	$('.track').removeClass('selected');
 	document.getElementById('video_container').style.display="none";
@@ -98,7 +102,7 @@ function initSidebar() {
 }
 function plotTrack(idx) {
 	// Set Points Array
-	tracks[idx].points=tracks[idx].track.track.points;
+	tracks[idx].points=tracks[idx].track.points;
 	tracks[idx].routeCoords = [];
 	for(var x in tracks[idx].points) {
 		tracks[idx].routeCoords.push(new google.maps.LatLng(tracks[idx].points[x].latitude,tracks[idx].points[x].longitude));
@@ -149,9 +153,11 @@ function getTrack(videoName) {
 			this.style.background = "url('/app/assets/images/play.png') center center no-repeat";
 		}
 	};
-	$('#scrub-bar').click(function(event) {
+	document.getElementById('scrub-bar').onclick = function(event) {
 		var pos = findPos(this);
-		var a = (event.pageX-pos.x);
+		console.log(pos.x);
+		var a = (event.clientX-pos.x);
+		console.log(event.clientX);
 		document.getElementById('played').style.width=a+"px";
 		var percentDone = a/(convertCssPxToInt(document.getElementById('video_container').style.width)-60);
 		video.currentTime=percentDone*video.duration;
@@ -164,9 +170,9 @@ function getTrack(videoName) {
 			if(a<l){l=a;accuratePoint=x;}
 		}
 
-		this.currentTrack.richMarker.setPosition(new google.maps.LatLng(tracks[cT].points[accuratePoint].latitude,tracks[cT].points[accuratePoint].longitude));
+		tracks[cT].richMarker.setPosition(new google.maps.LatLng(tracks[cT].points[accuratePoint].latitude,tracks[cT].points[accuratePoint].longitude));
 		currentPoint=accuratePoint;
-	});
+	};
 	document.getElementById('video_container').style.display="block";
 
 
@@ -174,7 +180,7 @@ function getTrack(videoName) {
 
 
 function play() {
-	video.play();
+	document.getElementById('video').play();
 	playInt = window.setInterval(followRoute,10);
 }
 function followRoute() {
@@ -220,7 +226,7 @@ function resetTrack(aTrack) {
 	document.getElementById(cT+'-marker').style.msTransform = "rotate("+deg+"deg)";
 }
 function pause() {
-	video.pause();
+	document.getElementById('video').pause();
 	playInt = window.clearInterval(playInt);
 }
 function reset() {
@@ -230,11 +236,7 @@ function reset() {
 /* Sidebar Stuff */
 
 
-/************************************************************************************************
-
-TRACK MANAGEMENT FUNCTIONS
-
-************************************************************************************************/
+/** TRACK MANAGEMENT FUNCTIONS **/
 function removeMenus() {
 	$('.delete-button').remove();
 }
@@ -248,10 +250,8 @@ function pullUserSidebar(id) {
 	oXHR.onreadystatechange = function (oEvent) {
 		if (oXHR.readyState === 4) {
 			if (oXHR.status === 200) {
-				document.getElementById('sidebar-videos').innerHTML = oXHR.responseText;
-				//console.log(oXHR.responseText);
+				parseResponse(oXHR.responseText);
 				$("#sidebar-videos").removeClass('loading');
-				loadScripts(document.getElementById('sidebar-videos'));
 				initSidebar();
 				fillMap();
 			} else {
@@ -308,11 +308,8 @@ function goHome() {
 	oXHR.onreadystatechange = function (oEvent) {
 		if (oXHR.readyState === 4) {
 			if (oXHR.status === 200) {
-				// CODE TO BE EXECUTED ON RESPONSE
-				$('#sidebar-videos').html(oXHR.responseText);
-				//console.log(oXHR.responseText);
+				parseResponse(oXHR.responseText);
 				$("#sidebar-videos").removeClass('loading');
-				loadScripts(document.getElementById('sidebar-videos'));
 				initSidebar();
 				fillMap();
 			} else {
@@ -337,10 +334,8 @@ function deleteTrack(filename) {
 	oXHR.onreadystatechange = function (oEvent) {
 		if (oXHR.readyState === 4) {
 			if (oXHR.status === 200) {
-				// CODE TO BE EXECUTED ON RESPONSE
-				$('#sidebar-videos').html(oXHR.responseText);
+				parseResponse(oXHR.responseText);
 				$("#sidebar-videos").removeClass('loading');
-				loadScripts(document.getElementById('sidebar-videos'));
 				initSidebar();
 				fillMap();
 
@@ -352,15 +347,10 @@ function deleteTrack(filename) {
 	oXHR.send(fd);
 }
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-Supporting Functions
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
 function loadScripts(elt) {
 	var scripts = elt.getElementsByTagName('script');
 	for(var x in scripts) {
 		eval(scripts[x].innerHTML);
-		console.log("Reloaded Tracks array!");
 	}
 }
 function clearMap() {
@@ -383,19 +373,91 @@ function reFillMap() {
 		tracks[x].currentRoute.setMap(map);
 	}
 }
+function parseResponse(response) {
+	response = JSON.parse(response);
+	theResponse = response;
+	var a;
+	if(response.errors==="false") {
+		tracks=response.tracks;
+		friends=response.friends;
+		var heading = document.createElement("h3");
+
+		if(response.is_user===true) {
+			heading.setAttribute('class','sub-heading person-sub-heading');
+			heading.innerHTML= '<img class="right" src="//graph.facebook.com/'+response.user_id+'/picture" alt="'+response.name+'" title="'+response.name+'" /><div class="person-name">'+response.name+'</div><div class="clear"></div>';
+		} else {
+			heading.setAttribute('class','sub-heading');
+			heading.innerHTML= 'Recent Videos';
+		}
+		var videoSection = document.createElement('div');
+		videoSection.setAttribute('id','videos-section');
+		videoSection.setAttribute('class','section');
+		var v, img, tname, user, tvid;
+
+		for(var i in response.tracks) {
+			v = document.createElement('div');
+			v.setAttribute('class', 'list-item track');
+			v.setAttribute('data-name', response.tracks[i].track.filename);
+			v.setAttribute('data-index', i);
+			if(response.tracks[i].user_id===id) {
+
+				var del = document.createElement('div');
+				del.setAttribute('class','delete-button');
+				del.innerHTML="Delete Track";
+				del.setAttribute('id','delete-'+response.tracks[i].filename);
+				del.setAttribute('data-delete',response.tracks[i].filename);
+				document.body.appendChild(del);
+				v.oncontextmenu=function(e) {
+					console.log("Context Menu");
+					var ab = document.getElementById('delete-'+this.getAttribute('data-name'));
+					ab.setAttribute('class','delete-button showing');
+					ab.style.top=e.y+"px";
+					ab.style.left=e.x+"px";
+					ab.onclick=function() {
+						ab.setAttribute('class','delete-button');
+						deleteTrack(ab.getAttribute('data-delete'));
+						console.log("Deleting "+ab.getAttribute('data-delete'));
+					};
+					document.onclick=function(){
+						buttons = $('.delete-button.showing');
+						for(var x in buttons) {
+							buttons[x].setAttribute('class','delete-button');
+						}
+						document.onclick=null;
+					};
+					ab.onmouseout=function() {
+						ab.setAttribute('class','delete-button');
+					};
+					return false;
+				};
+			} else {
+				v.oncontextmenu=function(e) {return false;};
+			}
+
+			img = document.createElement('div');
+			img.setAttribute('class', 'track-picture image');
+			img.innerHTML='<img src="//s3.amazonaws.com/ramble/'+response.tracks[i].filename+'/'+response.tracks[i].filename+'.png" height="48" width="36"/>';
+			v.appendChild(img);
+			tname = document.createElement('div');
+			tname.setAttribute('class', 'track-name name');
+			tname.innerHTML=response.tracks[i].name;
+			v.appendChild(tname);
+			user = document.createElement('div');
+			user.setAttribute('class', 'track-author user');
+			user.setAttribute('data-user-id', response.tracks[i].user_id);
+			user.innerHTML=response.tracks[i].user_name;
+			v.appendChild(user);
+			videoSection.appendChild(v);
+		}
+		document.getElementById('sidebar-videos').appendChild(heading);
+		document.getElementById('sidebar-videos').appendChild(videoSection);
+	}
+}
 
 
-/************************************************************************************************
+/** PLAYBACK FUNCTIONS **/
+/* Supporting Functions */
 
-PLAYBACK FUNCTIONS
-
-************************************************************************************************/
-
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-Supporting Functions
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 function convertCssPxToInt(cssPxValueText) {
 
     // Set valid characters for numeric number.
@@ -413,7 +475,7 @@ function convertCssPxToInt(cssPxValueText) {
             // Start conversion if at least one character is valid.
             if (i > 0) {
                 // Convert validnumbers to int and return result.
-                convertedValue = parseInt(cssPxValueText.substring(0, i));
+                convertedValue = parseInt(cssPxValueText.substring(0, i),10);
                 return convertedValue;
             }
         }
@@ -426,9 +488,14 @@ function findPos(obj) {
 	if (obj.offsetParent) {
 		do {
 			curleft += obj.offsetLeft;
+			curleft += obj.offsetParent.offsetLeft;
+			curleft += obj.offsetParent.offsetParent.offsetLeft;
+			curleft += obj.offsetParent.offsetParent.offsetParent.offsetLeft;
 			curtop += obj.offsetTop;
+			curtop += obj.offsetParent.offsetTop;
+			curtop += obj.offsetParent.offsetParent.offsetTop;
 		} while (obj == obj.offsetParent);
 	}
 	var a={x:curleft,y:curtop};
 	return a;
-}
+};

@@ -1,0 +1,42 @@
+{
+   "track":{
+      "captureDate":"1332953967",
+      "compass":"mode",
+      "taggedPeople":[
+         ""
+      ],
+      "title":"caviar and bananas",
+      "tracktype":"video",
+      "points":[
+         {
+            "longitude":"-79.936048",
+            "latitude":"32.783744",
+            "accuracy":"65.000000",
+            "heading":"2.67",
+            "timestamp":"0.000072"
+         },
+         {
+            "longitude":"-79.936048",
+            "latitude":"32.783744",
+            "accuracy":"65.000000",
+            "heading":"3.67",
+            "timestamp":"0.028197"
+         },
+         {
+            "longitude":"-79.936048",
+            "latitude":"32.783744",
+            "accuracy":"65.000000",
+            "heading":"4.67",
+            "timestamp":"0.319980"
+         }
+      ],
+      "deviceName":"Worth’s iPhone",
+      "taggedPlaces":[
+         ""
+      ],
+      "uploadDate":"0",
+      "softwareVersion":"5.1",
+      "deviceModel":"iPhone",
+      "orientation":"vertical"
+   }
+}

@@ -31,13 +31,11 @@ if(isset($_GET['track_points'])&&isset($_COOKIE['auth_token'])) {
 // ************************************************************************************
 // Show a sidebar that reflects a particular user's videos.
 // ************************************************************************************
-//else if((isset($_GET['user_sidebar'])||isset($_GET['go_home']))&&isset($_COOKIE['auth_token'])) {
-else if((isset($_GET['user_sidebar'])||isset($_GET['go_home']))) {
+else if((isset($_GET['user_sidebar'])||isset($_GET['go_home']))&&isset($_COOKIE['auth_token'])) {
+//else if((isset($_GET['user_sidebar'])||isset($_GET['go_home']))) {
 	if(isset($_GET['id'])&&isset($_GET['user_sidebar'])) { 
 		$u = $facebook->api('/'.$_GET['id']); 
 		$videos = get_user_videos($_GET['id']); 
-		$user_friends = $facebook->api('/me/friends');
-		$user_ramble_friends = get_friends($user_friends);
 	} else if(isset($_GET['go_home'])) {
 		$user_friends = $facebook->api('/me/friends');
 		$user_ramble_friends = get_friends($user_friends);
@@ -70,7 +68,6 @@ else if((isset($_GET['user_sidebar'])||isset($_GET['go_home']))) {
 
 	$response->friends=array();
 	foreach( $user_ramble_friends as $u) { 
-		$friend = (object)null;
 		$friend->id=$u['rInfo']['fb_id'];
 		$friend->name=$u['name'];
 		$friend->first_name=$u['rInfo']['first_name'];
@@ -78,13 +75,12 @@ else if((isset($_GET['user_sidebar'])||isset($_GET['go_home']))) {
 		$friend->tracks=array();
 		$user_videos = get_user_videos($u['rInfo']['fb_id']); 
 		foreach( $user_videos as $v) {
-			$new_track=(object)null;
 			$new_track->filename=$v['filename'];
 			$new_track->name=$v['name'];
 			$new_track->user_id=$v['user_id'];
 			array_push($friend->tracks,$new_track);
 		}
-		$response->friends[]=$friend;
+		array_push($response->friends,$friend);
 	}
 	$response->errors="false";
 	echo json_encode($response);
