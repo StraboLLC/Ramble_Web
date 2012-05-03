@@ -101,7 +101,7 @@ else if(isset($_GET['delete_video'])&&isset($_COOKIE['auth_token'])) {
 
 			$response->is_user=false;
 			$response->tracks=array();
-			foreach( $videos as $v) { 
+			foreach( $recent_videos as $v) { 
 				$t = get_track_by_name($v['filename']);
 				$ch = curl_init("http://s3.amazonaws.com/ramble/".$v['filename']."/".$v['filename'].".json");
 				curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
@@ -118,6 +118,7 @@ else if(isset($_GET['delete_video'])&&isset($_COOKIE['auth_token'])) {
 
 			$response->friends=array();
 			foreach( $user_ramble_friends as $u) { 
+				$friend = (object)null;
 				$friend->id=$u['rInfo']['fb_id'];
 				$friend->name=$u['name'];
 				$friend->first_name=$u['rInfo']['first_name'];
@@ -125,6 +126,7 @@ else if(isset($_GET['delete_video'])&&isset($_COOKIE['auth_token'])) {
 				$friend->tracks=array();
 				$user_videos = get_user_videos($u['rInfo']['fb_id']); 
 				foreach( $user_videos as $v) {
+					$new_track=(object)null;
 					$new_track->filename=$v['filename'];
 					$new_track->name=$v['name'];
 					$new_track->user_id=$v['user_id'];

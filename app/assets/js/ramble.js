@@ -375,6 +375,7 @@ function reFillMap() {
 }
 function parseResponse(response) {
 	response = JSON.parse(response);
+	console.log(response);
 	theResponse = response;
 	var a;
 	if(response.errors==="false") {
@@ -397,7 +398,7 @@ function parseResponse(response) {
 		for(var i in response.tracks) {
 			v = document.createElement('div');
 			v.setAttribute('class', 'list-item track');
-			v.setAttribute('data-name', response.tracks[i].track.filename);
+			v.setAttribute('data-name', response.tracks[i].filename);
 			v.setAttribute('data-index', i);
 			if(response.tracks[i].user_id===id) {
 
@@ -419,10 +420,7 @@ function parseResponse(response) {
 						console.log("Deleting "+ab.getAttribute('data-delete'));
 					};
 					document.onclick=function(){
-						buttons = $('.delete-button.showing');
-						for(var x in buttons) {
-							buttons[x].setAttribute('class','delete-button');
-						}
+						$('.delete-button').removeClass('showing');
 						document.onclick=null;
 					};
 					ab.onmouseout=function() {
