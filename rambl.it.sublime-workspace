@@ -207,9 +207,13 @@
 	"build_system": "Packages/Ruby/Ruby.sublime-build",
 	"command_palette":
 	{
-		"height": 392.0,
+		"height": 375.0,
 		"selected_items":
 		[
+			[
+				"git",
+				"Git: Pull"
+			],
 			[
 				"u",
 				"SFTP: Upload File"
@@ -355,7 +359,7 @@
 				"Set Syntax: HTML"
 			]
 		],
-		"width": 620.0
+		"width": 435.0
 	},
 	"console":
 	{
@@ -372,6 +376,8 @@
 	},
 	"file_history":
 	[
+		"/Users/williampotter/github/rambl.it/rambl.it.sublime-workspace",
+		"/Users/williampotter/github/rambl.it/rambl.it.sublime-project",
 		"/Users/williampotter/github/rambl.it/app/assets/js/ramble-obj.js",
 		"/Users/williampotter/github/rambl.it/app/assets/js/mediaelement.txt",
 		"/Users/williampotter/github/rambl.it/app/assets/css/login.css",
@@ -386,7 +392,6 @@
 		"/Users/williampotter/github/rambl.it/app/assets/js/ramble.js",
 		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
 		"/Users/williampotter/github/rambl.it/app/assets/js/modernizr.js",
-		"/Users/williampotter/github/rambl.it/rambl.it.sublime-workspace",
 		"/Library/WebServer/Documents/ramble.strabogis.com/app/assets/js/ramble.js",
 		"/Library/WebServer/Documents/ramble.strabogis.com/app/assets/js/ramble-obj.js",
 		"/Library/WebServer/Documents/ramble.strabogis.com/sftp-config.json",
@@ -498,8 +503,7 @@
 		"/Users/williampotter/Sites/solardecathlon/humans.txt",
 		"/Users/williampotter/Sites/solardecathlon/robots.txt",
 		"/Users/williampotter/Sites/solardecathlon/index.html",
-		"/Library/Webserver/Documents/solardecathlon/index.html",
-		"/Library/Webserver/Documents/solardecathlon/style.css"
+		"/Library/Webserver/Documents/solardecathlon/index.html"
 	],
 	"find":
 	{
