@@ -151,6 +151,28 @@ html,body {
 	border-radius: 10px;
 	overflow: hidden;
 }
+#video_container.landscape {
+	height:272px;
+	width:346px;
+}
+#video_container.landscape #video {
+	-webkit-transform:scale(1.27205882) rotate(-90deg);
+	-moz-transform:scale(1.27205882) rotate(-90deg);
+	-o-transform:scale(1.27205882) rotate(-90deg);
+	-ms-transform:scale(1.27205882) rotate(-90deg);
+	transform:scale(1.27205882) rotate(-90deg);
+	height:inherit;
+	width: 100%;	
+}
+#video {
+	margin-top: -3px;
+	position: relative;
+	z-index: 12;
+	height:inherit;
+	width: 100%;
+	border-radius: 7px;
+}
+
 #video-top-bar {
 	width: inherit;
 	position: relative;
@@ -250,14 +272,6 @@ html,body {
 #loaded {
 	position: absolute;
 	z-index: 19;
-}
-#video {
-	margin-top: -3px;
-	position: relative;
-	z-index: 12;
-	height:inherit;
-	width: 100%;
-	border-radius: 7px;
 }
 
 
