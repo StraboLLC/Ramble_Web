@@ -12,14 +12,8 @@
     <!-- We get the name of the app out of the information fetched -->
     <title><?php echo $siteTitle; ?></title>
     
-    <link rel="shortcut icon" href="app/assets/images/favicon.ico">	
-	<link href="//fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="app/assets/css/jquery-ui-1.8.17.custom.css" type="text/css" />
-	<?php if($ramble_user) { ?>
-	<link rel="stylesheet" href="app/assets/css/global.css" type="text/css" />
-	<?php } else { ?>
-	<link rel="stylesheet" href="app/assets/css/login.css" type="text/css" />
-	<?php } ?>
+    <link rel="shortcut icon" href="/build/images/favicon.ico">	
+	<link rel="stylesheet" href="/build/style.css" type="text/css" />
 
     <!-- <link rel="stylesheet" href="stylesheets/screen.css" media="screen"> -->
 	<meta name="author" content="Strabo"/>
@@ -60,7 +54,7 @@
 					<div id="play-pause"></div>
 					<!-- <div id="volume"></div> -->
 					<div id="scrub-bar">
-						<div id="loaded"></div>
+						<!-- <div id="loaded"></div>-->
 						<div id="played"></div>
 					</div>
 				</div>
@@ -70,15 +64,11 @@
 			<div id="map"></div>
 		</div>
 		<!-- Defer Javascript Parsing until after Page Body Loads -->
-		<script type="text/javascript" src="app/assets/js/jquery.js"></script>
 		<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
-	
-		<script type="text/javascript" src="app/assets/js/richmarker-compiled.js"></script>
-		<script type="text/javascript" src="app/assets/js/jquery-ui-1.8.17.custom.min.js"></script>
 		<?php if($ramble_user) { ?>
-		<script type="text/javascript" src="app/assets/js/ramble.js" defer="defer"></script>
+		<script type="text/javascript" src="/build/app.js" defer="defer"></script>
 		<?php } else { ?>
-		<script type="text/javascript" src="app/assets/js/init.js" defer="defer"></script>
+		<script type="text/javascript" src="/build/login.js" defer="defer"></script>
 		<?php } ?>
 		<?php if($ramble_user==true) { ?>
 			<script>

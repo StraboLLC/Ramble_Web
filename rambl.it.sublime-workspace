@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"jque",
+				"jquery-ui"
+			],
+			[
 				"Video",
 				"VideoPlayer"
 			],
@@ -207,9 +211,49 @@
 	"build_system": "Packages/Ruby/Ruby.sublime-build",
 	"command_palette":
 	{
-		"height": 375.0,
+		"height": 182.0,
 		"selected_items":
 		[
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"for",
+				"Format: Javascript"
+			],
+			[
+				"fo",
+				"Format: Php"
+			],
+			[
+				"form",
+				"Format: Php"
+			],
+			[
+				"format",
+				"Format: Javascript"
+			],
+			[
+				"packa",
+				"Package Control: Discover Packages"
+			],
+			[
+				"insa",
+				"Package Control: Install Package"
+			],
+			[
+				"install pa",
+				"Package Control: Install Package"
+			],
+			[
+				"lint",
+				"JSLint: Run JSLint"
+			],
+			[
+				"install pack",
+				"Package Control: Install Package"
+			],
 			[
 				"git",
 				"Git: Pull"
@@ -221,10 +265,6 @@
 			[
 				"uplo",
 				"SFTP: Upload File"
-			],
-			[
-				"instal",
-				"Package Control: Install Package"
 			],
 			[
 				"install ",
@@ -271,19 +311,7 @@
 				"Gist: Open Gist"
 			],
 			[
-				"install pack",
-				"Package Control: Install Package"
-			],
-			[
-				"packa",
-				"Package Control: Remove Package"
-			],
-			[
 				"install p",
-				"Package Control: Install Package"
-			],
-			[
-				"install pa",
 				"Package Control: Install Package"
 			],
 			[
@@ -359,7 +387,7 @@
 				"Set Syntax: HTML"
 			]
 		],
-		"width": 435.0
+		"width": 579.0
 	},
 	"console":
 	{
@@ -376,12 +404,24 @@
 	},
 	"file_history":
 	[
+		"/Users/williampotter/github/rambl.it/client/css/login.css",
+		"/Users/williampotter/github/rambl.it/client/css/global.css",
+		"/Users/williampotter/github/rambl.it/app/views/home.php",
+		"/Users/williampotter/github/rambl.it/client/js/ramble.js",
+		"/Users/williampotter/github/rambl.it/make",
+		"/Users/williampotter/github/rambl.it/app/assets/js/ramble.js",
+		"/Users/williampotter/github/rambl.it/app/assets/css/global.css",
+		"/Users/williampotter/github/rambl.it/client/css/images/ui-bg_glass_75_e6e6e6_1x400.png",
+		"/Users/williampotter/github/rambl.it/.htaccess",
+		"/Users/williampotter/github/rambl.it/build.sh",
+		"/Users/williampotter/github/rambl.it/mobileapi/v1/upload.php",
+		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/SFTP/Default (OSX).sublime-keymap",
+		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/SFTP/SFTP.sublime-settings",
 		"/Users/williampotter/github/rambl.it/rambl.it.sublime-workspace",
 		"/Users/williampotter/github/rambl.it/rambl.it.sublime-project",
 		"/Users/williampotter/github/rambl.it/app/assets/js/ramble-obj.js",
 		"/Users/williampotter/github/rambl.it/app/assets/js/mediaelement.txt",
 		"/Users/williampotter/github/rambl.it/app/assets/css/login.css",
-		"/Users/williampotter/github/rambl.it/app/assets/css/global.css",
 		"/Users/williampotter/github/rambl.it/sftp-config.json",
 		"/Users/williampotter/github/rambl.it/app/assets/js/init.js",
 		"/Users/williampotter/github/rambl.it/app/assets/js/richmarker-compiled.js",
@@ -389,7 +429,6 @@
 		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/Users/williampotter/github/rambl.it/api/code.php",
 		"/Users/williampotter/github/rambl.it/api/index.php",
-		"/Users/williampotter/github/rambl.it/app/assets/js/ramble.js",
 		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
 		"/Users/williampotter/github/rambl.it/app/assets/js/modernizr.js",
 		"/Library/WebServer/Documents/ramble.strabogis.com/app/assets/js/ramble.js",
@@ -492,18 +531,7 @@
 		"/Users/williampotter/Downloads/hw2/TEST1/one-sphere.xml",
 		"/Users/williampotter/Downloads/hw2/ray/shader/Shader.java",
 		"/Users/williampotter/Desktop/TEST/test/test_binary_search.rb",
-		"/Users/williampotter/Desktop/TEST/lib/binary_search.rb",
-		"/Users/williampotter/Desktop/TEST/test/test_final_binary_search.rb",
-		"/Users/williampotter/Desktop/TEST/lib/test_binary_search.rb",
-		"/Users/williampotter/Desktop/TEST/binary_search.rb",
-		"/Users/williampotter/Downloads/wpotter.txt",
-		"/Users/williampotter/Downloads/hw2/ray/RayTracer.java",
-		"/Users/williampotter/Desktop/OA plans",
-		"/Users/williampotter/Desktop/doc.tex",
-		"/Users/williampotter/Sites/solardecathlon/humans.txt",
-		"/Users/williampotter/Sites/solardecathlon/robots.txt",
-		"/Users/williampotter/Sites/solardecathlon/index.html",
-		"/Library/Webserver/Documents/solardecathlon/index.html"
+		"/Users/williampotter/Desktop/TEST/lib/binary_search.rb"
 	],
 	"find":
 	{
@@ -519,9 +547,20 @@
 	},
 	"find_state":
 	{
-		"case_sensitive": false,
+		"case_sensitive": true,
 		"find_history":
 		[
+			"#ramble-logo",
+			"doc",
+			"app/assets/",
+			"fillMap",
+			"getTrack",
+			"cT",
+			"initViewer",
+			"getTrack",
+			"getTrack\ngetTrack",
+			"getTrack",
+			"video",
 			"color_",
 			"tracks\\[[A-Za-z]*\\]",
 			"getTrack",
@@ -611,6 +650,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"/client/",
 			"this",
 			"\n",
 			"_",
@@ -705,7 +745,7 @@
 	"menu_visible": true,
 	"output.sftp":
 	{
-		"height": 94.0
+		"height": 119.0
 	},
 	"replace":
 	{
