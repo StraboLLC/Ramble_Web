@@ -12,19 +12,19 @@ def js():
 	print "Generating Login JS File" 
 
 	# Login Screen
-	os.system("uglifyjs client/js/modernizr.js | cat >> build/login.js") 
-	os.system("uglifyjs client/js/jquery.js | cat >> build/login.js") 
-	os.system("uglifyjs client/js/jquery-ui.js | cat >> build/login.js") 
-	os.system("uglifyjs client/js/richmarker-compiled.js | cat >> build/login.js") 
+	os.system("uglifyjs client/js/libs/modernizr.js | cat >> build/login.js") 
+	os.system("uglifyjs client/js/libs/jquery.js | cat >> build/login.js") 
+	os.system("uglifyjs client/js/libs/jquery-ui.js | cat >> build/login.js") 
+	os.system("uglifyjs client/js/libs/richmarker-compiled.js | cat >> build/login.js") 
 	os.system("uglifyjs client/js/init.js | cat >> build/login.js") 
 
 	print "Generating Main App JS File" 
 
 	# Main App File
-	os.system("uglifyjs client/js/modernizr.js | cat >> build/login.js") 
-	os.system("uglifyjs client/js/jquery.js | cat >> build/app.js") 
-	os.system("uglifyjs client/js/jquery-ui.js | cat >> build/app.js")
-	os.system("uglifyjs client/js/richmarker-compiled.js | cat >> build/app.js") 
+	os.system("uglifyjs client/js/libs/modernizr.js | cat >> build/login.js") 
+	os.system("uglifyjs client/js/libs/jquery.js | cat >> build/app.js") 
+	os.system("uglifyjs client/js/libs/jquery-ui.js | cat >> build/app.js")
+	os.system("uglifyjs client/js/libs/richmarker-compiled.js | cat >> build/app.js") 
 
 	#os.system("uglifyjs client/js/ramble.js | cat >> build/app.js")
 	os.system("cat client/js/ramble.js >> build/app.js")	

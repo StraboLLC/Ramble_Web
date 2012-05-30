@@ -52,19 +52,23 @@ var tracks;
  */
 var friends;
 
+
+/**
+ * Initialize Dom Listeners For UI Elements
+ */
 function initListeners() {
 	document.oncontextmenu = function(e) {
 		return false;
 	};
-	document.getElementById("ramble-logo-button").onclick = function() {
+	$("ramble-logo-button").click(function(e) {
 		goHome();
-	};
-	document.getElementById("ramble-user-button").onclick = function() {
+	});
+	$("ramble-user-button").click(function(e) {
 		pullUserSidebar(id);
-	};
-	document.getElementById("ramble-friends-button").onclick = function() {
+	});
+	$("ramble-friends-button").click(function(e) {
 		showFriends();
-	};
+	});
 	$('#video_container').draggable({
 		containment: "parent"
 	});
