@@ -357,7 +357,10 @@ function showFriends() {
 	html += '</div>';
 	$('#sidebar-videos').html(html);
 }
-
+/**
+ * Pulls the Home sidebar with the most recent videos
+ *
+ */
 function goHome() {
 	$('.delete-button').remove();
 	clearMap();
@@ -379,8 +382,11 @@ function goHome() {
 	};
 	ajax.send(null);
 }
-
-
+/**
+ * Sends a request to the server to delete a track and then pulls a new, updated sidebar.
+ * TODO: Optimize to avoid the need to wait for a response.
+ *
+ */
 function deleteTrack(filename) {
 	$('.delete-button').remove();
 	$("#sidebar-videos").html(null);
@@ -407,13 +413,17 @@ function deleteTrack(filename) {
 	ajax.send(fd);
 }
 
-function loadScripts(elt) {
-	var scripts = elt.getElementsByTagName('script');
-	for (var x in scripts) {
-		eval(scripts[x].innerHTML);
-	}
-}
+// function loadScripts(elt) {
+// 	var scripts = elt.getElementsByTagName('script');
+// 	for (var x in scripts) {
+// 		eval(scripts[x].innerHTML);
+// 	}
+// }
 
+/**
+ * Removes all markers and routes from the map. It pulls the markers and routes from
+ * the tracks array.
+ */
 function clearMap() {
 	closeViewer();
 	for (var x in tracks) {
@@ -421,7 +431,10 @@ function clearMap() {
 		tracks[x].currentRoute.setMap(null);
 	}
 }
-
+/**
+ * Draw all tracks in the tracks array on the map. Additionally, this sets the frames the map according to the 
+ * tracks that are visible on the map.
+ */
 function fillMap() {
 	map.setZoom(15);
 	latLngBounds = new google.maps.LatLngBounds();
@@ -429,21 +442,29 @@ function fillMap() {
 		plotTrack(x);
 	}
 }
-
+/**
+ * Simply shows all tracks in the tracks array (markers and routes).
+ */ 
 function reFillMap() {
 	for (var x in tracks) {
 		tracks[x].richMarker.setMap(map);
 		tracks[x].currentRoute.setMap(map);
 	}
 }
-
+/**
+ * Parses the response that comes from the server when requesting track and friend information.
+ * @param {Object} response A response from the server
+ */ 
 function parseResponse(response) {
 	response = JSON.parse(response);
-	console.log(response);
 	var a;
 	if (response.errors === "false") {
-		tracks = response.tracks;
-		friends = response.friends;
+		for(var x in response.tracks) {
+			tracks.push(new Track(response.tracks[x]));
+		}
+		for(x in response.friends) {
+			friends.push(new Friend(response.friends[x]));
+		}
 		var heading = document.createElement("h3");
 
 		if (response.is_user === true) {
@@ -512,19 +533,18 @@ function parseResponse(response) {
 			v.appendChild(user);
 			videoSection.appendChild(v);
 		}
-		document.getElementById('sidebar-videos').appendChild(heading);
-		document.getElementById('sidebar-videos').appendChild(videoSection);
+		$('#sidebar-videos')[0].appendChild(heading);
+		$('#sidebar-videos')[0].appendChild(videoSection);
 	}
 }
-/*****
-
-MAIN METHOD
-
-******/
+/**
+ * Main Method
+ * 
+ */
 $(document).ready(function() {
 	goHome();
 	initListeners();
-	video = document.getElementById('video');
+	video = $('#video')[0];
 	if (video.addEventListener) {
 		video.addEventListener("timeupdate", followRoute, false);
 	} else if (vid.attachEvent) {
@@ -533,7 +553,7 @@ $(document).ready(function() {
 	// Default Lat/Lng Coordinates
 	var lat = 44.00858496025453,
 		lng = 286.8300942840576;
-	map = new google.maps.Map(document.getElementById("map"), {
+	map = new google.maps.Map($("#map")[0], {
 		center: new google.maps.LatLng(lat, lng),
 		zoom: 15,
 		overviewMapControl: false,

@@ -1,2 +1,11 @@
-.DS_Store
-images/.DS_Store
+#Mac Junk
+*.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+
+#Project Files
+build/*
+doc/*
+tmp/*

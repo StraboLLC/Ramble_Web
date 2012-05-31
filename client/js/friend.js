@@ -1,17 +1,17 @@
 /**
- * Creates a new instance of a Friend. Doesn't do much now other than old information in a dedicated object.
+ * Creates a new instance of a {@link Friend}. Doesn't do much now other than old information in a dedicated object.
  * @constructor
  *
  */
 function Friend(obj) {
 	/**
 	 * First Name
-	 * @type DOMString
+	 * @type String
 	 */
 	this.first_name = obj.first_name;
 	/**
 	 * Last Name
-	 * @type DOMString
+	 * @type String
 	 */
 	this.last_name = obj.last_name;
 	/**
@@ -21,11 +21,11 @@ function Friend(obj) {
 	this.id = obj.id;
 	/**
 	 * Full Name of the User
-	 * @type DOMString
+	 * @type String
 	 */
 	this.name = obj.name;
 	/**
-	 * List of tracks that the user has uploaded.
+	 * List of {@link Track} objects that the user has uploaded.
 	 * @type Array
 	 */
 	this.tracks = obj.tracks;
