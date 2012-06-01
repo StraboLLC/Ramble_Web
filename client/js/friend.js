@@ -1,9 +1,17 @@
 /**
+ * Ramble Web Application
+ * @author Will Potter <will@strabogis.com>
+ * @license ©2012 Strabo, LLC. All Rights Reserved.
+ */
+
+
+
+/**
  * Creates a new instance of a {@link Friend}. Doesn't do much now other than old information in a dedicated object.
  * @constructor
  *
  */
-function Friend(obj) {
+function RambleFriend(obj) {
 	/**
 	 * First Name
 	 * @type String

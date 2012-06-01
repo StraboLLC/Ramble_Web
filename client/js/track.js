@@ -1,15 +1,28 @@
 /**
+ * Ramble Web Application
+ * @author Will Potter <will@strabogis.com>
+ * @license ©2012 Strabo, LLC. All Rights Reserved.
+ */
+
+
+
+
+/**
  * Creates a new Track
  * @param {Object} Response from the server
  * @constructor
  */
-
-function Track(obj) {
+function RambleTrack(obj,map) {
+	/**
+	 * A reference to the {@link RambleMap} where this track should be drawn.
+	 * @type RambleMap
+	 */
+	 this.map = map;
 	/**
 	 * A reference to the route of this track that displays on the map.
-	 * @type google.maps.Map
+	 * @type google.maps.PolyLine
 	 */
-	this.currentRoute = obj.currentRoute;
+	this.route = null;
 	/**
 	 * The unique file identifier for the video.
 	 * @type string
@@ -24,17 +37,17 @@ function Track(obj) {
 	 * An array of all points in the track sorted by video time
 	 * @type Array
 	 */
-	this.points = obj.points;
+	this.points = obj.track.points;
 	/**
 	 * A reference for the Marker that displays on the Google Map.
 	 * @type RichMarker
 	 */
 	this.richMarker = obj.richMarker;
 	/**
-	 *
-	 * 
+	 * An array of google.maps.Points that will be used to generate the currentRoute.
+	 * @type Array
 	 */
-	this.routeCoords = obj.routeCoords;
+	this.routeCoords=null;
 	/**
 	 * UNIX Timestamp representing the date of capture. This date is recorded on the device's local time.
 	 * @type Number
@@ -108,6 +121,56 @@ function Track(obj) {
 	this.user_name = obj.user_name;
 
 }
+/**
+ *
+ */
+/**
+ * Resets the marker on the track by setting the rotation and position to those values of Point 0.
+ */
+RambleTrack.prototype.toStart = function() {
+	var deg = Math.round(this.points[0].heading) - 90;
+	this.richMarker.setPosition(new google.maps.LatLng(this.points[0].latitude, this.points[0].longitude));
+	this.richMarker.setContent('<div class="marker"><div id="' + this.filename + '-marker" class="video-camera-marker" style="transform:rotate(' + deg + 'deg);-moz-transform:rotate(' + deg + 'deg);-webkit-transform:rotate(' + deg + 'deg);-o-transform:rotate(' + deg + 'deg);-ms-transform:rotate(' + deg + 'deg);" ><img src="/build/images/arrow.png" alt="" /></div><div class="tooltip"><img src="//graph.facebook.com/' + this.user_id + '/picture" alt="" title="' + this.name + '"/></div></div>')
+};
+/**
+ * Initializes the appropriate Google Maps objects and stores them in the {@link RambleTrack} object.
+ */
+RambleTrack.prototype.plot = function() {
+	// Set Points Array
+	this.routeCoords = [];
+	for (var x in this.points) {
+		this.routeCoords.push(new google.maps.LatLng(this.points[x].latitude, this.points[x].longitude));
+	}
+	this.map.latLngBounds.extend(new google.maps.LatLng(this.points[0].latitude, this.points[0].longitude));
+	this.map.map.fitBounds(latLngBounds);
+	this.route = new google.maps.Polyline({
+		path: this.routeCoords,
+		strokeColor: "rgb(48,157,230)",
+		strokeOpacity: 0.73,
+		strokeWeight: 5
+	});
+	this.route.setMap(this.map.map);
+	var deg = Math.round(this.points[0].heading) - 90;
+	this.richMarker = new RichMarker({
+		map: this.map.map,
+		flat: true,
+		position: new google.maps.LatLng(this.points[0].latitude, this.points[0].longitude),
+		anchor: RichMarkerPosition.MIDDLE,
+		content: '<div class="marker"><div id="' + this.filename + '-marker" class="video-camera-marker" style="transform:rotate(' + deg + 'deg);-moz-transform:rotate(' + deg + 'deg);-webkit-transform:rotate(' + deg + 'deg);-o-transform:rotate(' + deg + 'deg);-ms-transform:rotate(' + deg + 'deg);" ><img src="/build/images/arrow.png" alt="" /></div><div class="tooltip"><img src="//graph.facebook.com/' + this.user_id + '/picture" alt="" title="' + this.name + '"/></div></div>'
+	});
+	this.richMarker.setMap(this.map.map);
+	//TODO: Make sure this is used in the right context
+	google.maps.event.addListener(this.richMarker, 'click', function() {
+		cT = idx;
+		initViewer(this.filename);
+		var llb = new google.maps.LatLngBounds();
+		for (var x in this.points) {
+			llb.extend(new google.maps.LatLng(this.points[x].latitude, this.points[x].longitude));
+		}
+		this.map.map.fitBounds(llb);
+	});
+};
+
 
 /*
 

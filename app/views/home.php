@@ -17,14 +17,14 @@
 
     <!-- <link rel="stylesheet" href="stylesheets/screen.css" media="screen"> -->
 	<meta name="author" content="Strabo"/>
-    <meta property="og:title" content="Ramble"/>
-    <meta property="og:type" content="Application"/>
-    <meta property="og:url" content="https://ramble.strabogis.com"/>
-    <meta property="og:image" content=""/>
-    <meta property="og:site_name" content="Ramble"/>
-    <meta property="og:locality" content="Middlebury"/>
-    <meta property="og:email" content="support@strabogis.com"/>
-    <meta property="og:region" content="VT"/>
+	<meta property="og:title" content="Ramble"/>
+	<meta property="og:type" content="Application"/>
+	<meta property="og:url" content="https://ramble.strabogis.com"/>
+	<meta property="og:image" content=""/>
+	<meta property="og:site_name" content="Ramble"/>
+	<meta property="og:locality" content="Middlebury"/>
+	<meta property="og:email" content="support@strabogis.com"/>
+	<meta property="og:region" content="VT"/>
 	<?php if($ramble_user) { ?>
 	<script type="text/javascript">
 		var id = "<?php echo $user ?>";

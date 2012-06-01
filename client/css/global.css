@@ -134,7 +134,7 @@ html,body {
 #video-title {
 	overflow: hidden;
 	text-overflow: ellipsis-word;
-	height: 19px;
+	height: 24px;
 }
 #close-vid {
 	float: right;

@@ -15,6 +15,20 @@ function get_track($id) { // Param Track ID
 	}
 	return $result;
 }
+function get_track_by_filename($filename) {
+	global $con;
+	$query = "SELECT * FROM track WHERE filename='$filename' AND finished='1'";
+	$res=mysql_query($query,$con);
+	$result=array();
+	while($row=mysql_fetch_array($res)) {
+		$result=$row;
+	}
+	$ch = curl_init("http://s3.amazonaws.com/ramble/".$filename."/".$filename.".json");
+	curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+	$result['track']=json_decode(curl_exec($ch));
+	$result['track']=$result['track']->track;
+	return $result;
+}
 function get_user_videos($id) { // Param User ID
 	global $con;
 	$query = "SELECT * FROM track WHERE user_id='$id' AND finished='1'";

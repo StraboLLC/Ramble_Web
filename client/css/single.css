@@ -1,0 +1,219 @@
+@font-face {
+	font-family: 'JournalRegular';
+	src: url('/client/fonts/journal-webfont.eot');
+	src: url('/client/fonts/journal-webfont.eot?#iefix') format('embedded-opentype'),
+	url('/client/fonts/journal-webfont.woff') format('woff'),
+	url('/client/fonts/journal-webfont.ttf') format('truetype'),
+	url('/client/fonts/journal-webfont.svg#JournalRegular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+a {
+	text-decoration:none;
+}
+html,body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	z-index:-10;
+}
+
+body {
+	background: url('/build/images/sidebar_bg.png');
+}
+
+.container {
+	width: 800px;
+	margin: 0 auto;
+	position: relative;
+}
+.main {
+	position: relative;
+}
+#map_container,#video_container {
+	height: 400px;
+	width: 400px;
+}
+
+#map_container {
+	background-color: #111;
+	float: left;
+	overflow: hidden;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+}
+
+#map {
+	position: absolute;
+	height: 400px;
+	width: 400px;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	-webkit-mask-box-image: url('/build/images/mask.png') 75 stretch;
+	-webkit-box-shadow: 0px 4px 7px #333 inset, 4px 0px 7px #333 inset, 0px -4px 7px #333 inset;
+	-moz-box-shadow: 0px 4px 7px #333 inset, 4px 0px 7px #333 inset, 0px -4px 7px #333 inset;
+	box-shadow: 0px 4px 7px #333 inset, 4px 0px 7px #333 inset, 0px -4px 7px #333 inset;
+}
+
+#map > div > div:first-child {
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	-webkit-box-shadow: 0px 4px 7px #333 inset, 4px 0px 7px #333 inset, 0px -4px 7px #333 inset;
+	-moz-box-shadow: 0px 4px 7px #333 inset, 4px 0px 7px #333 inset, 0px -4px 7px #333 inset;
+	box-shadow: 0px 4px 7px #333 inset, 4px 0px 7px #333 inset, 0px -4px 7px #333 inset;
+
+}
+
+#video_container {
+	position: relative;
+	background: url('/build/images/graybackground.png');
+	float: right;
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+
+	-webkit-box-shadow: 0px 4px 7px #333 inset, -4px 0px 7px #333 inset, 0px -4px 7px #333 inset;
+	-moz-box-shadow: 0px 4px 7px #333 inset, -4px 0px 7px #333 inset, 0px -4px 7px #333 inset;
+	box-shadow: 0px 4px 7px #333 inset, -4px 0px 7px #333 inset, 0px -4px 7px #333 inset;
+}
+#video {
+	display:block;
+	margin: 0 auto;
+	height:400px;
+}
+#video.portrait {
+	height:400px;
+}
+#video.landscape {
+	width:400px;
+}
+/*Clear*/
+.clear {
+	clear: both;
+}
+.header {
+	margin:30px 0 0 0;
+}
+.logo {
+	display: block;
+	height: 49px;
+	width: 148px;
+	padding: 5px 10px;
+	background: url('/build/images/single-ramble.png') center center no-repeat;
+	color: transparent;
+}
+
+
+
+
+#video-controls {
+	position: relative;
+	padding: 20px 30px;
+}
+#play-pause {
+	position: relative;
+	float: left;
+	height: 21px;
+	width: 24px;
+	padding: 0 10px;
+	background: url('/build/images/single-play.png') center center no-repeat;
+}
+#scrub-bar {
+	position: relative;
+	float: left;
+	display: inline-block;
+	height:16px;
+	margin: 3px 10px;
+	width:475px;
+	background:rgb(57,57,57);
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	-webkit-box-shadow:0px 0px 9px #000 inset;
+	-moz-box-shadow:0px 0px 9px #000 inset;
+	box-shadow:0px 0px 9px #000 inset;
+}
+#played {
+	height: 16px;
+	position: relative;
+	left:0;
+	width:0;
+	background:rgb(101,34,10);
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	-webkit-box-shadow:0px 0px 9px #000 inset;
+	-moz-box-shadow:0px 0px 9px #000 inset;
+	box-shadow:0px 0px 9px #000 inset;
+}
+#join {
+	display: block;
+	text-align:center;
+	float: left;
+	width:200px;
+	font-family:"Oxygen",sans-serif;
+	font-weight:bold;
+	margin-top:-10px;
+	color: rgb(45, 14, 10);
+	font-size:20px;
+}
+
+
+
+.user {
+	position: relative;
+	float: right;
+	width:200px;
+}
+.user-image {
+	-webkit-box-shadow:0px 0px 20px #000 inset;
+	-moz-box-shadow:0px 0px 20px #000 inset;
+	box-shadow:0px 0px 20px #000 inset;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	z-index:1;
+	height:50px;
+	width: 50px;
+	display: block;
+}
+.user-image img {
+	height:50px;
+	width: 50px;
+	margin: 0 !important;
+	position: relative;
+	z-index: -1;
+
+
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+}
+.user-name {
+	font-family:"Oxygen",sans-serif;
+	font-weight:bold;
+	color: rgb(45,14,10);
+	font-size:20px;
+	width:150px;
+	text-align:center;
+	right: 0;
+	height:50px;
+	position:absolute;
+	vertical-align:middle;
+	top: 0;
+}
+
+.tooltip {
+	display: none;
+	position: absolute;
+	background: rgba(0,0,0,.75);
+	padding: 5px;
+	border-radius: 5px;
+}
+.tooltip img {
+	border-radius: 4px;
+}
+.marker:hover .tooltip {
+	display: block;
+}
