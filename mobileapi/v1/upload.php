@@ -13,7 +13,7 @@ if($u!=false && $_POST['filetype']=="video") {
 	$json = isset($_FILES['JSONfile']) ? $_FILES['JSONfile'] : null;
 	$video = isset($_FILES['videofile']) ? $_FILES['videofile'] : null;
 	$imagefile = isset($_FILES['imagefile']) ? $_FILES['imagefile'] : null;
-	
+	$uploadfb = $_POST['upload_to_facebook'] == true ? true : false;
 	if($json==null||$video==null||$imagefile==null) echo '{"errors":["true","JSON or Video or Image is not included!"]}';
 	
 	$addtoalbum = isset($_POST['addtoalbum']) ? $_POST['addtoalbum'] : null;
@@ -84,7 +84,7 @@ if($u!=false && $_POST['filetype']=="video") {
 				$webmid = $encoding_job->outputs['webm']->id;
 				$mp4id = $encoding_job->outputs['mp4']->id;
 
-				$query = "INSERT INTO track (name,filename,date_taken,date_uploaded,starting_lat,starting_long,starting_heading,user_id,jobid,webmid,mp4id) VALUES ('$name','$filename','$date_taken','$date_uploaded','$starting_lat','$starting_long','$starting_heading','$user_id','$jobid','$webmid','$mp4id')";
+				$query = "INSERT INTO track (name,filename,date_taken,date_uploaded,starting_lat,starting_long,starting_heading,user_id,jobid,webmid,mp4id,uploadfb) VALUES ('$name','$filename','$date_taken','$date_uploaded','$starting_lat','$starting_long','$starting_heading','$user_id','$jobid','$webmid','$mp4id','$uploadfb')";
 				mysql_query($query,$con) or die("Query ".$query." failed because: ".mysql_error());
 				echo '{"errors":["false"';
 				echo ',"Video uploaded successfully!"';

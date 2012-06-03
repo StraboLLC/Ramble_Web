@@ -478,6 +478,11 @@ AddCharset utf-8 .css .js .xml .json .rss .atom
   php_value session.cookie_httponly true
 </IfModule>
 
+<IfModule mod_rewrite.c>
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^v/([A-F0-9\-]*) api/facebook/track.php?f=$1 [L]
+</IfModule>
 
 
 

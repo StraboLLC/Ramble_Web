@@ -12,31 +12,46 @@ a {
 	text-decoration:none;
 }
 html,body {
+	font-family:"Oxygen",sans-serif;
 	height: 100%;
 	width: 100%;
 	margin: 0;
 	padding: 0;
 	position: relative;
-	z-index:-10;
 }
 
 body {
-	background: url('/build/images/sidebar_bg.png');
+	background: url('/build/images/graybackground.png');
 }
 
 .container {
-	width: 800px;
+	width: 840px;
 	margin: 0 auto;
 	position: relative;
+	background:transparent;
 }
 .main {
+	margin:30px 0 0 0;
 	position: relative;
+	padding: 10px 20px;
+	background: url('/build/images/sidebar_bg.png');
+	border-radius:30px;
+	box-shadow: 0px 0px 14px #000 inset;
 }
 #map_container,#video_container {
 	height: 400px;
 	width: 400px;
 }
-
+#video_container {
+	-webkit-box-shadow: 2px 0px 8px #333, 0px 2px 8px #333, 0px -2px 8px #333;
+	-moz-box-shadow: 2px 0px 8px #333, 0px 2px 8px #333, 0px -2px 8px #333;
+	box-shadow: 2px 0px 8px #333, 0px 2px 8px #333, 0px -2px 8px #333;
+}
+#map_container {
+	-webkit-box-shadow: -2px 0px 8px #333, 0px 2px 8px #333, 0px -2px 8px #333;
+	-moz-box-shadow: -2px 0px 8px #333, 0px 2px 8px #333, 0px -2px 8px #333;
+	box-shadow: -2px 0px 8px #333, 0px 2px 8px #333, 0px -2px 8px #333;
+}
 #map_container {
 	background-color: #111;
 	float: left;
@@ -72,15 +87,14 @@ body {
 	float: right;
 	border-top-right-radius: 20px;
 	border-bottom-right-radius: 20px;
-
-	-webkit-box-shadow: 0px 4px 7px #333 inset, -4px 0px 7px #333 inset, 0px -4px 7px #333 inset;
-	-moz-box-shadow: 0px 4px 7px #333 inset, -4px 0px 7px #333 inset, 0px -4px 7px #333 inset;
-	box-shadow: 0px 4px 7px #333 inset, -4px 0px 7px #333 inset, 0px -4px 7px #333 inset;
 }
 #video {
 	display:block;
 	margin: 0 auto;
 	height:400px;
+	-webkit-box-shadow: 0px 4px 7px #333 inset, 0px -4px 7px #333 inset;
+	-moz-box-shadow: 0px 4px 7px #333 inset, 0px -4px 7px #333 inset;
+	box-shadow: 0px 4px 7px #333 inset, 0px -4px 7px #333 inset;
 }
 #video.portrait {
 	height:400px;
@@ -93,13 +107,13 @@ body {
 	clear: both;
 }
 .header {
-	margin:30px 0 0 0;
+	padding: 10px;
 }
 .logo {
 	display: block;
 	height: 49px;
 	width: 148px;
-	padding: 5px 10px;
+	padding: 0 30px;
 	background: url('/build/images/single-ramble.png') center center no-repeat;
 	color: transparent;
 }
@@ -191,6 +205,7 @@ body {
 	border-radius:5px;
 }
 .user-name {
+	z-index:30;
 	font-family:"Oxygen",sans-serif;
 	font-weight:bold;
 	color: rgb(45,14,10);
@@ -216,4 +231,9 @@ body {
 }
 .marker:hover .tooltip {
 	display: block;
+}
+.footer {
+	margin:15px 0;
+	font-size:12px;
+	text-align:center;
 }

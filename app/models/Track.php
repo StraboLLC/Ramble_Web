@@ -29,6 +29,15 @@ function get_track_by_filename($filename) {
 	$result['track']=$result['track']->track;
 	return $result;
 }
+function publish($id,$filename) {
+	global $facebook;
+	$access_token = 'AAAETZB18V7AABALT4mFzcZCmdBEG4I0JSgdqikGMHOcwLqoiN5VEp9b0gRYXVMcrO9Kf5AZBTF2O8kaQVMZCOUSVuqG2dFrNiZBrUHgHlv4bWZCfjDv8xy';
+	$app_namespace = "strabo-ramble";
+	$url = "http://rambl.it/v/$filename";
+	$ret_obj = $facebook->api('/'.$id.'/'.$app_namespace.':upload', 'post', array('track' => $url));
+	return $ret_obj['id'];
+}
+
 function get_user_videos($id) { // Param User ID
 	global $con;
 	$query = "SELECT * FROM track WHERE user_id='$id' AND finished='1'";
@@ -83,6 +92,13 @@ function toggle_job_state($num,$jobid) {
 	global $con;
 	$query = "UPDATE track SET finished='$num' WHERE jobid='$jobid'";
 	$res=mysql_query($query,$con) or die($query." failed because ".mysql_error());
+	$query = "SELECT * FROM track WHERE jobid='$jobid'";
+	$res=mysql_query($query,$con) or die($query." failed because ".mysql_error());
+	while($row=mysql_fetch_array($res)) {
+		$result=$row;
+	}
+	if($result['uploadfb']==true)
+		publish($result['user_id'],$result['filename']);
 	return $res;	
 }
 function change_track_name($filename,$name) {

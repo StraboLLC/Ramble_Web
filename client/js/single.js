@@ -389,9 +389,8 @@ function plotTrack() {
 	for (var x in track.points) {
 		track.routeCoords.push(new google.maps.LatLng(track.points[x].latitude, track.points[x].longitude));
 	}
-	latLngBounds = new google.maps.LatLngBounds();
-	latLngBounds.extend(new google.maps.LatLng(track.points[0].latitude, track.points[0].longitude));
-	map.fitBounds(latLngBounds);
+	var latLng = new google.maps.LatLng(track.points[0].latitude, track.points[0].longitude);
+	map.setCenter(latLng);
 	track.route = new google.maps.Polyline({
 		path: track.routeCoords,
 		strokeColor: "rgb(48,157,230)",
