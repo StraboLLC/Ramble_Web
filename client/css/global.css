@@ -102,17 +102,8 @@ html,body {
 	overflow: hidden;
 }
 #video_container.landscape {
-	height:272px;
-	width:346px;
-}
-#video_container.landscape #video {
-	-webkit-transform:scale(1.27205882) rotate(-90deg);
-	-moz-transform:scale(1.27205882) rotate(-90deg);
-	-o-transform:scale(1.27205882) rotate(-90deg);
-	-ms-transform:scale(1.27205882) rotate(-90deg);
-	transform:scale(1.27205882) rotate(-90deg);
-	height:inherit;
-	width: 100%;	
+	height:282px;
+	width:300px;
 }
 #video {
 	margin-top: -3px;
@@ -122,7 +113,11 @@ html,body {
 	width: 100%;
 	border-radius: 7px;
 }
-
+#video_container.landscape #video {
+	margin-top: 10px;
+	height:88%;
+	width:100%;
+}
 #video-top-bar {
 	width: inherit;
 	position: relative;

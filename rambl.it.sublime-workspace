@@ -4,6 +4,114 @@
 		"selected_items":
 		[
 			[
+				"sing",
+				"single_command"
+			],
+			[
+				"con",
+				"console.log();"
+			],
+			[
+				"conso",
+				"console.log();"
+			],
+			[
+				"upload",
+				"uploadfb"
+			],
+			[
+				"gl",
+				"global"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"in",
+				"inset"
+			],
+			[
+				"mar",
+				"margin	margin-top: length"
+			],
+			[
+				"pad",
+				"padding	padding: V H"
+			],
+			[
+				"json",
+				"json_encode"
+			],
+			[
+				"prin",
+				"print_r"
+			],
+			[
+				"h",
+				"hidden	(h)"
+			],
+			[
+				"border-ra",
+				"border-top-right-radius:   (property)"
+			],
+			[
+				"u",
+				"url(image-url.gif)"
+			],
+			[
+				"wid",
+				"width:   (property)"
+			],
+			[
+				"sys",
+				"system"
+			],
+			[
+				"toggle",
+				"togglePlay"
+			],
+			[
+				"RambleP",
+				"RamblePlayer"
+			],
+			[
+				"pr",
+				"print"
+			],
+			[
+				"login",
+				"login_command"
+			],
+			[
+				"doc",
+				"doc_command"
+			],
+			[
+				"s",
+				"system"
+			],
+			[
+				"a",
+				"app"
+			],
+			[
+				"font-s",
+				"font-size"
+			],
+			[
+				"font-",
+				"font-family"
+			],
+			[
+				"pos",
+				"position	position: type"
+			],
+			[
+				"scrub",
+				"scrubBar"
+			],
+			[
 				"jque",
 				"jquery-ui"
 			],
@@ -16,20 +124,8 @@
 				"LatLngBounds"
 			],
 			[
-				"scrub",
-				"scrubBarWidth"
-			],
-			[
-				"font-",
-				"font-size"
-			],
-			[
 				"inlin",
 				"inline-block"
-			],
-			[
-				"mar",
-				"margin	margin: all"
 			],
 			[
 				"font-st",
@@ -46,10 +142,6 @@
 			[
 				"back",
 				"background	background-color: name"
-			],
-			[
-				"h",
-				"h"
 			],
 			[
 				"test",
@@ -128,10 +220,6 @@
 				"root_node"
 			],
 			[
-				"print",
-				"print_tree"
-			],
-			[
 				"is",
 				"is_question"
 			],
@@ -154,10 +242,6 @@
 			[
 				"margin",
 				"margin	margin: V H"
-			],
-			[
-				"pr",
-				"price_space"
 			],
 			[
 				"price",
@@ -208,14 +292,18 @@
 	"buffers":
 	[
 	],
-	"build_system": "Packages/Ruby/Ruby.sublime-build",
+	"build_system": "Packages/JSHint/JSHint.sublime-build",
 	"command_palette":
 	{
-		"height": 182.0,
+		"height": 160.0,
 		"selected_items":
 		[
 			[
-				"instal",
+				"form",
+				"Format: Javascript"
+			],
+			[
+				"pac",
 				"Package Control: Install Package"
 			],
 			[
@@ -223,11 +311,99 @@
 				"Format: Javascript"
 			],
 			[
-				"fo",
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"re",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"reint",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"rei",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"ind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"tag",
+				"Tag: Auto-Format Tags on Document"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"sublime",
+				"Preferences: SublimeLint – User"
+			],
+			[
+				"lin",
+				"JSLint: Run JSLint"
+			],
+			[
+				"lint",
+				"JSLint: Run JSLint"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"set syntax: jq",
+				"Set Syntax: jQuery (JavaScript)"
+			],
+			[
+				"forma",
 				"Format: Php"
 			],
 			[
-				"form",
+				"packi",
+				"Package Control: Install Package"
+			],
+			[
+				"git",
+				"Git: Status"
+			],
+			[
+				"cam",
+				"Camaleón : Next Color Scheme and Chrome Theme"
+			],
+			[
+				"ca",
+				"Camaleón : Next Color Scheme and Chrome Theme"
+			],
+			[
+				"cama",
+				"Camaleón : Next Color Scheme and Chrome Theme"
+			],
+			[
+				"prefer",
+				"Preferences: Settings - Default"
+			],
+			[
+				"",
+				"Closure Linter: Fix JavaScript Style"
+			],
+			[
+				"linte",
+				"Closure Linter: Fix JavaScript Style"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"fo",
 				"Format: Php"
 			],
 			[
@@ -247,16 +423,8 @@
 				"Package Control: Install Package"
 			],
 			[
-				"lint",
-				"JSLint: Run JSLint"
-			],
-			[
 				"install pack",
 				"Package Control: Install Package"
-			],
-			[
-				"git",
-				"Git: Pull"
 			],
 			[
 				"u",
@@ -275,24 +443,12 @@
 				"Package Control: Remove Package"
 			],
 			[
-				"install",
-				"Package Control: Install Package"
-			],
-			[
 				"upload fi",
 				"SFTP: Upload File"
 			],
 			[
 				"java",
 				"Set Syntax: JavaScript"
-			],
-			[
-				"tag",
-				"Tag: Lint"
-			],
-			[
-				"",
-				"Gist: Create Private Gist"
 			],
 			[
 				"gist",
@@ -343,14 +499,6 @@
 				"Package Control: Install Package"
 			],
 			[
-				"pack",
-				"Package Control: Install Package"
-			],
-			[
-				"pac",
-				"Package Control: Install Package"
-			],
-			[
 				"packa in",
 				"Package Control: Install Package"
 			],
@@ -387,7 +535,7 @@
 				"Set Syntax: HTML"
 			]
 		],
-		"width": 579.0
+		"width": 588.0
 	},
 	"console":
 	{
@@ -404,17 +552,59 @@
 	},
 	"file_history":
 	[
-		"/Users/williampotter/github/rambl.it/client/css/login.css",
+		"/Users/williampotter/github/rambl.it/client/js/login.js",
+		"/Users/williampotter/github/rambl.it/app/models/Track.php",
+		"/Users/williampotter/github/rambl.it/make.py",
+		"/Users/williampotter/github/rambl.it/build/style.css",
 		"/Users/williampotter/github/rambl.it/client/css/global.css",
-		"/Users/williampotter/github/rambl.it/app/views/home.php",
+		"/Users/williampotter/github/rambl.it/client/js/track.js",
+		"/Users/williampotter/github/rambl.it/api/index.php",
+		"/Users/williampotter/github/rambl.it/api/track.php",
 		"/Users/williampotter/github/rambl.it/client/js/ramble.js",
+		"/Users/williampotter/github/rambl.it/client/css/single.css",
+		"/Users/williampotter/github/rambl.it/client/js/single.js",
+		"/Users/williampotter/github/rambl.it/app/config.php",
+		"/Users/williampotter/github/rambl.it/api/facebook/track.php",
+		"/Users/williampotter/github/rambl.it/client/js/functions.js",
+		"/Users/williampotter/github/rambl.it/build/login.js",
+		"/Users/williampotter/github/rambl.it/.htaccess",
+		"/Users/williampotter/Downloads/xing-wysihtml5-fb0cfe4/README.textile",
+		"/Users/williampotter/github/rambl.it/mobileapi/v1/upload.php",
+		"/Users/williampotter/github/rambl.it/api/facebook/index.php",
+		"/Users/williampotter/github/rambl.it/client/js/player.js",
+		"/Users/williampotter/github/rambl.it/client/js/map.js",
+		"/Users/williampotter/github/rambl.it/client/js/friend.js",
+		"/Users/williampotter/github/rambl.it/Doxyfile",
+		"/Users/williampotter/github/rambl.it/tools/markdown/home.md",
+		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/User/SFTP.errors.log",
+		"/Users/williampotter/github/rambl.it/app/views/home.php",
+		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/User/SublimeLint.sublime-settings",
+		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/williampotter/github/rambl.it/index.php",
 		"/Users/williampotter/github/rambl.it/make",
+		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/Camaleon/Camaleon.sublime-settings",
+		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/User/Camaleon.sublime-settings",
+		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/williampotter/github/rambl.it/Readme.md",
+		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/sublime-closure-linter/sublime-closure-linter.sublime-settings",
+		"/Users/williampotter/.zshrc",
+		"/Users/williampotter/Downloads/compiler-latest/README",
+		"/Users/williampotter/github/rambl.it/client/js/libs/jQuery-1.3-Doc.js",
+		"/Users/williampotter/github/rambl.it/client/css/fonts.css",
+		"/Users/williampotter/github/rambl.it/.gitignore",
+		"/Users/williampotter/.ssh/id_rsa.pub",
+		"/Users/williampotter/github/rambl.it/client/js/libs/jquery-ui.js",
+		"/Users/williampotter/github/rambl.it/tools/jsdoc-tk/templates/jsdoc/index.tmpl",
+		"/Users/williampotter/github/rambl.it/tools/jsdoc-tk/templates/jsdoc/static/header.html",
+		"/Users/williampotter/github/rambl.it/tools/jsdoc-tk/templates/jsdoc/static/default.css",
+		"/Users/williampotter/github/rambl.it/404.html",
+		"/Users/williampotter/github/rambl.it/client/css/login.css",
+		"/Users/williampotter/github/rambl.it/client/build/style.css",
 		"/Users/williampotter/github/rambl.it/app/assets/js/ramble.js",
 		"/Users/williampotter/github/rambl.it/app/assets/css/global.css",
 		"/Users/williampotter/github/rambl.it/client/css/images/ui-bg_glass_75_e6e6e6_1x400.png",
-		"/Users/williampotter/github/rambl.it/.htaccess",
 		"/Users/williampotter/github/rambl.it/build.sh",
-		"/Users/williampotter/github/rambl.it/mobileapi/v1/upload.php",
 		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/SFTP/Default (OSX).sublime-keymap",
 		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/SFTP/SFTP.sublime-settings",
 		"/Users/williampotter/github/rambl.it/rambl.it.sublime-workspace",
@@ -426,10 +616,7 @@
 		"/Users/williampotter/github/rambl.it/app/assets/js/init.js",
 		"/Users/williampotter/github/rambl.it/app/assets/js/richmarker-compiled.js",
 		"/Users/williampotter/github/rambl.it/app/assets/js/jquery.js",
-		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/Users/williampotter/github/rambl.it/api/code.php",
-		"/Users/williampotter/github/rambl.it/api/index.php",
-		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
 		"/Users/williampotter/github/rambl.it/app/assets/js/modernizr.js",
 		"/Library/WebServer/Documents/ramble.strabogis.com/app/assets/js/ramble.js",
 		"/Library/WebServer/Documents/ramble.strabogis.com/app/assets/js/ramble-obj.js",
@@ -479,7 +666,6 @@
 		"/Library/WebServer/Documents/ramble.strabogis.com/Readme.md",
 		"/Users/williampotter/Desktop/sd_feedback.txt",
 		"/Users/williampotter/Desktop/George Strait – Love's Gonna Make It Alright.txt",
-		"/Users/williampotter/.zshrc",
 		"//.zshrc",
 		"/Volumes/wspotter/public_html/cs312/hw4/problem1/url.txt",
 		"/Volumes/wspotter/public_html/cs312-page/ratings.html",
@@ -493,45 +679,7 @@
 		"/Volumes/wspotter/public_html/cs312/hw4/ratings2.css",
 		"/Users/williampotter/Downloads/Cylinder.java",
 		"/Users/williampotter/Downloads/Camera.java",
-		"/Volumes/wspotter/Documents/cs461/index.php",
-		"/Users/williampotter/Downloads/hw2/ray/Scene.java",
-		"/Volumes/wspotter/public_html/cs312-page/index.html",
-		"/Library/WebServer/Documents/solardecathlon/wp-config.php",
-		"/Library/WebServer/Documents/solardecathlon/blog/wp-comments-post.php",
-		"/Library/WebServer/Documents/solardecathlon/blog/wp-config.php",
-		"/Volumes/wspotter/public_html/cs312/style.css",
-		"/Volumes/wspotter/public_html/cs312/index.html",
-		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
-		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
-		"/Library/WebServer/Documents/solardecathlon/index.php",
-		"/Library/WebServer/Documents/solardecathlon/Boxfile",
-		"/Users/williampotter/Library/Application Support/Sublime Text 2/Packages/User/Fetch.sublime-settings",
-		"/Users/williampotter/Desktop/index.html",
-		"/Library/WebServer/Documents/solardecathlon/style.css",
-		"/Library/WebServer/Documents/solardecathlon/index.html",
-		"/Users/williampotter/.ssh/id_rsa.pub",
-		"/Users/williampotter/.ssh/id_rsa.",
-		"/Users/williampotter/.ssh/id_rsa",
-		"/Users/williampotter/.bash_history",
-		"/Users/williampotter/.appletviewer",
-		"/Users/williampotter/.CF89AA64",
-		"/Volumes/wspotter/Documents/cs312/hw2/test/test_blocks101.rb",
-		"/Volumes/wspotter/Documents/cs312/hw2/test/test_blocks201.rb",
-		"/Volumes/wspotter/Documents/cs312/hw2/lib/assign2_2.rb",
-		"/Volumes/wspotter/Documents/cs312/hw2/test/ts_assignment2.rb",
-		"/Volumes/wspotter/Documents/cs312/hw2/test/test_blocks301.rb",
-		"/Volumes/wspotter/Documents/cs312/hw2/lib/linked_list.rb",
-		"/Users/williampotter/Documents/Dropbox/Brogramming/BrianSirkia_test_WillPotter.txt",
-		"/Volumes/wspotter/Documents/cs312/hw2/lib/assign2_1.rb",
-		"/Users/williampotter/Downloads/ray/Camera.java",
-		"/Users/williampotter/Downloads/ray/Parser.java",
-		"/Users/williampotter/Downloads/ray/shader/Lambertian.java",
-		"/Users/williampotter/Downloads/ray/shader/Shader.java",
-		"/Users/williampotter/Downloads/ray/shader/Phong.java",
-		"/Users/williampotter/Downloads/hw2/TEST1/one-sphere.xml",
-		"/Users/williampotter/Downloads/hw2/ray/shader/Shader.java",
-		"/Users/williampotter/Desktop/TEST/test/test_binary_search.rb",
-		"/Users/williampotter/Desktop/TEST/lib/binary_search.rb"
+		"/Volumes/wspotter/Documents/cs461/index.php"
 	],
 	"find":
 	{
@@ -550,6 +698,94 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"#user-image",
+			"#",
+			"pause()",
+			"#play-pause",
+			"getTrack",
+			"#play-pa",
+			"'.track",
+			"followRoute()",
+			"currentPoint",
+			"followRoute",
+			"heading",
+			"user_id",
+			"parse",
+			"user_id",
+			".track",
+			"z-index",
+			"z-",
+			"z",
+			".marker",
+			"tracks[idx]",
+			"pause()",
+			"ollowRoute",
+			"tracks[cT]",
+			"tracks[idx]",
+			"/pause.png",
+			"/play.png",
+			"play.png",
+			"track",
+			"heading",
+			".css(",
+			"pause()",
+			"play()",
+			"pause()",
+			"follow",
+			"fill",
+			"fillMap",
+			" \n",
+			"	",
+			"play.",
+			"-marker",
+			"tracks[idx]",
+			"currentRoute",
+			"reset",
+			"getTrack",
+			"closeViewer",
+			",",
+			"app/assets",
+			"play()",
+			"showFriends",
+			"pullUserSidebar",
+			"pullHomeSidebar",
+			"goHome",
+			"new Track",
+			"Track",
+			"pause.",
+			"].track.",
+			"loadScripts",
+			".user",
+			".userf",
+			"theResponse",
+			"cameras",
+			"pointTime",
+			"currentRoute",
+			"currentTime",
+			"viewerOn",
+			"mainTrackMarker",
+			"playInt",
+			"track",
+			"viewer",
+			"reset",
+			"resetTrack",
+			"oXHR",
+			"convertCssPxToInt",
+			"findPos",
+			"$",
+			"    ",
+			".width",
+			"getTrack",
+			"scrub",
+			"Interval",
+			"play-pau",
+			"played",
+			" video =",
+			" video",
+			"video",
+			"client/build",
+			"/app/assets/images",
+			">",
 			"#ramble-logo",
 			"doc",
 			"app/assets/",
@@ -589,60 +825,7 @@
 			"href=[^\"]",
 			"bgcolor=silver",
 			"</font>",
-			"<font color=\"green\">",
-			"<br>",
-			"zen",
-			" >",
-			"bgcolor=[a-z]*",
-			"</font>",
-			"<font color=\"green\">",
-			"cellpadding=[0-9]",
-			"border=[0-9]",
-			"<\\/?b>",
-			"@p_node",
-			"@c_node",
-			"theme",
-			"ls",
-			"url('",
-			"oa",
-			"root",
-			"lowercase",
-			"#wrap",
-			",",
-			"\\n",
-			"<[a-z0-9\\/\\=\\\"\\-]*>",
-			"<[a-z\\/]*>",
-			"<[a-z]*>",
-			"bandwidth<=",
-			"space<=",
-			"space",
-			"0.000000",
-			"match",
-			"recordVideo",
-			"</strong>",
-			"<strong class=\"subheading\">",
-			"<a [A-Za-z0-9\\.\\-\\_\\:\\/\\=\\ \\\"]*>",
-			"<a [A-Za-z0-9\\.\\-\\_\\:\\/\\=\\ ]*>",
-			"<a [A-Za-z0-9\\.\\-\\_\\:\\/\\=]*>",
-			"/<[\\/]*a [A-Za-z0-9\\.\\-\\_\\:\\/\\=]*>/g",
-			"[A-Za-z0-9\\.\\-\\_\\:\\/]+.com[A-Za-z0-9\\/\\_\\.\\-]*",
-			"/[A-Za-z0-9\\.\\-\\_\\:\\/]+.com[A-Za-z0-9\\/\\_\\.\\-]*/",
-			"<t[hd]></t[hd]>",
-			"<th[A-Za-z0-9\\:\\;\\=\\\"\\#\\ \\(\\)\\/]*>[A-Za-z0-9\\:\\;\\=\\\"\\#\\ \\(\\)\\/]*</th>",
-			"<td[A-Za-z0-9\\:\\;\\=\\\"\\#\\ \\(\\)\\/]*>[A-Za-z0-9\\:\\;\\=\\\"\\#\\ \\(\\)\\/]*</td>",
-			"<td[A-Za-z0-9\\:\\;\\=\\\"\\#\\ \\(\\)]*>[A-Za-z0-9\\:\\;\\=\\\"\\#\\ \\(\\)]*</td>",
-			"<td[a-z0-9\\:\\;\\=\\\"\\#\\ ]*>[a-z0-9\\:\\;\\=\\\"\\ \\(\\)]*</td>",
-			"<td[a-z0-9\\:\\;\\=\\\"]*>[a-z0-9\\:\\;\\=\\\"]*</td>",
-			"<td>O\\(n\\)</td>",
-			"<td>O\\(1\\)</td>",
-			" >",
-			"style=\"[a-z0-9\\:\\#\\-\\ \\;]*\"",
-			"<td",
-			"console.log",
-			"post_update_page_contents",
-			"wrapper",
-			" ",
-			"55 89 e5 c7 08 04 84 5c 08 45 c9 e9 ff ff ff 54"
+			"<font color=\"green\">"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -650,6 +833,25 @@
 		"regex": false,
 		"replace_history":
 		[
+			"track",
+			"/single-pause.png",
+			"/single-play.png",
+			"\nsingle-play.png",
+			"\n",
+			"    ",
+			"this",
+			"route",
+			", ",
+			"build",
+			"showFriendSidebar",
+			"showUserSidebar",
+			"showHomeSidebar",
+			"pullHomeSidebar",
+			"ajax",
+			"	",
+			"build",
+			"images",
+			">>",
 			"/client/",
 			"this",
 			"\n",
@@ -757,6 +959,18 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"maky",
+				"make.py"
+			],
+			[
+				"login",
+				"client/js/login.js"
+			],
+			[
+				"login.",
+				"build/login.js"
+			],
 			[
 				"",
 				"/Users/williampotter/Desktop/index.html"

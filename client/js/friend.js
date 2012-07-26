@@ -1,7 +1,7 @@
 /**
  * Ramble Web Application
  * @author Will Potter <will@strabogis.com>
- * @license ©2012 Strabo, LLC. All Rights Reserved.
+ * ©2012 Strabo, LLC. All Rights Reserved.
  */
 
 
@@ -9,32 +9,32 @@
 /**
  * Creates a new instance of a {@link Friend}. Doesn't do much now other than old information in a dedicated object.
  * @constructor
- *
+ * @param {Object} obj An object that gets received from the server. Contains info to Initialize a RambleFriend.
  */
 function RambleFriend(obj) {
 	/**
 	 * First Name
-	 * @type String
+	 * @type {String}
 	 */
 	this.first_name = obj.first_name;
 	/**
 	 * Last Name
-	 * @type String
+	 * @type {String}
 	 */
 	this.last_name = obj.last_name;
 	/**
 	 * The facebook Identifier
-	 * @type Number
+	 * @type {Number}
 	 */
 	this.id = obj.id;
 	/**
 	 * Full Name of the User
-	 * @type String
+	 * @type {String}
 	 */
 	this.name = obj.name;
 	/**
 	 * List of {@link Track} objects that the user has uploaded.
-	 * @type Array
+	 * @type {Array}
 	 */
 	this.tracks = obj.tracks;
 }

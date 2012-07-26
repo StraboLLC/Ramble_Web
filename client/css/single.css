@@ -13,7 +13,6 @@ a {
 }
 html,body {
 	font-family:"Oxygen",sans-serif;
-	height: 100%;
 	width: 100%;
 	margin: 0;
 	padding: 0;
@@ -117,10 +116,6 @@ body {
 	background: url('/build/images/single-ramble.png') center center no-repeat;
 	color: transparent;
 }
-
-
-
-
 #video-controls {
 	position: relative;
 	padding: 20px 30px;
@@ -172,9 +167,6 @@ body {
 	color: rgb(45, 14, 10);
 	font-size:20px;
 }
-
-
-
 .user {
 	position: relative;
 	float: right;
@@ -197,7 +189,7 @@ body {
 	width: 50px;
 	margin: 0 !important;
 	position: relative;
-	z-index: -1;
+	z-index: 0;
 
 
 	-webkit-border-radius:5px;

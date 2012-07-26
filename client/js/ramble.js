@@ -1,7 +1,7 @@
 /**
  * Ramble Web Application
  * @author Will Potter <will@strabogis.com>
- * @license ©2012 Strabo, LLC. All Rights Reserved.
+ * ©2012 Strabo, LLC. All Rights Reserved.
  */
 
 
@@ -56,8 +56,8 @@ var friends;
 /**
  * Initialize Dom Listeners For UI Elements
  */
-
 function initListeners() {
+	console.log('Initializing DOM Listeners');
 	video = $('#video')[0];
 	if (video.addEventListener) {
 		video.addEventListener("timeupdate", followRoute, false);
@@ -69,18 +69,19 @@ function initListeners() {
 	} else if (vid.attachEvent) {
 		video.attachEvent("ended", pause);
 	}
+	// Disable Secondary Clicking.
 	document.oncontextmenu = function(e) {
 		return false;
 	};
-	$("ramble-logo-button").click(function(e) {
+	$("#ramble-logo-button").click(function(e) {
 		showHomeSidebar();
 	});
-	$("ramble-user-button").click(function(e) {
+	$("#ramble-user-button").click(function(e) {
 		showUserSidebar(id);
 	});
-	$("ramble-friends-button").click(function(e) {
+	$("#ramble-friends-button").click(function(e) {
 		showFriendSidebar();
-	});
+	});	
 	$('#video_container').draggable({
 		containment: "parent"
 	});
@@ -106,37 +107,100 @@ function initListeners() {
 			pullSearchQuery(this.value);
 		}
 	});
+	$('#play-pause').click(function() {
+		if ($('#video')[0].paused === true) {
+			play();
+		} else {
+			pause();
+		}
+	});
+
 
 }
 /**
- * Initializes the map viewer. Calls getTrack on vidName.
+ * Initializes the map viewer. Determines orientation of the viewer and resets the source of the video (reloads it).
  * @param {string} vidName The unique file identifier of a video
  */
 
-function initViewer(vidName) {
+function initViewer(videoName) {
 	currentPoint = 0;
+	$('#play-pause').css("url('/build/images/play.png') center center no-repeat");
 	document.getElementById('played').style.width = "0px";
-	getTrack(vidName);
+	if (tracks[cT].orientation === "vertical") {
+		$('#video_container').height("368px");
+		$('#video_container').width("250px");
+		$('#video_container').removeClass('landscape');
+	} else {
+		$('#video_container').height("282px");
+		$('#video_container').width("326px");
+		$('#video_container').addClass('landscape');
+	}
+	if (video.canPlayType("video/webm")) video.src = "http://s3.amazonaws.com/ramble/" + videoName + "/" + videoName + ".webm";
+	else if (video.canPlayType("video/mp4")) video.src = "http://s3.amazonaws.com/ramble/" + videoName + "/" + videoName + ".mp4";
+	else video.innerHTML = "Sorry, your browser does not support HTML5 Video. Please try using a compatible browser. We recommend <a href=\"http://chrome.google.com\">Google Chrome</a>.";
+	$('#video-title').html(tracks[cT].name);
+	$('#scrub-bar').click(function(event) {
+		var x = event.pageX - $(this).offset().left;
+		var percentDone = x / $(this).width();
+		$('#played').width((percentDone * 100) + "%");
+		video.currentTime = percentDone * video.duration;
+		var accuratePoint = 0;
+		a = 10;
+		var l = 10;
+		for (x in tracks[cT].points) {
+			a = Math.abs(tracks[cT].points[x].timestamp - (percentDone * video.duration));
+			if (a < l) {
+				l = a;
+				accuratePoint = x;
+			}
+		}
+		tracks[cT].richMarker.setPosition(new google.maps.LatLng(tracks[cT].points[accuratePoint].latitude, tracks[cT].points[accuratePoint].longitude));
+		currentPoint = accuratePoint;
+	});	
 	$('#video_container').css("display", "block");
-
 }
 /**
  * Closes the viewer and pauses the video.
  *
  */
-
 function closeViewer() {
-	document.getElementById('video').pause();
-	$('#play-pause').css("url('/build/images/play.png') center center no-repeat");
+	pause();
 	$('.track').removeClass('selected');
 	$('#video_container').css("display", "none");
 	$('#video_container').css("height", "368px");
 }
+
+/**
+ * Launches an AJAX request and posts a track to facebook.
+ * @param {Number} id A user's facebook ID.
+ * @param {String} filename A video's unique filename
+ */
+function postToFacebook(id, filename) {
+	var ajax = new XMLHttpRequest();
+	ajax.open("GET", "/api/index.php?post_track&user_id=" + id + "&f=" + filename);
+	ajax.onreadystatechange = function(oEvent) {
+		if (ajax.readyState === 4) {
+			if (ajax.status === 200) {
+				console.log(ajax.responseText);
+				// var response = JSON.parse(ajax.responseText);
+				// if(response.error!='none') {
+				// 	console.error(response.error);
+				// } else {
+				// 	console.log("Post success. ID: "+response.id);
+				// }
+			} else {
+				console.log("Error", ajax.statusText);
+			}
+		}
+	};
+	ajax.send(null);
+}
+
+
 /**
  * Adds event listeners to the track elements in the sidebar. Must be called immediately after each new sidebar is generated.
  *
  */
-
 function initSidebar() {
 	$('.track').click(function() {
 		cT = this.getAttribute('data-index');
@@ -187,55 +251,11 @@ function plotTrack(idx) {
 	});
 }
 /**
- *
- * @param {string} vidName The unique file identifier of a video
- */
-
-function getTrack(videoName) {
-	if (tracks[cT].orientation === "vertical") {
-		$('#video_container').height("368px");
-		$('#video_container').width("250px");
-		$('#video_container').removeClass('landscape');
-	} else {
-		$('#video_container').height("250px");
-		$('#video_container').width("368px");
-		$('#video_container').addClass('landscape');
-	}
-	if (video.canPlayType("video/webm")) video.src = "http://s3.amazonaws.com/ramble/" + videoName + "/" + videoName + ".webm";
-	else if (video.canPlayType("video/mp4")) video.src = "http://s3.amazonaws.com/ramble/" + videoName + "/" + videoName + ".mp4";
-	else video.innerHTML = "Sorry, your browser does not support HTML5 Video. Please try using a compatible browser. We recommend <a href=\"http://chrome.google.com\">Google Chrome</a>.";
-	$('#video-title').html(tracks[cT].name);
-	$('#play-pause').click(function() {
-		if (video.paused === true) {
-			play();
-		} else {
-			pause();
-		}
-	});
-	$('#scrub-bar').click(function(event) {
-		var x = event.pageX - $(this).offset().left;
-		var percentDone = x / $(this).width();
-		$('#played').width((percentDone * 100) + "%");
-		video.currentTime = percentDone * video.duration;
-		var accuratePoint = 0;
-		a = 10;
-		var l = 10;
-		for (x in tracks[cT].points) {
-			a = Math.abs(tracks[cT].points[x].timestamp - (percentDone * video.duration));
-			if (a < l) {
-				l = a;
-				accuratePoint = x;
-			}
-		}
-		tracks[cT].richMarker.setPosition(new google.maps.LatLng(tracks[cT].points[accuratePoint].latitude, tracks[cT].points[accuratePoint].longitude));
-		currentPoint = accuratePoint;
-	});
-}
-/**
  * Simple abstraction method that plays the video from the current position.
  */
 
 function play() {
+	console.log("Play");
 	document.getElementById('video').play();
 	$('#play-pause').css("background", "url('/build/images/pause.png') center center no-repeat");
 }
@@ -244,16 +264,16 @@ function play() {
  */
 
 function pause() {
+	console.log("Pause");
 	document.getElementById('video').pause();
 	$('#play-pause').css("background", "url('/build/images/play.png') center center no-repeat");
 }
 /**
  * Will reset the given track to its first point.
- * @param {string} vidName The unique file identifier of a video
+ * @param {string} videoName The unique file identifier of a video
  */
-
-function reset(vidName) {
-	getTrack(vidName);
+function reset(videoName) {
+	initViewer(videoName);
 }
 
 /**
@@ -264,22 +284,26 @@ function reset(vidName) {
 function followRoute() {
 	var percentDone = 1;
 	var pointTime;
-	var currentTime = video.currentTime;
-	if (currentTime >= video.duration) { // If video is done.
+	var cTime = video.currentTime;
+	if (cTime > video.duration) { // If video is done.
+		console.log('wtf');
 		currentPoint = 0;
 		$('#played').width((percentDone * 100) + "%");
 		$('#play-pause').css("background", "url('/build/images/play.png') center center no-repeat");
-		video.pause();
 	} else {
-		percentDone = video.currentTime / video.duration;
+		//console.log("Current Point: "+currentPoint+" Max Point: "+tracks[cT].points.length);
+		percentDone = cTime / video.duration;
 		if (currentPoint >= tracks[cT].points.length) currentPoint = tracks[cT].points.length - 1;
 		pointTime = tracks[cT].points[currentPoint].timestamp;
-		if (currentTime > pointTime) {
+		while (cTime > pointTime && currentPoint < tracks[cT].points.length - 1) {
+			//console.log("Current Point: "+currentPoint+" Max Point: "+tracks[cT].points.length);
 			currentPoint++;
-			var deg = Math.round(tracks[cT].points[currentPoint].heading) - 90;
-			tracks[cT].richMarker.setPosition(new google.maps.LatLng(tracks[cT].points[currentPoint].latitude, tracks[cT].points[currentPoint].longitude));
-			domRotate($('#' + tracks[cT].filename + '-marker')[0], deg);
+			pointTime = tracks[cT].points[currentPoint].timestamp;
 		}
+		var deg = Math.round(tracks[cT].points[currentPoint].heading) - 90;
+		tracks[cT].richMarker.setPosition(new google.maps.LatLng(tracks[cT].points[currentPoint].latitude, tracks[cT].points[currentPoint].longitude));
+		domRotate($('#' + tracks[cT].filename + '-marker')[0], deg);
+
 		if (document.getElementById('video_container').style.width === "") document.getElementById('video_container').style.width = "250px";
 		$('#played').width((percentDone * 100) + "%");
 	}
@@ -299,6 +323,7 @@ function resetTrack(trk) {
  * Removes any delete menus that are showing on the sidebar.
  *
  */
+
 function removeMenus() {
 	$('.delete-button').remove();
 }
@@ -532,7 +557,6 @@ function parseResponse(response) {
 					return false;
 				};
 			}
-
 			img = document.createElement('div');
 			img.setAttribute('class', 'track-picture image');
 			img.innerHTML = '<img src="//s3.amazonaws.com/ramble/' + response.tracks[i].filename + '/' + response.tracks[i].filename + '.png" height="48" width="36"/>';

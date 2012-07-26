@@ -1,0 +1,12 @@
+{
+	"name": "Ramble Javascript Player",
+	"description": "",
+	"version": "0.9",
+	"url": "http://rambl.it/",
+	"options": {
+		"linkNatives": "true",
+        "exclude": "tools,build,client/js/libs",
+		"outdir": "./doc/js",
+		"paths": "./client/"
+	}
+}

@@ -9,14 +9,6 @@
 #   perishablepress.com/press/2006/01/10/stupid-htaccess-tricks/
 #   Sample .htaccess file of CMS MODx: modxcms.com
 
-
-###
-### If you run a webserver other than Apache, consider:
-### github.com/h5bp/server-configs
-###
-
-
-
 # ----------------------------------------------------------------------
 # Better website experience for IE users
 # ----------------------------------------------------------------------
@@ -82,12 +74,9 @@
   </FilesMatch>
 </IfModule>
 
-
-
 # ----------------------------------------------------------------------
 # Proper MIME type for all files
 # ----------------------------------------------------------------------
-
 
 # JavaScript
 #   Normalize to standard type (it's sniffed in IE anyways)
@@ -104,8 +93,6 @@ AddType video/mp4                      mp4 m4v
 AddType video/webm                     webm
 
 # SVG
-#   Required for svg webfonts on iPad
-#   twitter.com/FontSquirrel/status/14855840545
 AddType     image/svg+xml              svg svgz
 AddEncoding gzip                       svgz
 

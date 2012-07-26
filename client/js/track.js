@@ -1,7 +1,7 @@
 /**
  * Ramble Web Application
  * @author Will Potter <will@strabogis.com>
- * @license ©2012 Strabo, LLC. All Rights Reserved.
+ * ©2012 Strabo, LLC. All Rights Reserved.
  */
 
 
@@ -170,6 +170,31 @@ RambleTrack.prototype.plot = function() {
 		this.map.map.fitBounds(llb);
 	});
 };
+
+/**
+ * Launches an AJAX request and posts a track to facebook.
+ *
+ */
+RambleTrack.prototype.postToFacebook = function() {
+	var ajax = new XMLHttpRequest();
+	ajax.open("GET", "/api/index.php?post_track&user_id="+this.user_id+"&f="+this.filename);
+	ajax.onreadystatechange = function(oEvent) {
+		if (ajax.readyState === 4) {
+			if (ajax.status === 200) {
+				var response = JSON.parse(ajax.responseText);
+				if(response.error!='none') {
+					console.error(response.error);
+				} else {
+					console.log("Post success. ID: "+response.id);
+				}
+			} else {
+				console.log("Error", ajax.statusText);
+			}
+		}
+	};
+	ajax.send(null);	
+}
+
 
 
 /*

@@ -1,7 +1,7 @@
 /**
  * Ramble Web Application
  * @author Will Potter <will@strabogis.com>
- * @license ©2012 Strabo, LLC. All Rights Reserved.
+ * ©2012 Strabo, LLC. All Rights Reserved.
  */
 
 

@@ -1,0 +1,9 @@
+{
+	"--title": "Ramble Web Viewer",
+	"--welcome": "tools/jsduck/js-doc.html",
+	"--warnings": ["-link", "-no_doc"],
+	"--guides":"tools/jsduck/guides.json",
+	"--categories":"tools/jsduck/classes.json",
+	"--output":"doc/js",
+	"--": ["client/js/"]
+}

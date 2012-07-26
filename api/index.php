@@ -138,4 +138,19 @@ else if(isset($_GET['delete_video'])&&isset($_COOKIE['auth_token'])) {
 			echo json_encode($response);
 		} else echo "Could not delete track!";
 	}
-}	
+} else if(isset($_GET['post_track'])) {
+// http://rambl.it/api/?post_track
+	if(!isset($_GET['f'])) {
+
+	} else if(!isset($_GET['user_id'])) {
+
+	} else {
+		$a = publish($_GET['user_id'],$_GET['f']);
+		if(!isset($a['id'])) {
+			echo "{error:'failed upload'}";
+		} else {
+			echo "{error:'none',id:".$a['id']."";
+		}
+	}
+}
+?>

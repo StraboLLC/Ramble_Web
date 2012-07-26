@@ -23,8 +23,10 @@ $ROapikey = "af10ab70d066d71e4df81315c4a624fc";
 $bucketName = "ramble";
 
 
-define('awsAccessKey', 'AKIAI2QH4CX45N7KLVRQ');  
-define('awsSecretKey', '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');  
+// define('awsAccessKey', 'AKIAI2QH4CX45N7KLVRQ');  
+// define('awsSecretKey', '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');  
 
+define('awsAccessKey', 'AKIAJOULK3IV4RKHDUFA');
+define('awsSecretKey', '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');
 
 ?>

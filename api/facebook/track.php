@@ -28,6 +28,9 @@ if(isset($_GET['f'])&&$_GET['f']!="") {
 		<meta property="strabo-ramble:filename" content="<?php echo $filename ?>" />
 		<meta property="strabo-ramble:location:latitude"  content="<?php echo $latitude; ?>"> 
 		<meta property="strabo-ramble:location:longitude" content="<?php echo $longitude; ?>">
+		<meta property="strabo-ramble:latitude"  content="<?php echo $latitude; ?>"> 
+		<meta property="strabo-ramble:longitude" content="<?php echo $longitude; ?>">
+		<meta property="strabo-ramble:created_by" content="<?php echo $track['user_id']; ?>">
 
 		<link rel="stylesheet" type="text/css" href="/client/css/single.css" media="all">
 		<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
@@ -47,7 +50,7 @@ if(isset($_GET['f'])&&$_GET['f']!="") {
 				<header id="main-header" class="header">
 					<?php if($user) { ?>
 					<div id="user" class="user">
-						<span class="user-image"><img src="//graph.facebook.com/<?php echo $user_profile['id']; ?>/picture" alt="<?php echo $user_profile['name']; ?>" /></span>
+						<span class="user-image"><img src="http://graph.facebook.com/<?php echo $user_profile['id']; ?>/picture" alt="<?php echo $user_profile['name']; ?>" /></span>
 						<span class="user-name"><?php echo $user_profile['name']; ?></span>
 					</div>
 					<?php } ?>

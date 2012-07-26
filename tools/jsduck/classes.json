@@ -1,0 +1,13 @@
+  [{
+    "name": "Components",
+    "groups": [{
+      "name": "Ramble Structures",
+      "classes": ["Ramble*"]
+    }, {
+      "name": "Javascript Structures",
+      "classes": ["Array", "Boolean", "Date", "Function", "Number", "Object", "RegExp", "String", "global"]
+    }, {
+      "name": "Third Party Resources",
+      "classes": ["RichMarker*"]
+    }]
+  }]

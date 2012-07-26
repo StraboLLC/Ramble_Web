@@ -35,7 +35,7 @@ function publish($id,$filename) {
 	$app_namespace = "strabo-ramble";
 	$url = "http://rambl.it/v/$filename";
 	$ret_obj = $facebook->api('/'.$id.'/'.$app_namespace.':upload', 'post', array('track' => $url));
-	return $ret_obj['id'];
+	return $ret_obj;
 }
 
 function get_user_videos($id) { // Param User ID
@@ -97,8 +97,11 @@ function toggle_job_state($num,$jobid) {
 	while($row=mysql_fetch_array($res)) {
 		$result=$row;
 	}
-	if($result['uploadfb']==true)
+	if($result['uploadfb']==true) {
 		publish($result['user_id'],$result['filename']);
+		$query = "UPDATE track SET uploadfb='0' WHERE jobid='$jobid'";
+		$res=mysql_query($query,$con) or die($query." failed because ".mysql_error());
+	}
 	return $res;	
 }
 function change_track_name($filename,$name) {
